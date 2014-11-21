@@ -83,6 +83,9 @@ disqus_shortname:
 theme: pacman
 exclude_generator:
 
+livereload:
+  port: 35729
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:

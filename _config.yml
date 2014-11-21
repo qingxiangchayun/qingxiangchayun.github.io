@@ -91,5 +91,5 @@ livereload:
 deploy:
   type: github
   repository: git@github.com:qingxiangchayun/qingxiangchayun.github.io.git
-  branch: master,
+  branch: master
   user : qingxiangchayun

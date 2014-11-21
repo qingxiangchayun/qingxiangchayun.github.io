@@ -4,6 +4,6 @@ blog
 
 
 ### blog 搭建
-* 使用HEXO:[http://hexo.io/]
+* 使用[hexo](http://hexo.io/)
 
 

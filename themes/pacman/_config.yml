@@ -2,7 +2,8 @@
 menu:
   Home: /
   Archives: /archives
-  Lab : /lab
+  About : /about
+  Labs : /labs
 ## you can create `tags` and `categories` folders in `../source`.
 ## And create a `index.md` file in each of them.
 ## set `front-matter`as

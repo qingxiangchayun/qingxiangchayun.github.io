@@ -4,14 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>trip to start my blog | lyuan blog</title>
+    <title>hexo tips | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="开始blog之旅
-学习过的知识，经常不用就忘记了，尤其是比较新鲜的知识点，不容易应用到项目中，就更加容易忘记了，所以就写写blog，对学过的知识多总结、多思考、加深巩固，并时常回顾学习。
-温故而知新，可以为师矣！">
+    <meta name="description" content="hexo 常用命令
+
+新建文章 $ hexo new &amp;lt;title&amp;gt;
+新建草稿 $ hexo new draft &amp;lt;title&amp;gt;
+草稿写好之后发布 $ hexo publish [layout] &amp;lt;filename&amp;gt;
+生成静态内容 $ hexo generate ">
     
     
     
@@ -70,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/20/trip-to-start-my-blog/" title="trip to start my blog" itemprop="url">trip to start my blog</a>
+      <a href="/2014/11/24/hexo-tip/" title="hexo tips" itemprop="url">hexo tips</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-20T03:09:25.000Z" itemprop="datePublished">10月 20 2014</time>
-    更新日期:<time datetime="2014-11-21T12:19:03.000Z" itemprop="dateModified">11月 21 2014</time>
+    <time datetime="2014-11-24T08:37:21.000Z" itemprop="datePublished">11月 24 2014</time>
+    更新日期:<time datetime="2014-11-24T08:45:19.000Z" itemprop="dateModified">11月 24 2014</time>
     
   </p>
 </header>
@@ -87,22 +90,36 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始blog之旅"><span class="toc-number">1.</span> <span class="toc-text">开始blog之旅</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo_常用命令"><span class="toc-number">1.</span> <span class="toc-text">hexo 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用过程中遇到的问题"><span class="toc-number">2.</span> <span class="toc-text">使用过程中遇到的问题</span></a></li></ol>
 		</div>
 		
-		<h2 id="开始blog之旅">开始blog之旅</h2>
-<p>学习过的知识，经常不用就忘记了，尤其是比较新鲜的知识点，不容易应用到项目中，就更加容易忘记了，所以就写写blog，对学过的知识多总结、多思考、加深巩固，并时常回顾学习。</p>
-<p>温故而知新，可以为师矣！</p>
+		<h3 id="hexo_常用命令">hexo 常用命令</h3>
+<ul>
+<li>新建文章 <code>$ hexo new &lt;title&gt;</code></li>
+<li>新建草稿 <code>$ hexo new draft &lt;title&gt;</code></li>
+<li>草稿写好之后发布 <code>$ hexo publish [layout] &lt;filename&gt;</code></li>
+<li>生成静态内容 <code>$ hexo generate / hexo g</code></li>
+<li>启动本地服务 <code>$ hexo server / hexo s</code></li>
+<li>以草稿方式启动 <strong>以这种方式启动可以一遍编辑一边预览</strong> <code>$ hexo server --drafts</code></li>
+<li>部署 <code>$ hexo deploy / hexo d</code></li>
+</ul>
+<h3 id="使用过程中遇到的问题">使用过程中遇到的问题</h3>
+<p>hexo deploy时，本地有多个git帐号时，且往github上提交的帐号不是global类型的，所以每次提交都会以本地开发的的用户提交<br>解决方法：hexo deploy时 会在工程目录中生成一个 .deploy 的目录 cd 到 .deploy 目录下 设置用户名邮件<br><code>$ cd /project/.deploy</code><br><code>$ git config user.name &quot;Name&quot;</code><br><code>$ git config user.email &quot;Email&quot;</code></p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/10/20/trip-to-start-my-blog/" data-title="trip to start my blog | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2014/11/24/hexo-tip/" data-title="hexo tips | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -111,14 +128,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/10/20/jquery-source-code-analysis/" title="jquery source code analysis">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jquery source code analysis</span>
+
+<div class="next">
+<a href="/2014/11/21/hello-world/"  title="Hello World">
+ <strong>NEXT:</strong><br/> 
+ <span>Hello World
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -132,7 +149,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始blog之旅"><span class="toc-number">1.</span> <span class="toc-text">开始blog之旅</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo_常用命令"><span class="toc-number">1.</span> <span class="toc-text">hexo 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用过程中遇到的问题"><span class="toc-number">2.</span> <span class="toc-text">使用过程中遇到的问题</span></a></li></ol>
   </div>
 
 <div id="asidepart">

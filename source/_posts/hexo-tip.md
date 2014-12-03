@@ -18,3 +18,16 @@ hexo deploy时，本地有多个git帐号时，且往github上提交的帐号不
 `$ cd /project/.deploy`
 `$ git config user.name "Name"`
 `$ git config user.email "Email"`
+
+hexo2.8+ 代码前后多空行
+解决方案：修改主题样式文件source/css/_base/code.styl
+``` css
+       @extend $line-numbers
+       text-align right
+       padding-right 1.5em
++    .line
++      height: 20px // 改为合适的值
+   .gist
+     margin 0.5em 0
+```
+[参考链接](https://github.com/wuchong/jacman/issues/16)

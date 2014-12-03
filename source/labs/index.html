@@ -25,10 +25,10 @@
 <header class="header">
 	<h1 class="h-title">Tool -- HTML TO JS</h1>
 </header>
-<section class="main clearfix">
-	<textarea id="J_html_area"></textarea>
+<section class="main clearfix">   
+	<textarea id="J_html_area" placeholder="请输入HTML代码"></textarea>		
 	<div class="change-btns">
-		<button class="btn btn-primary" type="button" id="J_tojs_btn">--></button>
+		<button class="btn btn-primary" type="button" id="J_tojs_btn">--></button>			
 	</div>
 	<textarea id="J_js_area"></textarea>
 </section>
@@ -43,9 +43,9 @@ $(function(){
     $('#J_tojs_btn').on('click',function(){
         var htmlStr = $htmlArea.val();
     
-        var jsStr =  htmlStr.split('\n')                            // 以\n split 
+        var jsStr =  htmlStr.split(/\t*\s*\n/)                      // 以 RegExp /\t*\s*\n/ split
                             .join("\',\'")                          // 以 ',' join  会在每行标签末尾加上 ', 在每行标签首部加上 '
-                            .replace(/>\',\'/g,">\',\n\'")          // 将 >',' 替换为 >',n' 相当于将最开始的 \n 在加回来 正则中加上 > 可以避免替换范围过大 将html 文本中',' 替换错误
+                            .replace(/>\',\'/g,">\',\n\'")          // 将 >',' 替换为 >',n' 相当于将最开始的 \n 在加回来 RegExp中加上 > 可以避免替换范围过大 避免将html 文本中',' 这样的内容部分也替换
                             .replace(/(\')(\t+|\s+)/g,'$2$1');      // 将 '(\t)(\s)<tag> 替换为 (\t)(\s)'<tag>
 
         jsStr = "[\'" + jsStr + "\'].join(\'\')";
@@ -71,7 +71,7 @@ $(function(){
 		var htmlStr = $htmlArea.val();
 
 	
-		var jsStr =  htmlStr.split('\n')
+		var jsStr =  htmlStr.split(/\t*\s*\n/)
 							.join("\',\'")
 							.replace(/>\',\'/g,">\',\n\'")
 							.replace(/(\')(\t+|\s+)/g,'$2$1');

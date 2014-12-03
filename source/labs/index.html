@@ -23,14 +23,14 @@
 </head>
 <body>
 <header class="header">
-	<h1 class="h-title">Tool -- HTML TO Array</h1>
+	<h1 class="h-title">Tool -- HTML TO JS</h1>
 </header>
 <section class="main clearfix">
 	<textarea id="J_html_area"></textarea>
 	<div class="change-btns">
-		<button class="btn btn-primary" type="button" id="J_toArray_btn">--></button>
+		<button class="btn btn-primary" type="button" id="J_tojs_btn">--></button>
 	</div>
-	<textarea id="J_array_area"></textarea>
+	<textarea id="J_js_area"></textarea>
 </section>
 
 <section class="code">
@@ -38,19 +38,19 @@
 code:
 $(function(){
     var $htmlArea = $('#J_html_area');
-    var $arrayArea = $('#J_array_area');
+    var $jsArea = $('#J_js_area');
 
-    $('#J_toArray_btn').on('click',function(){
+    $('#J_tojs_btn').on('click',function(){
         var htmlStr = $htmlArea.val();
     
-        var arrStr = htmlStr.split('\n')                            // 以\n split 
+        var jsStr =  htmlStr.split('\n')                            // 以\n split 
                             .join("\',\'")                          // 以 ',' join  会在每行标签末尾加上 ', 在每行标签首部加上 '
                             .replace(/>\',\'/g,">\',\n\'")          // 将 >',' 替换为 >',n' 相当于将最开始的 \n 在加回来 正则中加上 > 可以避免替换范围过大 将html 文本中',' 替换错误
                             .replace(/(\')(\t+|\s+)/g,'$2$1');      // 将 '(\t)(\s)<tag> 替换为 (\t)(\s)'<tag>
 
-        arrStr = "[\'" + arrStr + "\'].join(\'\')";
+        jsStr = "[\'" + jsStr + "\'].join(\'\')";
 
-        $arrayArea.val(arrStr);
+        $jsArea.val(jsStr);
     });
 });
 </pre>
@@ -65,24 +65,26 @@ $(function(){
 <script>
 $(function(){
 	var $htmlArea = $('#J_html_area');
-	var $arrayArea = $('#J_array_area');
+	var $jsArea = $('#J_js_area');
 
-	$('#J_toArray_btn').on('click',function(){
+	$('#J_tojs_btn').on('click',function(){
 		var htmlStr = $htmlArea.val();
 
 	
-		var arrStr = htmlStr.split('\n')
+		var jsStr =  htmlStr.split('\n')
 							.join("\',\'")
 							.replace(/>\',\'/g,">\',\n\'")
 							.replace(/(\')(\t+|\s+)/g,'$2$1');
 
-		arrStr = "[\'" + arrStr + "\'].join(\'\')";
+		jsStr = "[\'" + jsStr + "\'].join(\'\')";
 
 
-		$arrayArea.val(arrStr);
+		$jsArea.val(jsStr);
 	});
 
 });
+
+
 
 </script>
 

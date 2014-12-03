@@ -15,8 +15,10 @@
 .h-title{line-height:60px;margin: 0;}
 
 .main{width: 1600px; margin: 20px auto 0;}
-.main textarea{width: 700px; height: 500px; float:left; }
+.main textarea{width: 700px; height: 400px; float:left; }
 .main .change-btns{float:left;margin: 240px 20px 0;}
+
+.code{width: 1600px; margin: 20px auto 0;}
 </style>
 </head>
 <body>
@@ -33,24 +35,23 @@
 
 <section class="code">
 <pre>
+code:
 $(function(){
-	var $htmlArea = $('#J_html_area');
-	var $arrayArea = $('#J_array_area');
+    var $htmlArea = $('#J_html_area');
+    var $arrayArea = $('#J_array_area');
 
-	$('#J_toArray_btn').on('click',function(){
-		var htmlStr = $htmlArea.val();
+    $('#J_toArray_btn').on('click',function(){
+        var htmlStr = $htmlArea.val();
+    
+        var arrStr = htmlStr.split('\n')                            // 以\n split 
+                            .join("\',\'")                          // 以 ',' join  会在每行标签末尾加上 ', 在每行标签首部加上 '
+                            .replace(/>\',\'/g,">\',\n\'")          // 将 >',' 替换为 >',n' 相当于将最开始的 \n 在加回来 正则中加上 > 可以避免替换范围过大 将html 文本中',' 替换错误
+                            .replace(/(\')(\t+|\s+)/g,'$2$1');      // 将 '(\t)(\s)<tag> 替换为 (\t)(\s)'<tag>
 
-	
-		var arrStr = htmlStr.split('\n')
-							.join("\',\'")
-							.replace(/>\',\'/g,">\',\n\'")
-							.replace(/(\')(\t+|\s+)/g,'$2$1');
+        arrStr = "[\'" + arrStr + "\'].join(\'\')";
 
-		arrStr = "[\'" + arrStr + "\'].join(\'\')";
-
-		$arrayArea.val(arrStr);
-	});
-
+        $arrayArea.val(arrStr);
+    });
 });
 </pre>
 

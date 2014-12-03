@@ -111,5 +111,12 @@ jQuery.fn = jQuery.prototype = {
 
 ```
 
->rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,
-'rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,'
+推荐使用正则可视化工具：[http://jex.im/regulex/](http://jex.im/regulex)
+
+`rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/`
+* 分组 
+
+![rquickExpr](/img/jquery-rquickExpr.png);
+
+[正则图片]: /img/jquery-rquickExpr.png "rquickExpr"
+

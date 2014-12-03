@@ -1937,6 +1937,9 @@ footer {
   text-align: right;
   padding-right: 1.5em;
 }
+.article-content .highlight .line {
+  height: 26px;
+}
 .article-content .gist {
   margin: 0.5em 0;
   background: #1d1f21;

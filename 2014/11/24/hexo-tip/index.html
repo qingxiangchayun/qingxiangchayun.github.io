@@ -83,7 +83,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-24T08:37:21.000Z" itemprop="datePublished">11月 24 2014</time>
-    更新日期:<time datetime="2014-11-24T08:48:20.000Z" itemprop="dateModified">11月 24 2014</time>
+    更新日期:<time datetime="2014-12-03T09:26:50.000Z" itemprop="dateModified">12月 3 2014</time>
     
   </p>
 </header>
@@ -107,6 +107,10 @@
 </ul>
 <h3 id="使用过程中遇到的问题">使用过程中遇到的问题</h3>
 <p>hexo deploy时，本地有多个git帐号时，且往github上提交的帐号不是global类型的，所以每次提交都会以本地开发的的用户提交<br>解决方法：hexo deploy时 会在工程目录中生成一个 .deploy 的目录 cd 到 .deploy 目录下 设置用户名邮件<br><code>$ cd /project/.deploy</code><br><code>$ git config user.name &quot;Name&quot;</code><br><code>$ git config user.email &quot;Email&quot;</code></p>
+<p>hexo2.8+ 代码前后多空行<br>解决方案：修改主题样式文件source/css/_base/code.styl</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">       <span class="at_rule">@<span class="keyword">extend</span> $line-numbers</span></div><div class="line">       text-align right</div><div class="line">       padding-right <span class="number">1.5em</span></div><div class="line">+    .line</div><div class="line">+      height: <span class="number">20px</span> // 改为合适的值</div><div class="line">   .gist</div><div class="line">     margin <span class="number">0.5em</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/wuchong/jacman/issues/16" target="_blank" rel="external">参考链接</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -140,9 +144,9 @@
 
 
 <div class="next">
-<a href="/2014/11/21/hello-world/"  title="Hello World">
+<a href="/2014/11/21/jquery/"  title="jquery">
  <strong>NEXT:</strong><br/> 
- <span>Hello World
+ <span>jquery
 </span>
 </a>
 </div>

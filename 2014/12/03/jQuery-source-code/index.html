@@ -1,0 +1,316 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jQuery source code | lyuan blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="lyuan">
+    
+    <meta name="description" content="jQuery 源码学习
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="lyuan blog" title="lyuan blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="lyuan blog">lyuan blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/labs">Labs</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:qingxiangchayun.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/12/03/jQuery-source-code/" title="jQuery source code" itemprop="url">jQuery source code</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-12-03T07:47:38.000Z" itemprop="datePublished">12月 3 2014</time>
+    更新日期:<time datetime="2014-12-03T08:45:43.000Z" itemprop="dateModified">12月 3 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_源码学习"><span class="toc-number">1.</span> <span class="toc-text">jQuery 源码学习</span></a></li></ol>
+		</div>
+		
+		<h3 id="jQuery_源码学习">jQuery 源码学习</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = {</div><div class="line">    <span class="comment">// The current version of jQuery being used</span></div><div class="line">    jquery: core_version,</div><div class="line"></div><div class="line">    <span class="constructor"><span class="keyword">constructor</span>: jQuery,</span></div><div class="line">    init: function( selector, context, rootjQuery ) {</div><div class="line">        <span class="keyword">var</span> match, elem;</div><div class="line"></div><div class="line">        <span class="comment">// HANDLE: $(""), $(null), $(undefined), $(false)</span></div><div class="line">        <span class="keyword">if</span> ( !selector ) {</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="comment">// Handle HTML strings</span></div><div class="line">        <span class="keyword">if</span> ( <span class="keyword">typeof</span> selector === <span class="string">"string"</span> ) {</div><div class="line">            <span class="keyword">if</span> ( selector.charAt(<span class="number">0</span>) === <span class="string">"&lt;"</span> && selector.charAt( selector.length - <span class="number">1</span> ) === <span class="string">"&gt;"</span> && selector.length &gt;= <span class="number">3</span> ) {</div><div class="line">                <span class="comment">// Assume that strings that start and end with &lt;&gt; are HTML and skip the regex check</span></div><div class="line">                match = [ <span class="literal">null</span>, selector, <span class="literal">null</span> ];</div><div class="line"></div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                match = rquickExpr.exec( selector );</div><div class="line">            }</div><div class="line"></div><div class="line">            <span class="comment">// Match html or make sure no context is specified for #id</span></div><div class="line">            <span class="keyword">if</span> ( match && (match[<span class="number">1</span>] || !context) ) {</div><div class="line"></div><div class="line">                <span class="comment">// HANDLE: $(html) -&gt; $(array)</span></div><div class="line">                <span class="keyword">if</span> ( match[<span class="number">1</span>] ) {</div><div class="line">                    context = context <span class="keyword">instanceof</span> jQuery ? context[<span class="number">0</span>] : context;</div><div class="line"></div><div class="line">                    <span class="comment">// scripts is true for back-compat</span></div><div class="line">                    jQuery.merge( <span class="keyword">this</span>, jQuery.parseHTML(</div><div class="line">                        match[<span class="number">1</span>],</div><div class="line">                        context && context.nodeType ? context.ownerDocument || context : <span class="built_in">document</span>,</div><div class="line">                        <span class="literal">true</span></div><div class="line">                    ) );</div><div class="line"></div><div class="line">                    <span class="comment">// HANDLE: $(html, props)</span></div><div class="line">                    <span class="keyword">if</span> ( rsingleTag.test( match[<span class="number">1</span>] ) && jQuery.isPlainObject( context ) ) {</div><div class="line">                        <span class="keyword">for</span> ( match <span class="keyword">in</span> context ) {</div><div class="line">                            <span class="comment">// Properties of context are called as methods if possible</span></div><div class="line">                            <span class="keyword">if</span> ( jQuery.isFunction( <span class="keyword">this</span>[ match ] ) ) {</div><div class="line">                                <span class="keyword">this</span>[ match ]( context[ match ] );</div><div class="line"></div><div class="line">                            <span class="comment">// ...and otherwise set as attributes</span></div><div class="line">                            } <span class="keyword">else</span> {</div><div class="line">                                <span class="keyword">this</span>.attr( match, context[ match ] );</div><div class="line">                            }</div><div class="line">                        }</div><div class="line">                    }</div><div class="line"></div><div class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line"></div><div class="line">                <span class="comment">// HANDLE: $(#id)</span></div><div class="line">                } <span class="keyword">else</span> {</div><div class="line">                    elem = <span class="built_in">document</span>.getElementById( match[<span class="number">2</span>] );</div><div class="line"></div><div class="line">                    <span class="comment">// Check parentNode to catch when Blackberry 4.6 returns</span></div><div class="line">                    <span class="comment">// nodes that are no longer in the document #6963</span></div><div class="line">                    <span class="keyword">if</span> ( elem && elem.parentNode ) {</div><div class="line">                        <span class="comment">// Inject the element directly into the jQuery object</span></div><div class="line">                        <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">                        <span class="keyword">this</span>[<span class="number">0</span>] = elem;</div><div class="line">                    }</div><div class="line"></div><div class="line">                    <span class="keyword">this</span>.context = <span class="built_in">document</span>;</div><div class="line">                    <span class="keyword">this</span>.selector = selector;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">                }</div><div class="line"></div><div class="line">            <span class="comment">// HANDLE: $(expr, $(...))</span></div><div class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> ( !context || context.jquery ) {</div><div class="line">                <span class="keyword">return</span> ( context || rootjQuery ).find( selector );</div><div class="line"></div><div class="line">            <span class="comment">// HANDLE: $(expr, context)</span></div><div class="line">            <span class="comment">// (which is just equivalent to: $(context).find(expr)</span></div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.constructor( context ).find( selector );</div><div class="line">            }</div><div class="line"></div><div class="line">        <span class="comment">// HANDLE: $(DOMElement)</span></div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> ( selector.nodeType ) {</div><div class="line">            <span class="keyword">this</span>.context = <span class="keyword">this</span>[<span class="number">0</span>] = selector;</div><div class="line">            <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line"></div><div class="line">        <span class="comment">// HANDLE: $(function)</span></div><div class="line">        <span class="comment">// Shortcut for document ready</span></div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> ( jQuery.isFunction( selector ) ) {</div><div class="line">            <span class="keyword">return</span> rootjQuery.ready( selector );</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">if</span> ( selector.selector !== <span class="literal">undefined</span> ) {</div><div class="line">            <span class="keyword">this</span>.selector = selector.selector;</div><div class="line">            <span class="keyword">this</span>.context = selector.context;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">return</span> jQuery.makeArray( selector, <span class="keyword">this</span> );</div><div class="line">    }</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>1111465451231456</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://qingxiangchayun.github.io/2014/12/03/jQuery-source-code/" data-title="jQuery source code | lyuan blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/12/01/The-maximum-number-of-characters-that-appear-in-the-string/"  title="The maximum number of characters that appear in the string">
+ <strong>NEXT:</strong><br/> 
+ <span>The maximum number of characters that appear in the string
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_源码学习"><span class="toc-number">1.</span> <span class="toc-text">jQuery 源码学习</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://qingxiangchayun.github.io" target="_blank" title="lyuan">lyuan</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"lyuan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>

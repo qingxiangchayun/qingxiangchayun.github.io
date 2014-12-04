@@ -114,9 +114,17 @@ jQuery.fn = jQuery.prototype = {
 推荐使用正则可视化工具：[http://jex.im/regulex/](http://jex.im/regulex)
 
 `rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/`
-* 分组 
+* 正则匹配 ^(?:\s*(<[\w\W]+>)[^>]* 或 #([\w-]*))$
+> (?:pattern) : 匹配pattern但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。
+> \s 匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。
+> \w 匹配包括下划线的任何单词字符。等价于“[A-Za-z0-9_]”。
+> .点 匹配除“\r\n”之外的任何单个字符。要匹配包括“\r\n”在内的任何字符，请使用像“[\s\S]”的模式。
+
+* 以`\s*` 0个或多个空白字符 `<[\w\W]+>` <多个字符>  `[^>]*` 不是 > 的任意字符开始
+* 以 `#([\w-]*)` #[A-Za-z0-9_]或-的0个或多个字符结尾
+
 
 ![rquickExpr](/img/jquery-rquickExpr.png);
 
-[正则图片]: /img/jquery-rquickExpr.png "rquickExpr"
+
 

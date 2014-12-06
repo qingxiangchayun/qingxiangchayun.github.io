@@ -1,4 +1,4 @@
-title: The maximum number of characters that appear in the string
+title: 找出字符串中出现次数最多的字符
 tags: js
 ---
 

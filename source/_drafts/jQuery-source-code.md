@@ -35,6 +35,7 @@ jQuery.fn = jQuery.prototype = {
             if ( match && (match[1] || !context) ) {
 
                 // HANDLE: $(html) -> $(array)
+                // match[1] --> <tags ...>
                 if ( match[1] ) {
                     context = context instanceof jQuery ? context[0] : context;
 
@@ -111,36 +112,60 @@ jQuery.fn = jQuery.prototype = {
 
 ```
 
-推荐使用正则可视化工具：[http://jex.im/regulex/](http://jex.im/regulex)
 
-`rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/`
+### jQuery 工具方法
+$.parseHTML() -- Parses a string into an array of DOM nodes
+> jQuery.parseHTML 使用原生的DOM元素的创建函数将字符串转换为一组DOM元素，然后，可以插入到文档中。
+默认情况下，如果没有指定或给定null or undefined，context是当前的document。如果HTML被用在另一个document中，比如一个iframe，该frame的文件可以使用。
 
-> (?:pattern) : 匹配pattern但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。
-> \s 匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。
-> \w 匹配包括下划线的任何单词字符。等价于“[A-Za-z0-9_]”。
-> .点 匹配除“\r\n”之外的任何单个字符。要匹配包括“\r\n”在内的任何字符，请使用像“[\s\S]”的模式。
 
-> exec() 找到了匹配的文本，则返回一个结果数组。否则，返回 null。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。除了数组元素和 length 属性之外，exec() 方法还返回两个属性。
+$.parseHTML Example 
+```javascript
+str = "hello, <b>my name is</b> jQuery.",
+html = $.parseHTML( str ); --> [<TextNode textContent="hello, ">, b, <TextNode textContent=" jQuery.">]
 
-* 以`\s*` 0个或多个空白字符 `<[\w\W]+>` <多个字符>  `[^>]*` 不是 > 的任意字符开始
-* 以 `#([\w-]*)` #[A-Za-z0-9_]或-的0个或多个字符结尾
+for(var i=0,len=html.length; i<len; i++){
+    console.log(html[i],html[i].nodeName); -->  <TextNode textContent="hello, "> #text
+                                                <b> B
+                                                <TextNode textContent=" jQuery."> #text
+}
+```
+$.parseHTML 源码实现 
 
 ```javascript
-var rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/;
-var html = '<div>';
-var html1 = '   <div class="div">  ';
-var html2 = '<div class="div"> </div> <div></div>';
-var html3 = '#id';
-var html4 = '<div class="div"></div>#id';
+// data: string of html
+// context (optional): If specified, the fragment will be created in this context, defaults to document
+// keepScripts (optional): If true, will include scripts passed in the html string
+// return Array
+parseHTML: function( data, context, keepScripts ) {
+    if ( !data || typeof data !== "string" ) {
+        return null;
+    }
+    if ( typeof context === "boolean" ) {
+        keepScripts = context;
+        context = false;
+    }
+    context = context || document;
 
-rquickExpr.exec(html) --> ["<div>", "<div>", undefined]
-rquickExpr.exec(html1) --> [" <div class="div"> ", "<div class="div">", undefined]
-rquickExpr.exec(html3) --> ["#id", undefined, "id"]
-rquickExpr.exec(html4) --> ["<div class="div"></div>#id", "<div class="div"></div>", undefined]
+    var parsed = rsingleTag.exec( data ),
+        scripts = !keepScripts && [];
 
+    // Single tag
+    // 单表签 <img /> <br /> <input /> eg: document.createElement('input');
+    if ( parsed ) {
+        return [ context.createElement( parsed[1] ) ];  
+    }
+
+    parsed = jQuery.buildFragment( [ data ], context, scripts );
+
+    if ( scripts ) {
+        jQuery( scripts ).remove();
+    }
+
+    return jQuery.merge( [], parsed.childNodes );
+}
 ```
 
-![rquickExpr](/img/jquery-rquickExpr.png);
 
 
 

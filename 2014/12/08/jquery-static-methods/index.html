@@ -4,13 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>找出字符串中出现次数最多的字符 | lyuan blog</title>
+    <title>jquery中常用的工具方法 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="找出字符串中出现次数最多的字符
-123456789101112131415161718192021function findMaxNumChart(str){    &#39;use strit&#39;;    var maxNumChart = null,        totalCount = 0,     ">
+    <meta name="description" content="工具方法列表
+
+$.each
+$.trim
+$.makeArray
+$.inArray
+$.merge
+$.grep
+$.map
+$.proxy
+
+$.each
+123456789101112131415161718192021222324252627282930313233343536373839">
     
     
     
@@ -71,15 +82,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/12/01/The-maximum-number-of-characters-that-appear-in-the-string/" title="找出字符串中出现次数最多的字符" itemprop="url">找出字符串中出现次数最多的字符</a>
+      <a href="/2014/12/08/jquery-static-methods/" title="jquery中常用的工具方法" itemprop="url">jquery中常用的工具方法</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-12-01T11:45:52.000Z" itemprop="datePublished">12月 1 2014</time>
-    更新日期:<time datetime="2014-12-06T10:35:50.000Z" itemprop="dateModified">12月 6 2014</time>
+    <time datetime="2014-12-08T07:37:29.000Z" itemprop="datePublished">12月 8 2014</time>
+    更新日期:<time datetime="2014-12-08T09:48:58.000Z" itemprop="dateModified">12月 8 2014</time>
     
   </p>
 </header>
@@ -88,23 +99,31 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#找出字符串中出现次数最多的字符"><span class="toc-number">1.</span> <span class="toc-text">找出字符串中出现次数最多的字符</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工具方法列表"><span class="toc-number">1.</span> <span class="toc-text">工具方法列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#$-each"><span class="toc-number">1.1.</span> <span class="toc-text">$.each</span></a></li></ol></li></ol>
 		</div>
 		
-		<h3 id="找出字符串中出现次数最多的字符">找出字符串中出现次数最多的字符</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxNumChart</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="string">'use strit'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> maxNumChart = <span class="literal">null</span>,</div><div class="line">        totalCount = <span class="number">0</span>,</div><div class="line">        matchChartLen = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=str.length; i&lt;len; i++){</div><div class="line">        matchChartLen = str.match( <span class="keyword">new</span> <span class="built_in">RegExp</span>(str[i], <span class="string">'g'</span>) ).length;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(totalCount &lt; matchChartLen){</div><div class="line">            totalCount = matchChartLen;</div><div class="line">            maxNumChart = str[i];</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        maxNumChart : maxNumChart,</div><div class="line">        totalCount : totalCount</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+		<h2 id="工具方法列表">工具方法列表</h2>
+<ul>
+<li>$.each</li>
+<li>$.trim</li>
+<li>$.makeArray</li>
+<li>$.inArray</li>
+<li>$.merge</li>
+<li>$.grep</li>
+<li>$.map</li>
+<li>$.proxy</li>
+</ul>
+<h3 id="$-each">$.each</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">$.each = <span class="function"><span class="keyword">function</span><span class="params">( obj, callback, args )</span> </span>{</div><div class="line">    <span class="keyword">var</span> value,</div><div class="line">        i = <span class="number">0</span>,</div><div class="line">        length = obj.length,</div><div class="line">        isArray = isArraylike( obj );</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( args ) {</div><div class="line">        <span class="keyword">if</span> ( isArray ) {</div><div class="line">            <span class="keyword">for</span> ( ; i &lt; length; i++ ) {</div><div class="line">                value = callback.apply( obj[ i ], args );</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ( value === <span class="literal">false</span> ) {</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">for</span> ( i <span class="keyword">in</span> obj ) {</div><div class="line">                value = callback.apply( obj[ i ], args );</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ( value === <span class="literal">false</span> ) {</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">        }</div><div class="line"></div><div class="line">    <span class="comment">// A special, fast, case for the most common use of each</span></div><div class="line">    } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">if</span> ( isArray ) {</div><div class="line">            <span class="keyword">for</span> ( ; i &lt; length; i++ ) {</div><div class="line">                value = callback.call( obj[ i ], i, obj[ i ] );</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ( value === <span class="literal">false</span> ) {</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">for</span> ( i <span class="keyword">in</span> obj ) {</div><div class="line">                value = callback.call( obj[ i ], i, obj[ i ] );</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ( value === <span class="literal">false</span> ) {</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> obj;</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<p>使用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abbbccccdddeeeffffaaaaa'</span>;</div><div class="line">findMaxNumChart(str) --&gt; <span class="built_in">Object</span> { maxNumChart=<span class="string">"a"</span>, totalCount=<span class="number">6</span>}</div></pre></td></tr></table></figure>
-
-<p>很简单的代码，为什么关键时候写不出来呢，是不是想太复杂了啊！！！<br>看来还得多学习，多提高啊！！！</p>
+<p>用法：</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/js/">js</a>
+  <span></span> <a href="/tags/jQuery/">jQuery</a>
   </div>
 
 
@@ -112,7 +131,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/12/01/The-maximum-number-of-characters-that-appear-in-the-string/" data-title="找出字符串中出现次数最多的字符 | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2014/12/08/jquery-static-methods/" data-title="jquery中常用的工具方法 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -121,19 +140,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/12/03/jQuery-source-code/" title="jQuery source code">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jQuery source code</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/11/24/hexo-tip/"  title="hexo tips">
+<a href="/2014/12/06/jquery-regexp/"  title="jquery中的正则">
  <strong>NEXT:</strong><br/> 
- <span>hexo tips
+ <span>jquery中的正则
 </span>
 </a>
 </div>
@@ -150,7 +161,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#找出字符串中出现次数最多的字符"><span class="toc-number">1.</span> <span class="toc-text">找出字符串中出现次数最多的字符</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工具方法列表"><span class="toc-number">1.</span> <span class="toc-text">工具方法列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#$-each"><span class="toc-number">1.1.</span> <span class="toc-text">$.each</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

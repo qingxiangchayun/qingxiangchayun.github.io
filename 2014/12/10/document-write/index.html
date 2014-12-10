@@ -4,14 +4,19 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>trip to start my blog | lyuan blog</title>
+    <title>document.write方法的相关问题 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="开始blog之旅
-学习过的知识，经常不用就忘记了，尤其是比较新鲜的知识点，不容易应用到项目中，就更加容易忘记了，所以就写写blog，对学过的知识多总结、多思考、加深巩固，并时常回顾学习。
-温故而知新，可以为师矣！">
+    <meta name="description" content="document.write
+document.write 介绍
+1document.write(markup);
+
+markup is a string containing the text to be written to the document.
+加载
+
+在DOM Ready之前执行doc">
     
     
     
@@ -72,15 +77,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/20/trip-to-start-my-blog/" title="trip to start my blog" itemprop="url">trip to start my blog</a>
+      <a href="/2014/12/10/document-write/" title="document.write方法的相关问题" itemprop="url">document.write方法的相关问题</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-20T03:09:25.000Z" itemprop="datePublished">10月 20 2014</time>
-    更新日期:<time datetime="2014-11-21T12:19:03.000Z" itemprop="dateModified">11月 21 2014</time>
+    <time datetime="2014-12-10T10:44:52.000Z" itemprop="datePublished">12月 10 2014</time>
+    更新日期:<time datetime="2014-12-10T11:02:53.000Z" itemprop="dateModified">12月 10 2014</time>
     
   </p>
 </header>
@@ -89,22 +94,36 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始blog之旅"><span class="toc-number">1.</span> <span class="toc-text">开始blog之旅</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">1.</span> <span class="toc-text">document.write</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-write_介绍"><span class="toc-number">1.1.</span> <span class="toc-text">document.write 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载"><span class="toc-number">1.2.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步"><span class="toc-number">1.3.</span> <span class="toc-text">同步</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="开始blog之旅">开始blog之旅</h2>
-<p>学习过的知识，经常不用就忘记了，尤其是比较新鲜的知识点，不容易应用到项目中，就更加容易忘记了，所以就写写blog，对学过的知识多总结、多思考、加深巩固，并时常回顾学习。</p>
-<p>温故而知新，可以为师矣！</p>
+		<h2 id="document-write">document.write</h2>
+<h3 id="document-write_介绍">document.write 介绍</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(markup);</div></pre></td></tr></table></figure>
+
+<p><code>markup</code> is a string containing the text to be written to the document.</p>
+<h3 id="加载">加载</h3>
+<ul>
+<li>在<code>DOM Ready</code>之<strong>前</strong>执行document.write(),会往页面上追加内容</li>
+<li>在<code>DOM Ready</code>之<strong>后</strong>执行document.write(),会先清空页面内容，在写入新的内容；<br>相当于 <code>document.open()</code> —&gt;     <code>document.write()</code> —&gt; <code>document.close()</code></li>
+</ul>
+<h3 id="同步">同步</h3>
+<p><code>document.write()</code> 引入的js，加载方式为<strong>同步</strong>;</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/10/20/trip-to-start-my-blog/" data-title="trip to start my blog | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2014/12/10/document-write/" data-title="document.write方法的相关问题 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -113,14 +132,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/10/20/jquery-source-code-analysis/" title="jquery source code analysis">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jquery source code analysis</span>
+
+<div class="next">
+<a href="/2014/12/08/jquery-static-methods/"  title="jquery中常用的工具方法">
+ <strong>NEXT:</strong><br/> 
+ <span>jquery中常用的工具方法
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -134,7 +153,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始blog之旅"><span class="toc-number">1.</span> <span class="toc-text">开始blog之旅</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">1.</span> <span class="toc-text">document.write</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-write_介绍"><span class="toc-number">1.1.</span> <span class="toc-text">document.write 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载"><span class="toc-number">1.2.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步"><span class="toc-number">1.3.</span> <span class="toc-text">同步</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

@@ -14,9 +14,9 @@ document.write 介绍
 1document.write(markup);
 
 markup is a string containing the text to be written to the document.
-加载
+与DOM Ready相关 tips
 
-在DOM Ready之前执行doc">
+在D">
     
     
     
@@ -85,7 +85,7 @@ markup is a string containing the text to be written to the document.
     </p>
   <p class="article-time">
     <time datetime="2014-12-10T10:44:52.000Z" itemprop="datePublished">12月 10 2014</time>
-    更新日期:<time datetime="2014-12-10T11:02:53.000Z" itemprop="dateModified">12月 10 2014</time>
+    更新日期:<time datetime="2014-12-11T03:18:08.000Z" itemprop="dateModified">12月 11 2014</time>
     
   </p>
 </header>
@@ -94,7 +94,7 @@ markup is a string containing the text to be written to the document.
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">1.</span> <span class="toc-text">document.write</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-write_介绍"><span class="toc-number">1.1.</span> <span class="toc-text">document.write 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载"><span class="toc-number">1.2.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步"><span class="toc-number">1.3.</span> <span class="toc-text">同步</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">1.</span> <span class="toc-text">document.write</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-write_介绍"><span class="toc-number">1.1.</span> <span class="toc-text">document.write 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与DOM_Ready相关_tips"><span class="toc-number">1.2.</span> <span class="toc-text">与DOM Ready相关 tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与js相关_tips"><span class="toc-number">1.3.</span> <span class="toc-text">与js相关 tips</span></a></li></ol></li></ol>
 		</div>
 		
 		<h2 id="document-write">document.write</h2>
@@ -102,13 +102,14 @@ markup is a string containing the text to be written to the document.
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(markup);</div></pre></td></tr></table></figure>
 
 <p><code>markup</code> is a string containing the text to be written to the document.</p>
-<h3 id="加载">加载</h3>
+<h3 id="与DOM_Ready相关_tips">与DOM Ready相关 tips</h3>
 <ul>
-<li>在<code>DOM Ready</code>之<strong>前</strong>执行document.write(),会往页面上追加内容</li>
-<li>在<code>DOM Ready</code>之<strong>后</strong>执行document.write(),会先清空页面内容，在写入新的内容；<br>相当于 <code>document.open()</code> —&gt;     <code>document.write()</code> —&gt; <code>document.close()</code></li>
+<li>在<code>DOM Ready</code>之<strong>前</strong>执行document.write(), 会往页面上追加内容</li>
+<li>在<code>DOM Ready</code>之<strong>后</strong>执行document.write(), 会先清空页面内容，在写入新的内容；<br>相当于 <code>document.open()</code> —&gt;     <code>document.write()</code> —&gt; <code>document.close()</code></li>
 </ul>
-<h3 id="同步">同步</h3>
-<p><code>document.write()</code> 引入的js，加载方式为<strong>同步</strong>;</p>
+<h3 id="与js相关_tips">与js相关 tips</h3>
+<p><code>document.write()</code> 引入的js加载方式为<strong>同步</strong>;</p>
+<p><img src="/img/document-write-js.png" alt="document.write(js)">;</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -153,7 +154,7 @@ markup is a string containing the text to be written to the document.
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">1.</span> <span class="toc-text">document.write</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-write_介绍"><span class="toc-number">1.1.</span> <span class="toc-text">document.write 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载"><span class="toc-number">1.2.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步"><span class="toc-number">1.3.</span> <span class="toc-text">同步</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">1.</span> <span class="toc-text">document.write</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-write_介绍"><span class="toc-number">1.1.</span> <span class="toc-text">document.write 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与DOM_Ready相关_tips"><span class="toc-number">1.2.</span> <span class="toc-text">与DOM Ready相关 tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与js相关_tips"><span class="toc-number">1.3.</span> <span class="toc-text">与js相关 tips</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

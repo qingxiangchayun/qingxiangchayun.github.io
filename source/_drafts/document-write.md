@@ -18,5 +18,5 @@ document.write(markup);
 ### 与js相关 tips
 `document.write()` 引入的js加载方式为**同步**;
 
-![document.write(js)](/img/document-write-js.png)
+![document.write(js)](/img/document-write-js.png);
 

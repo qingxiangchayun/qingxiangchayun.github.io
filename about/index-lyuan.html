@@ -1,0 +1,58 @@
+
+  
+    <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>lyuan blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+<meta name="author" content="lyuan">
+<link rel="icon" href="/img/favicon.ico">
+<link rel="apple-touch-icon" href="/img/pacman.jpg">
+<link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css">
+<style type="text/css">
+.loading{position: absolute;left: 50%;}
+
+.fullpage-wrap{display: none};
+
+.section-0 h1{font-size: 50px;text-align: center;}
+
+</style>
+</head>
+<body>
+
+<div class="loading">
+
+</div>
+
+<div id="J_fullpage" class="fullpage-wrap">
+	<section id="J_section_0" class="section section-0">
+		<h1>About Me</h1>
+	</section>
+	<section id="J_section_1" class="section section-1"></section>
+	<section id="J_section_2" class="section section-2"></section>
+</div>
+
+<script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.easings.min.js"></script>
+<script src="/js/jquery.fullPage.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	'use strict';
+
+	$('#J_fullpage').fullpage({
+		sectionsColor: ['#fff', '#4BBFC3', '#7BAABE'],
+		anchors: ['page1', 'page2', 'page3'],
+		navigation: true,
+		navigationTooltips : ['1','2','3'],
+		loopBottom : true
+	});
+});
+</script>
+
+</body>
+</html>
+
+  

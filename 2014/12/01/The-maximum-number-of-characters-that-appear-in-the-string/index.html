@@ -10,7 +10,7 @@
     <meta name="author" content="lyuan">
     
     <meta name="description" content="找出字符串中出现次数最多的字符
-123456789101112131415161718192021function findMaxNumChart(str){    &#39;use strit&#39;;    var maxNumChart = null,        totalCount = 0,     ">
+1234567891011121314151617181920212223242526function findMaxNumChart(str){    &#39;use strit&#39;;    var maxNumChart = null,        totalCount">
     
     
     
@@ -79,7 +79,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-12-01T11:45:52.000Z" itemprop="datePublished">12月 1 2014</time>
-    更新日期:<time datetime="2014-12-06T10:35:50.000Z" itemprop="dateModified">12月 6 2014</time>
+    更新日期:<time datetime="2014-12-22T06:39:27.000Z" itemprop="dateModified">12月 22 2014</time>
     
   </p>
 </header>
@@ -92,7 +92,7 @@
 		</div>
 		
 		<h3 id="找出字符串中出现次数最多的字符">找出字符串中出现次数最多的字符</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxNumChart</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="string">'use strit'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> maxNumChart = <span class="literal">null</span>,</div><div class="line">        totalCount = <span class="number">0</span>,</div><div class="line">        matchChartLen = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=str.length; i&lt;len; i++){</div><div class="line">        matchChartLen = str.match( <span class="keyword">new</span> <span class="built_in">RegExp</span>(str[i], <span class="string">'g'</span>) ).length;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(totalCount &lt; matchChartLen){</div><div class="line">            totalCount = matchChartLen;</div><div class="line">            maxNumChart = str[i];</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        maxNumChart : maxNumChart,</div><div class="line">        totalCount : totalCount</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxNumChart</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="string">'use strit'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> maxNumChart = <span class="literal">null</span>,</div><div class="line">        totalCount = <span class="number">0</span>,</div><div class="line">        matchChartLen = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=str.length; i&lt;len; i++){</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(str[i] == maxNumChart){</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        matchChartLen = str.match( <span class="keyword">new</span> <span class="built_in">RegExp</span>(str[i], <span class="string">'g'</span>) ).length;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(totalCount &lt; matchChartLen){</div><div class="line">            totalCount = matchChartLen;</div><div class="line">            maxNumChart = str[i];</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        maxNumChart : maxNumChart,</div><div class="line">        totalCount : totalCount</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>使用：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abbbccccdddeeeffffaaaaa'</span>;</div><div class="line">findMaxNumChart(str) --&gt; <span class="built_in">Object</span> { maxNumChart=<span class="string">"a"</span>, totalCount=<span class="number">6</span>}</div></pre></td></tr></table></figure>
@@ -166,9 +166,9 @@
 		
 			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>4</sup></a></li>
 		
-			<li><a href="/tags/js/" title="js">js<sup>3</sup></a></li>
+			<li><a href="/tags/js/" title="js">js<sup>4</sup></a></li>
 		
 		</ul>
 </div>

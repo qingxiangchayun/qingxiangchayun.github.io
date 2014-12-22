@@ -25,4 +25,4 @@ IE浏览器的隐私设置没有更改，为中级，调为低级就可以写。
 ```
 
 ### 参考资料：
-http://oldj.net/article/third-party-cookie/
+[http://oldj.net/article/third-party-cookie](http://oldj.net/article/third-party-cookie)

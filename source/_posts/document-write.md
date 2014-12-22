@@ -1,5 +1,6 @@
 title: document.write方法的相关问题
 tags: js
+date: 2014-12-22 14:44:29
 ---
 
 ## document.write

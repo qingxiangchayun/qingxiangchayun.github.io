@@ -12,6 +12,11 @@ function findMaxNumChart(str){
         matchChartLen = 0;
 
     for(var i=0,len=str.length; i<len; i++){
+
+        if(str[i] == maxNumChart){
+            continue;
+        }
+
         matchChartLen = str.match( new RegExp(str[i], 'g') ).length;
 
         if(totalCount < matchChartLen){

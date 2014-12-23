@@ -72,4 +72,6 @@ rsingleTag.exec(html4); --> ["<img/>", "img"]
 
 ## JavaScript Regular Expression Visualize
 推荐使用正则可视化分析工具 
-[http://jex.im/regulex/](http://jex.im/regulex) github:[https://github.com/JexCheng/regulex](https://github.com/JexCheng/regulex)
+* [http://jex.im/regulex/](http://jex.im/regulex) 
+* github:[https://github.com/JexCheng/regulex](https://github.com/JexCheng/regulex)
+* [https://www.debuggex.com/](https://www.debuggex.com/)

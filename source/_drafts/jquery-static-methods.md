@@ -73,17 +73,18 @@ $.each = function( obj, callback, args ) {
 ### $.makeArray
 > 转换一个类似数组的对象成为真正的JavaScript数组
 ```javascript
+// results is for internal usage only
 $.makeArray = function( arr, results ) {
     var ret = results || [];
 
     if ( arr != null ) {
         if ( isArraylike( Object(arr) ) ) { // 类数组 使用merge方法
             jQuery.merge( ret,
-                typeof arr === "string" ?
+                typeof arr === "string" ?  // arr 字符串 包装成 array
                 [ arr ] : arr
             );
         } else {
-            core_push.call( ret, arr );  // 直接使用 arr.push
+            core_push.call( ret, arr );  // 使用 Array.prototype.push.call(ret, arr) 不直接使用ret.push(arr) ret 可以是类数组 jquery内部使用
         }
     }
 

@@ -1,42 +1,80 @@
-title: jQuery source code
+title: jquery 选择器
 tags:
 ---
 
-### jQuery 源码学习
+## jquery.fn.init
 
+### 了解jquery()
+#### 用法
+* jQuery( selector [, context ] )
+    * jQuery( selector [, context ] )
+    * jQuery( element )
+    * jQuery( elementArray )
+    * jQuery( object )
+    * jQuery( selection )
+    * jQuery()
+* jQuery( html [, ownerDocument ] )
+    * jQuery( html [, ownerDocument ] )
+    * jQuery( html, attributes )
+* jQuery( callback )
+    * jQuery( callback )
+
+#### 实例
+* $(#id) $(.class) $(#id .class) $('li') 选择元素
+* $('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;1&lt;/li&gt;') 创建标签
+* $(this) $(document)
+* $(function(){}) document.ready
+ 
+### 源码
 
 ``` 
 jQuery.fn = jQuery.prototype = {
-    // The current version of jQuery being used
-    jquery: core_version,
 
-    constructor: jQuery,
+    // $ 用法： 
+    // $(#id) $(.class) $('div') $(#id .class) 选择元素
+    // $('<div>') $('<div>1</div><div>2</div>') 创建元素
+
+    // $(this) $(document)
+
+    // $(function(){})
+
     init: function( selector, context, rootjQuery ) {
         var match, elem;
 
         // HANDLE: $(""), $(null), $(undefined), $(false)
-        // false类型的值 返回 jquery 对象
         if ( !selector ) {
             return this;
         }
 
-        // Handle HTML strings 字符串
+        // Handle HTML strings 
         if ( typeof selector === "string" ) {
-            // 标签 <tag> length >=3  '<b>、<i>'
             if ( selector.charAt(0) === "<" && selector.charAt( selector.length - 1 ) === ">" && selector.length >= 3 ) {
                 // Assume that strings that start and end with <> are HTML and skip the regex check
+
+                // 创建元素 $('<div>') $('<div>1</div><div>2</div>')
+                // match = [ null, '<div>', null]
+                // match = [ null, '<div>1</div><div>2</div>', null]
+                
                 match = [ null, selector, null ];
 
             } else {
+                // $('#id') $('.class') $('div') $('#id .class') 选择元素
+                // $('<div>111') == $('<div>')
+
+                // match = null ; $(.class) $('div') $(#id .class)
+                // match = ['#id', null, 'id'];  $(#id)
+                // match = ['<div>111', '<div>' , null] // $('<div>111')
+
                 match = rquickExpr.exec( selector );
             }
 
             // Match html or make sure no context is specified for #id
-            if ( match && (match[1] || !context) ) {
+            if ( match && (match[1] || !context) ) {  // 能进if的  $(#id)  $('<div>') $('<div>1</div><div>2</div>')
 
                 // HANDLE: $(html) -> $(array)
-                // match[1] --> <tags ...>
-                if ( match[1] ) {
+                if ( match[1] ) { 
+                    // $('<div>') $('<div>1</div><div>2</div>')
+
                     context = context instanceof jQuery ? context[0] : context;
 
                     // scripts is true for back-compat
@@ -47,14 +85,22 @@ jQuery.fn = jQuery.prototype = {
                     ) );
 
                     // HANDLE: $(html, props)
+                    // $('<div>',{ title : 'title', html : 111})
+
                     if ( rsingleTag.test( match[1] ) && jQuery.isPlainObject( context ) ) {
+                        // rsingleTag.test( match[1] )  <li>/ <li></li> <img/>
+
                         for ( match in context ) {
+                            // eg : html方法 css方法 直接调用
+
                             // Properties of context are called as methods if possible
                             if ( jQuery.isFunction( this[ match ] ) ) {
                                 this[ match ]( context[ match ] );
 
                             // ...and otherwise set as attributes
                             } else {
+                                // 使用attr 方法设置属性
+
                                 this.attr( match, context[ match ] );
                             }
                         }
@@ -97,6 +143,7 @@ jQuery.fn = jQuery.prototype = {
 
         // HANDLE: $(function)
         // Shortcut for document ready
+        // $(function) == document.ready(fn);
         } else if ( jQuery.isFunction( selector ) ) {
             return rootjQuery.ready( selector );
         }
@@ -112,59 +159,7 @@ jQuery.fn = jQuery.prototype = {
 
 ```
 
-
-### jQuery 工具方法
-$.parseHTML() -- Parses a string into an array of DOM nodes
-> jQuery.parseHTML 使用原生的DOM元素的创建函数将字符串转换为一组DOM元素，然后，可以插入到文档中。
-默认情况下，如果没有指定或给定null or undefined，context是当前的document。如果HTML被用在另一个document中，比如一个iframe，该frame的文件可以使用。
-
-
-$.parseHTML Example 
-```javascript
-str = "hello, <b>my name is</b> jQuery.",
-html = $.parseHTML( str ); --> [<TextNode textContent="hello, ">, b, <TextNode textContent=" jQuery.">]
-
-for(var i=0,len=html.length; i<len; i++){
-    console.log(html[i],html[i].nodeName); -->  <TextNode textContent="hello, "> #text
-                                                <b> B
-                                                <TextNode textContent=" jQuery."> #text
-}
-```
-$.parseHTML 源码实现 
-
-```javascript
-// data: string of html
-// context (optional): If specified, the fragment will be created in this context, defaults to document
-// keepScripts (optional): If true, will include scripts passed in the html string
-// return Array
-parseHTML: function( data, context, keepScripts ) {
-    if ( !data || typeof data !== "string" ) {
-        return null;
-    }
-    if ( typeof context === "boolean" ) {
-        keepScripts = context;
-        context = false;
-    }
-    context = context || document;
-
-    var parsed = rsingleTag.exec( data ),
-        scripts = !keepScripts && [];
-
-    // Single tag
-    // 单表签 <img /> <br /> <input /> eg: document.createElement('input');
-    if ( parsed ) {
-        return [ context.createElement( parsed[1] ) ];  
-    }
-
-    parsed = jQuery.buildFragment( [ data ], context, scripts );
-
-    if ( scripts ) {
-        jQuery( scripts ).remove();
-    }
-
-    return jQuery.merge( [], parsed.childNodes );
-}
-```
+![jquery-init-$](/img/jquery-init-$.jpg);
 
 
 

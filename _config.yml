@@ -37,7 +37,7 @@ relative_link: false
 highlight:
   enable: true
   line_number: true
-  tab_replace: true # 是否替换tab为空格
+  tab_replace: false # 是否替换tab为空格
 
 # Category & Tag
 default_category: uncategorized

@@ -53,6 +53,7 @@ jQuery.extend = jQuery.fn.extend = function() {
     }
 
     // extend jQuery itself if only one argument is passed
+    // 只传一个参数 == 给jQuery对象扩展 属性和方法
     if ( length === i ) {
         target = this;
         --i;

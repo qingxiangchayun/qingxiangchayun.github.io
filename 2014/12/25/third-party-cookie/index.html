@@ -4,12 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | lyuan blog</title>
+    <title>第三方cookie | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="第三方cookie、P3P
+问题
+在做外链视频续波功能，发现第三方cookie在IE下读写有错，
+a.com 引入 b.com ：&amp;lt;\iframe src=”www.b.com”&amp;gt;b.com 中需写入cookie，记录上次播发的点，以达到续播，很简单的功能，但是在开发测试中发现IE浏览器">
     
     
     
@@ -70,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/21/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2014/12/25/third-party-cookie/" title="第三方cookie" itemprop="url">第三方cookie</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-21T12:19:03.000Z" itemprop="datePublished">11月 21 2014</time>
-    更新日期:<time datetime="2014-11-21T12:19:03.000Z" itemprop="dateModified">11月 21 2014</time>
+    <time datetime="2014-12-25T03:00:57.000Z" itemprop="datePublished">12月 25 2014</time>
+    更新日期:<time datetime="2014-12-25T03:00:57.000Z" itemprop="dateModified">12月 25 2014</time>
     
   </p>
 </header>
@@ -87,37 +90,35 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第三方cookie、P3P"><span class="toc-number">1.</span> <span class="toc-text">第三方cookie、P3P</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案：P3P"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案：P3P</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料："><span class="toc-number">1.3.</span> <span class="toc-text">参考资料：</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+		<h2 id="第三方cookie、P3P">第三方cookie、P3P</h2>
+<h3 id="问题">问题</h3>
+<p>在做外链视频续波功能，发现第三方cookie在IE下读写有错，</p>
+<p>a.com 引入 b.com ：&lt;\iframe src=”www.b.com”&gt;<br>b.com 中需写入cookie，记录上次播发的点，以达到续播，很简单的功能，但是在开发测试中发现IE浏览器下cookie写不进去，<br>IE浏览器的隐私设置没有更改，为中级，调为低级就可以写。</p>
+<p><img src="/img/third-part-cookie.png" alt="thirdPartCookie">;<br><img src="/img/third-part-cookie-ie.png" alt="thirdPartCookie">;</p>
+<h3 id="解决方案：P3P">解决方案：P3P</h3>
+<p>在请求头中加入 — jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;%</span></div><div class="line">	<span class="built_in">response</span>.addHeader(<span class="string">"p3p"</span>, <span class="string">"CP=\"</span>CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR <span class="built_in">INT</span> DEM STA PRE COM NAV OTC NOI DSP COR\<span class="string">""</span>);</div><div class="line">%&gt;</div></pre></td></tr></table></figure>
 
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h3 id="参考资料：">参考资料：</h3>
+<p><a href="http://oldj.net/article/third-party-cookie" target="_blank" rel="external">http://oldj.net/article/third-party-cookie</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/11/21/hello-world/" data-title="Hello World | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2014/12/25/third-party-cookie/" data-title="第三方cookie | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -126,19 +127,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/11/24/hexo-tip/" title="hexo tips">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  hexo tips</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/10/20/jquery-source-code-analysis/"  title="jquery source code analysis">
+<a href="/2014/12/24/jquery-extend/"  title="jquery extend方法学习">
  <strong>NEXT:</strong><br/> 
- <span>jquery source code analysis
+ <span>jquery extend方法学习
 </span>
 </a>
 </div>
@@ -155,7 +148,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第三方cookie、P3P"><span class="toc-number">1.</span> <span class="toc-text">第三方cookie、P3P</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案：P3P"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案：P3P</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料："><span class="toc-number">1.3.</span> <span class="toc-text">参考资料：</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

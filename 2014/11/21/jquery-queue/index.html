@@ -4,16 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jquery source code analysis | lyuan blog</title>
+    <title>jquery queue | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="jquery 源码学习
-学习和使用jquery已经很长时间了，源码也读了很长一段时间了，但是感觉对jquery源码的理解还是非常浅，所以决定在深入细读一下jquery源码，并写点东西，方便以后温故知新！
-源码学习的是jquery 2.0.3版本。
-首先来看一下jquery是什么？即学习一下$。
-12">
+    <meta name="description" content="jQuery源码 — queue
+
+队列简介 —百度百科队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。在">
     
     
     
@@ -74,14 +72,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/20/jquery-source-code-analysis/" title="jquery source code analysis" itemprop="url">jquery source code analysis</a>
+      <a href="/2014/11/21/jquery-queue/" title="jquery queue" itemprop="url">jquery queue</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-20T06:36:27.000Z" itemprop="datePublished">10月 20 2014</time>
+    <time datetime="2014-11-21T12:19:03.000Z" itemprop="datePublished">11月 21 2014</time>
     更新日期:<time datetime="2014-11-21T12:19:03.000Z" itemprop="dateModified">11月 21 2014</time>
     
   </p>
@@ -91,36 +89,23 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery_源码学习"><span class="toc-number">1.</span> <span class="toc-text">jquery 源码学习</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery源码_—_queue"><span class="toc-number">1.</span> <span class="toc-text">jQuery源码 — queue</span></a></li></ol>
 		</div>
 		
-		<h2 id="jquery_源码学习">jquery 源码学习</h2>
-<p>学习和使用jquery已经很长时间了，源码也读了很长一段时间了，但是感觉对jquery源码的理解还是非常浅，所以决定在深入细读一下jquery源码，并写点东西，方便以后温故知新！</p>
-<p>源码学习的是jquery 2.0.3版本。</p>
-<p>首先来看一下<code>jquery</code>是什么？即学习一下<code>$</code>。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Define a local copy of jQuery</span></div><div class="line"><span class="comment">// 定义一个jQuery副本</span></div><div class="line">jQuery = <span class="function"><span class="keyword">function</span><span class="params">( selector, context )</span> </span>{</div><div class="line">	<span class="comment">// The jQuery object is actually just the init constructor 'enhanced'</span></div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><code>jQuery</code>是一个<code>function</code>,返回值<code>new jQuery.fn.init( selector, context, rootjQuery )</code><br>那么<code>jQuery.fn.init</code>又是什么呢？</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = {</div><div class="line">	<span class="keyword">...</span></div><div class="line">	constructor: jQuery,</div><div class="line">	init: <span class="keyword">function</span>( selector, context, rootjQuery ) {},</div><div class="line">	<span class="keyword">...</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><code>jQuery.fn.init</code>是一个function，调用时使用<code>new</code>，是一个构造函数；<code>jQuery</code>将<code>jQuery.fn.init</code>的<code>prototype</code>指向<code>jQuery.fn</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Give the init function the jQuery prototype for later instantiation</span></div><div class="line">jQuery.<span class="keyword">fn</span>.init.prototype = jQuery.<span class="keyword">fn</span>;</div></pre></td></tr></table></figure>
-
+		<h1 id="jQuery源码_—_queue">jQuery源码 — queue</h1>
+<blockquote>
+<p>队列简介 —百度百科<br>队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。<br>在队列这种数据结构中，最先插入的元素将是最先被删除的元素；反之最后插入的元素将是最后被删除的元素，因此队列又称为“先进先出”（FIFO—first in first out）的线性表。</p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/jQuery/">jQuery</a>
-  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/10/20/jquery-source-code-analysis/" data-title="jquery source code analysis | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2014/11/21/jquery-queue/" data-title="jquery queue | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -130,18 +115,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/11/21/jquery/" title="jquery">
+ <a href="/2014/11/21/hello-world/" title="Hello World">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  jquery</span>
+  Hello World</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/10/20/trip-to-start-my-blog/"  title="trip to start my blog">
+<a href="/2014/11/21/jquery/"  title="jquery">
  <strong>NEXT:</strong><br/> 
- <span>trip to start my blog
+ <span>jquery
 </span>
 </a>
 </div>
@@ -158,7 +143,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery_源码学习"><span class="toc-number">1.</span> <span class="toc-text">jquery 源码学习</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery源码_—_queue"><span class="toc-number">1.</span> <span class="toc-text">jQuery源码 — queue</span></a></li></ol>
   </div>
 
 <div id="asidepart">

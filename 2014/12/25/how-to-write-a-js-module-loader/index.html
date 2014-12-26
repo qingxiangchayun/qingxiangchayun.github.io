@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jquery source code analysis | lyuan blog</title>
+    <title>如何写一个js的模块加载器 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="jquery 源码学习
-学习和使用jquery已经很长时间了，源码也读了很长一段时间了，但是感觉对jquery源码的理解还是非常浅，所以决定在深入细读一下jquery源码，并写点东西，方便以后温故知新！
-源码学习的是jquery 2.0.3版本。
-首先来看一下jquery是什么？即学习一下$。
-12">
+    <meta name="description" content="module
+requirejs 实现基础
+如何写一个js的模块加载器，类似于requirejs，那么我们首先了解一下requirejs。
+requirejs 用法：
+define(id?, dependencies?, factory);
+1、 requirejs预加载。 每个模块所依赖的其他模块">
     
     
     
@@ -74,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/20/jquery-source-code-analysis/" title="jquery source code analysis" itemprop="url">jquery source code analysis</a>
+      <a href="/2014/12/25/how-to-write-a-js-module-loader/" title="如何写一个js的模块加载器" itemprop="url">如何写一个js的模块加载器</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-20T06:36:27.000Z" itemprop="datePublished">10月 20 2014</time>
-    更新日期:<time datetime="2014-11-21T12:19:03.000Z" itemprop="dateModified">11月 21 2014</time>
+    <time datetime="2014-12-25T03:14:40.000Z" itemprop="datePublished">12月 25 2014</time>
+    更新日期:<time datetime="2014-12-25T03:35:24.000Z" itemprop="dateModified">12月 25 2014</time>
     
   </p>
 </header>
@@ -91,28 +92,22 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery_源码学习"><span class="toc-number">1.</span> <span class="toc-text">jquery 源码学习</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#module"><span class="toc-number">1.</span> <span class="toc-text">module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirejs_实现基础"><span class="toc-number">1.1.</span> <span class="toc-text">requirejs 实现基础</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="jquery_源码学习">jquery 源码学习</h2>
-<p>学习和使用jquery已经很长时间了，源码也读了很长一段时间了，但是感觉对jquery源码的理解还是非常浅，所以决定在深入细读一下jquery源码，并写点东西，方便以后温故知新！</p>
-<p>源码学习的是jquery 2.0.3版本。</p>
-<p>首先来看一下<code>jquery</code>是什么？即学习一下<code>$</code>。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Define a local copy of jQuery</span></div><div class="line"><span class="comment">// 定义一个jQuery副本</span></div><div class="line">jQuery = <span class="function"><span class="keyword">function</span><span class="params">( selector, context )</span> </span>{</div><div class="line">	<span class="comment">// The jQuery object is actually just the init constructor 'enhanced'</span></div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><code>jQuery</code>是一个<code>function</code>,返回值<code>new jQuery.fn.init( selector, context, rootjQuery )</code><br>那么<code>jQuery.fn.init</code>又是什么呢？</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = {</div><div class="line">	<span class="keyword">...</span></div><div class="line">	constructor: jQuery,</div><div class="line">	init: <span class="keyword">function</span>( selector, context, rootjQuery ) {},</div><div class="line">	<span class="keyword">...</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><code>jQuery.fn.init</code>是一个function，调用时使用<code>new</code>，是一个构造函数；<code>jQuery</code>将<code>jQuery.fn.init</code>的<code>prototype</code>指向<code>jQuery.fn</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Give the init function the jQuery prototype for later instantiation</span></div><div class="line">jQuery.<span class="keyword">fn</span>.init.prototype = jQuery.<span class="keyword">fn</span>;</div></pre></td></tr></table></figure>
-
+		<h2 id="module">module</h2>
+<h3 id="requirejs_实现基础">requirejs 实现基础</h3>
+<p>如何写一个js的模块加载器，类似于requirejs，那么我们首先了解一下requirejs。</p>
+<p>requirejs 用法：</p>
+<p><code>define(id?, dependencies?, factory);</code></p>
+<p>1、 requirejs预加载。 每个模块所依赖的其他模块都会比本模块预先加载。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/jQuery/">jQuery</a>
+  <span></span> <a href="/tags/js-requireJs/">js requireJs</a>
   </div>
 
 
@@ -120,7 +115,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/10/20/jquery-source-code-analysis/" data-title="jquery source code analysis | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2014/12/25/how-to-write-a-js-module-loader/" data-title="如何写一个js的模块加载器 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -130,18 +125,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/11/21/jquery/" title="jquery">
+ <a href="/2014/12/26/jquery-deferred/" title="jquery deferred">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  jquery</span>
+  jquery deferred</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/10/20/trip-to-start-my-blog/"  title="trip to start my blog">
+<a href="/2014/12/25/third-party-cookie/"  title="第三方cookie">
  <strong>NEXT:</strong><br/> 
- <span>trip to start my blog
+ <span>第三方cookie
 </span>
 </a>
 </div>
@@ -158,7 +153,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jquery_源码学习"><span class="toc-number">1.</span> <span class="toc-text">jquery 源码学习</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#module"><span class="toc-number">1.</span> <span class="toc-text">module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirejs_实现基础"><span class="toc-number">1.1.</span> <span class="toc-text">requirejs 实现基础</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

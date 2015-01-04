@@ -118,7 +118,7 @@ function extend(target,clone,deep){
             if(typeof clone[key] === 'object'){
                 extend(deep,target[key],clone[key]);
             }else{
-                target[key] == clone[key];
+                target[key] = clone[key];
             }
         }
 

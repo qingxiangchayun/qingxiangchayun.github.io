@@ -115,8 +115,23 @@ Object.defineProperty( obj , 'a', {
 
 obj --> Object { a=222}
 ```
+```
+jQuery.acceptData = function( owner ) {
+	// Accepts only:
+	//  - Node
+	//    - Node.ELEMENT_NODE
+	//    - Node.DOCUMENT_NODE
+	//  - Object
+	//    - Any
+	/* jshint -W018 */
+	return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
+};
+Data.accepts = jQuery.acceptData;
 
 ```
+
+```
+// data 原型
 Data.prototype = {
 	key: function( owner ) {
 		// We can accept data for non-element nodes in modern browsers,

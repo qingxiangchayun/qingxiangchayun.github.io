@@ -1,5 +1,5 @@
 title: 如何写一个js的模块加载器
-tags: js requireJs
+tags: [js,requirejs]
 ---
 
 ## module

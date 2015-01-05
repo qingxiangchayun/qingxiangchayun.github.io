@@ -93,6 +93,7 @@ function Data() {
 	this.expando = jQuery.expando + Data.uid++;
 }
 ```
+###　Object.defineProperty
 `Object.defineProperty(object, propertyname, descriptor)`;
 将属性添加到对象或修改现有属性的特性。
 object

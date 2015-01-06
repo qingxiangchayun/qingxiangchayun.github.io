@@ -23,7 +23,30 @@ console.log($('#div2','bar') --> test1
 
 ```
 
+### attr VS data
+```
+var value1 = 'value1';
+var value2 = {
+	a : 111,
+	b : 222
+}
+
+$('#div').attr('key1',value1); 
+console.log($('#div').attr('key1')) --> value1
+
+$('#div').attr('key2',value2); 
+console.log($('#div').attr('key2')) --> "[object Object]"
+
+$('#div').data('key1',value1); 
+console.log($('#div').data('key1')) --> value1
+
+$('#div').data('key2',value2); 
+console.log($('#div').data('key2')) --> Object { a=111, b=222}
+
+```
+
 ### 内存泄漏
+DOM元素与JS对象项目引用，大部分的浏览器会引起内存泄漏。
 
 
 ### 源码分析
@@ -115,6 +138,22 @@ Object.defineProperty( obj , 'a', {
 } );
 
 obj --> Object { a=222}
+
+
+var obj = {
+  a : 111,
+  b : 222
+};
+
+Object.defineProperty( obj , 'a' , {
+  get : function(){
+    return {};
+  }
+} )
+
+obj.a = 123;
+
+obj.a --> Object {}
 ```
 ```
 jQuery.acceptData = function( owner ) {
@@ -125,6 +164,8 @@ jQuery.acceptData = function( owner ) {
 	//  - Object
 	//    - Any
 	/* jshint -W018 */
+
+	// 文本节点、注释节点 不能分配标识
 	return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
 };
 Data.accepts = jQuery.acceptData;

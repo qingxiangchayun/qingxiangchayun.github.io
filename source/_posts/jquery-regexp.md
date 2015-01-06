@@ -75,3 +75,9 @@ rsingleTag.exec(html4); --> ["<img/>", "img"]
 * [http://jex.im/regulex/](http://jex.im/regulex) 
 * github:[https://github.com/JexCheng/regulex](https://github.com/JexCheng/regulex)
 * [https://www.debuggex.com/](https://www.debuggex.com/)
+
+var str  = '62231456456784321231';
+
+var re = /\d(?=\d{4})/g;
+
+str.replace(re,'*')

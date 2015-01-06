@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>lyuan blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+<meta name="author" content="lyuan">
+<link rel="icon" href="/img/favicon.ico">
+<link rel="apple-touch-icon" href="/img/pacman.jpg">
+<link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<link rel='stylesheet' href='/css/bootstrap.css' />
+
+<style type="text/css">
+.header{width:100%;height:60px;line-height:60px;background:#eee;text-align:center;}
+.h-title{line-height:60px;margin: 0;}
+
+.page-width{width: 1600px; margin: 20px auto 0;}
+.main{width: 1600px; margin: 20px auto 0; border: 1px solid #eee;}
+.test-wrap{width:700px;float: left; text-align: center;}
+.data-wrap{float: right;}
+.test-wrap ul{margin:30px;background: #eee; border-radius: 10px;}
+.test-wrap ul li span{padding:0 30px;}
+
+
+</style>
+
+<!--[if lt IE 9]> <script src="http://stat.ablesky-a.cn:8080/ableskystatics/js/lib/shiv/html5.js"></script> <![endif]-->
+
+</head>
+<body>
+<header class="header">
+	<h1 class="h-title">Tool -- HTML TO JS</h1>
+</header>
+
+<section class="page-width">
+	<h2> DOM元素与JS对象相互引用，在大部分浏览器下会引起内存泄漏 </h2>
+</section>
+
+<section class="main clearfix">
+	<section class="test-wrap attr-wrap">
+		<h3>use .attr()</h3> 
+		<button class="btn btn-primary" type="button" id="J_attr_btn">开始测试</button>
+		<ul></ul>
+	</section>
+
+	<section class="test-wrap data-wrap">
+		<h3>use .data()</h3>
+		<button class="btn btn-primary" type="button" id="J_data_btn">开始测试</button>
+		<ul></ul>
+	</section>
+
+</section>
+
+
+
+
+<script src="http://js.ablesky.cn/stata/js_optimize/lib/require-jquery_981ae615.js?v=201403190949"></script>
+
+<script>
+$(function(){
+	'use strict';
+	
+	// DOM元素与js对象相互引用
+	// li customattr = obj[customattr] 
+	// obj[title] = li.innerHTML
+	
+	// type : attr / data 
+	var memoryLeakTest = function(type){
+
+		
+		createLi(type);
+
+		var type = type ? type : 'attr';
+		
+		var obj = {
+			title : '',
+			customattr : 'hello world'
+		};
+
+		var $liList = $('.attr-wrap ul li');
+
+		if(type == 'data'){
+			$liList = $('.data-wrap ul li');
+		}
+
+		$liList.each(function(index,ele){
+			var $this = $(this);
+
+			$(this)[type]('customattr', obj);
+
+			obj = $(this);
+		});
+
+	};
+
+	var createLi = function(type){
+		var type = type ? type : 'attr';
+		var num = 1000;
+
+		var arr = [];
+		var str = '';
+		for(var i=0; i<num ; i++){
+			var li = '<li>li'+i+'</li>';
+			arr.push(li);
+		}
+
+		str = arr.join('');
+		if(type == 'attr'){
+			//$('.attr-wrap ul').empty();
+			$('.attr-wrap ul').append(str);
+		}else{
+			//$('.data-wrap ul').empty();
+			$('.data-wrap ul').append(str);
+		}
+
+	};
+
+
+	$('#J_attr_btn').on('click',function(){
+		memoryLeakTest('attr');
+		console.log(1111, $('.attr-wrap ul li').eq(30).attr('customattr') );
+	});
+
+	$('#J_data_btn').on('click',function(){
+		memoryLeakTest('data');
+		console.log( $('.data-wrap ul li').eq(30).data('customattr') )
+	});
+
+
+});
+
+
+
+</script>
+
+</body>
+</html>

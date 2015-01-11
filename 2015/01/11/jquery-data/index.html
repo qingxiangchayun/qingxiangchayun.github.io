@@ -1,0 +1,366 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jquery data 数据缓存 | lyuan blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="lyuan">
+    
+    <meta name="description" content=".data API
+data([key],[value])/ data(obj)参数：
+
+key value
+obj (key-value)
+
+ .data()方法允许我们在DOM元素上绑定任意类型的数据,避免了循环引用的内存泄漏风险
+.data Examples
+12345678$(&#39;#div1&#39;">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="lyuan blog" title="lyuan blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="lyuan blog">lyuan blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/labs">Labs</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:qingxiangchayun.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/11/jquery-data/" title="jquery data 数据缓存" itemprop="url">jquery data 数据缓存</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-11T10:34:03.000Z" itemprop="datePublished">1月 11 2015</time>
+    更新日期:<time datetime="2015-01-11T10:34:03.000Z" itemprop="dateModified">1月 11 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#-data_API"><span class="toc-number">1.</span> <span class="toc-text">.data API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-data_Examples"><span class="toc-number">2.</span> <span class="toc-text">.data Examples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attr_VS_data"><span class="toc-number">3.</span> <span class="toc-text">attr VS data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存泄漏"><span class="toc-number">4.</span> <span class="toc-text">内存泄漏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">5.</span> <span class="toc-text">源码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_Object-defineProperty"><span class="toc-number">6.</span> <span class="toc-text">　Object.defineProperty</span></a></li></ol>
+		</div>
+		
+		<h3 id="-data_API">.data API</h3>
+<p><code>data([key],[value])</code>/ <code>data(obj)</code><br>参数：</p>
+<ul>
+<li>key value</li>
+<li>obj (key-value)</li>
+</ul>
+<p><strong> <code>.data()</code>方法允许我们在DOM元素上绑定任意类型的数据,避免了循环引用的内存泄漏风险</strong></p>
+<h3 id="-data_Examples">.data Examples</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#div1'</span>,<span class="string">'foo'</span>,<span class="string">'test'</span>);</div><div class="line">$(<span class="string">'#div2'</span>).data({</div><div class="line">	bar : <span class="string">'test1'</span>,</div><div class="line">	baz : <span class="string">'test2'</span></div><div class="line">});</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log($(<span class="string">'#div1'</span>,<span class="string">'foo'</span>) --&gt; test</div><div class="line"><span class="built_in">console</span>.log($(<span class="string">'#div2'</span>,<span class="string">'bar'</span>) --&gt; test1</div></pre></td></tr></table></figure>
+
+<h3 id="attr_VS_data">attr VS data</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> value1 = <span class="string">'value1'</span>;</div><div class="line"><span class="keyword">var</span> value2 = {</div><div class="line">	a : <span class="number">111</span>,</div><div class="line">	b : <span class="number">222</span></div><div class="line">}</div><div class="line"></div><div class="line">$(<span class="string">'#div'</span>).attr(<span class="string">'key1'</span>,value1); </div><div class="line"><span class="built_in">console</span>.log($(<span class="string">'#div'</span>).attr(<span class="string">'key1'</span>)) --&gt; value1</div><div class="line"></div><div class="line">$(<span class="string">'#div'</span>).attr(<span class="string">'key2'</span>,value2); </div><div class="line"><span class="built_in">console</span>.log($(<span class="string">'#div'</span>).attr(<span class="string">'key2'</span>)) --&gt; <span class="string">"[object Object]"</span></div><div class="line"></div><div class="line">$(<span class="string">'#div'</span>).data(<span class="string">'key1'</span>,value1); </div><div class="line"><span class="built_in">console</span>.log($(<span class="string">'#div'</span>).data(<span class="string">'key1'</span>)) --&gt; value1</div><div class="line"></div><div class="line">$(<span class="string">'#div'</span>).data(<span class="string">'key2'</span>,value2); </div><div class="line"><span class="built_in">console</span>.log($(<span class="string">'#div'</span>).data(<span class="string">'key2'</span>)) --&gt; <span class="built_in">Object</span> { a=<span class="number">111</span>, b=<span class="number">222</span>}</div></pre></td></tr></table></figure>
+
+<p><img src="/img/jquery-data-attr.jpg" alt="attr vs data">;</p>
+<h3 id="内存泄漏">内存泄漏</h3>
+<p>DOM元素与JS对象项目引用，大部分的浏览器会引起内存泄漏。</p>
+<h3 id="源码分析">源码分析</h3>
+<p><img src="/img/jquery-data.png" alt="jquery-data">;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// data 构造函数  定义了两个属性</span></div><div class="line"><span class="comment">// cache = {}</span></div><div class="line"><span class="comment">// expando = jQuery.expando + Data.uid++</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Data</span><span class="params">()</span> </span>{</div><div class="line">	<span class="comment">// Support: Android&lt;4,</span></div><div class="line">	<span class="comment">// Old WebKit does not have Object.preventExtensions/freeze method,</span></div><div class="line">	<span class="comment">// return new empty object instead with no [[set]] accessor</span></div><div class="line">	<span class="built_in">Object</span>.defineProperty( <span class="keyword">this</span>.cache = {}, <span class="number">0</span>, {</div><div class="line">		get: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">			<span class="keyword">return</span> {};</div><div class="line">		}</div><div class="line">	});</div><div class="line"></div><div class="line">	<span class="keyword">this</span>.expando = jQuery.expando + Data.uid++;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="_Object-defineProperty">　Object.defineProperty</h3>
+<p><code>Object.defineProperty(object, propertyname, descriptor)</code>;<br>将属性添加到对象或修改现有属性的特性。<br>object<br>    必需。 对其添加或修改属性的对象。 这可以是本机 JavaScript 对象（即用户定义的对象或内置对象）或 DOM 对象。<br>propertyname<br>    必需。 一个包含属性名称的字符串。<br>descriptor<br>    必需。 属性的描述符。 它可以针对数据属性或访问器属性</p>
+<p>返回值<br>已修改的对象。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = {</div><div class="line">  a : <span class="number">111</span></div><div class="line">}</div><div class="line"><span class="built_in">Object</span>.defineProperty( obj , <span class="string">'a'</span>, {</div><div class="line">  value : <span class="number">222</span>,</div><div class="line">  enumerable : <span class="literal">true</span></div><div class="line">} );</div><div class="line"></div><div class="line">obj --&gt; <span class="built_in">Object</span> { a=<span class="number">222</span>}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = {</div><div class="line">  a : <span class="number">111</span>,</div><div class="line">  b : <span class="number">222</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty( obj , <span class="string">'a'</span> , {</div><div class="line">  get : <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="keyword">return</span> {};</div><div class="line">  }</div><div class="line">} )</div><div class="line"></div><div class="line">obj.a = <span class="number">123</span>;</div><div class="line"></div><div class="line">obj.a --&gt; <span class="built_in">Object</span> {}</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div></pre></td><td class="code"><pre><div class="line">jQuery.acceptData = <span class="function"><span class="keyword">function</span><span class="params">( owner )</span> </span>{</div><div class="line">	<span class="comment">// Accepts only:</span></div><div class="line">	<span class="comment">//  - Node</span></div><div class="line">	<span class="comment">//    - Node.ELEMENT_NODE</span></div><div class="line">	<span class="comment">//    - Node.DOCUMENT_NODE</span></div><div class="line">	<span class="comment">//  - Object</span></div><div class="line">	<span class="comment">//    - Any</span></div><div class="line">	<span class="comment">/* jshint -W018 */</span></div><div class="line"></div><div class="line">	<span class="comment">// 文本节点、注释节点 不能分配标识</span></div><div class="line">	<span class="keyword">return</span> owner.nodeType === <span class="number">1</span> || owner.nodeType === <span class="number">9</span> || !( +owner.nodeType );</div><div class="line">};</div><div class="line">Data.accepts = jQuery.acceptData;</div><div class="line"></div><div class="line"><span class="comment">// data 原型</span></div><div class="line">Data.prototype = {</div><div class="line">	key: <span class="function"><span class="keyword">function</span><span class="params">( owner )</span> </span>{</div><div class="line">		<span class="comment">// We can accept data for non-element nodes in modern browsers,</span></div><div class="line">		<span class="comment">// but we should not, see #8335.</span></div><div class="line">		<span class="comment">// Always return the key for a frozen object.</span></div><div class="line">		<span class="keyword">if</span> ( !Data.accepts( owner ) ) {</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		}</div><div class="line"></div><div class="line">		<span class="keyword">var</span> descriptor = {},</div><div class="line">			<span class="comment">// Check if the owner object already has a cache key</span></div><div class="line">			unlock = owner[ <span class="keyword">this</span>.expando ];</div><div class="line"></div><div class="line">		<span class="comment">// If not, create one</span></div><div class="line">		<span class="keyword">if</span> ( !unlock ) {</div><div class="line">			unlock = Data.uid++;</div><div class="line"></div><div class="line">			<span class="comment">// Secure it in a non-enumerable, non-writable property</span></div><div class="line">			<span class="keyword">try</span> {</div><div class="line">				descriptor[ <span class="keyword">this</span>.expando ] = { value: unlock };</div><div class="line">				Object.defineProperties( owner, descriptor );</div><div class="line"></div><div class="line">			<span class="comment">// Support: Android&lt;4</span></div><div class="line">			<span class="comment">// Fallback to a less secure definition</span></div><div class="line">			} <span class="keyword">catch</span> ( e ) {</div><div class="line">				descriptor[ <span class="keyword">this</span>.expando ] = unlock;</div><div class="line">				jQuery.extend( owner, descriptor );</div><div class="line">			}</div><div class="line">		}</div><div class="line"></div><div class="line">		<span class="comment">// Ensure the cache object</span></div><div class="line">		<span class="keyword">if</span> ( !<span class="keyword">this</span>.cache[ unlock ] ) {</div><div class="line">			<span class="keyword">this</span>.cache[ unlock ] = {};</div><div class="line">		}</div><div class="line"></div><div class="line">		<span class="keyword">return</span> unlock;</div><div class="line">	},</div><div class="line">	<span class="keyword">set</span>: <span class="function"><span class="keyword">function</span><span class="params">( owner, data, value )</span> </span>{</div><div class="line">		<span class="keyword">var</span> prop,</div><div class="line">			<span class="comment">// There may be an unlock assigned to this node,</span></div><div class="line">			<span class="comment">// if there is no entry for this "owner", create one inline</span></div><div class="line">			<span class="comment">// and set the unlock as though an owner entry had always existed</span></div><div class="line">			unlock = <span class="keyword">this</span>.key( owner ),</div><div class="line">			cache = <span class="keyword">this</span>.cache[ unlock ];</div><div class="line"></div><div class="line">		<span class="comment">// Handle: [ owner, key, value ] args</span></div><div class="line">		<span class="keyword">if</span> ( <span class="keyword">typeof</span> data === <span class="string">"string"</span> ) {</div><div class="line">			cache[ data ] = value;</div><div class="line"></div><div class="line">		<span class="comment">// Handle: [ owner, { properties } ] args</span></div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			<span class="comment">// Fresh assignments by object are shallow copied</span></div><div class="line">			<span class="keyword">if</span> ( jQuery.isEmptyObject( cache ) ) {</div><div class="line">				jQuery.extend( <span class="keyword">this</span>.cache[ unlock ], data );</div><div class="line">			<span class="comment">// Otherwise, copy the properties one-by-one to the cache object</span></div><div class="line">			} <span class="keyword">else</span> {</div><div class="line">				<span class="keyword">for</span> ( prop <span class="keyword">in</span> data ) {</div><div class="line">					cache[ prop ] = data[ prop ];</div><div class="line">				}</div><div class="line">			}</div><div class="line">		}</div><div class="line">		<span class="keyword">return</span> cache;</div><div class="line">	},</div><div class="line">	<span class="keyword">get</span>: <span class="function"><span class="keyword">function</span><span class="params">( owner, key )</span> </span>{</div><div class="line">		<span class="comment">// Either a valid cache is found, or will be created.</span></div><div class="line">		<span class="comment">// New caches will be created and the unlock returned,</span></div><div class="line">		<span class="comment">// allowing direct access to the newly created</span></div><div class="line">		<span class="comment">// empty data object. A valid owner object must be provided.</span></div><div class="line">		<span class="keyword">var</span> cache = <span class="keyword">this</span>.cache[ <span class="keyword">this</span>.key( owner ) ];</div><div class="line"></div><div class="line">		<span class="keyword">return</span> key === <span class="literal">undefined</span> ?</div><div class="line">			cache : cache[ key ];</div><div class="line">	},</div><div class="line">	access: <span class="function"><span class="keyword">function</span><span class="params">( owner, key, value )</span> </span>{</div><div class="line">		<span class="keyword">var</span> stored;</div><div class="line">		<span class="comment">// In cases where either:</span></div><div class="line">		<span class="comment">//</span></div><div class="line">		<span class="comment">//   1. No key was specified</span></div><div class="line">		<span class="comment">//   2. A string key was specified, but no value provided</span></div><div class="line">		<span class="comment">//</span></div><div class="line">		<span class="comment">// Take the "read" path and allow the get method to determine</span></div><div class="line">		<span class="comment">// which value to return, respectively either:</span></div><div class="line">		<span class="comment">//</span></div><div class="line">		<span class="comment">//   1. The entire cache object</span></div><div class="line">		<span class="comment">//   2. The data stored at the key</span></div><div class="line">		<span class="comment">//</span></div><div class="line">		<span class="keyword">if</span> ( key === <span class="literal">undefined</span> ||</div><div class="line">				((key && <span class="keyword">typeof</span> key === <span class="string">"string"</span>) && value === <span class="literal">undefined</span>) ) {</div><div class="line"></div><div class="line">			stored = <span class="keyword">this</span>.<span class="keyword">get</span>( owner, key );</div><div class="line"></div><div class="line">			<span class="keyword">return</span> stored !== <span class="literal">undefined</span> ?</div><div class="line">				stored : <span class="keyword">this</span>.<span class="keyword">get</span>( owner, jQuery.camelCase(key) );</div><div class="line">		}</div><div class="line"></div><div class="line">		<span class="comment">// [*]When the key is not a string, or both a key and value</span></div><div class="line">		<span class="comment">// are specified, set or extend (existing objects) with either:</span></div><div class="line">		<span class="comment">//</span></div><div class="line">		<span class="comment">//   1. An object of properties</span></div><div class="line">		<span class="comment">//   2. A key and value</span></div><div class="line">		<span class="comment">//</span></div><div class="line">		<span class="keyword">this</span>.<span class="keyword">set</span>( owner, key, value );</div><div class="line"></div><div class="line">		<span class="comment">// Since the "set" path can have two possible entry points</span></div><div class="line">		<span class="comment">// return the expected data based on which path was taken[*]</span></div><div class="line">		<span class="keyword">return</span> value !== <span class="literal">undefined</span> ? value : key;</div><div class="line">	},</div><div class="line">	remove: <span class="function"><span class="keyword">function</span><span class="params">( owner, key )</span> </span>{</div><div class="line">		<span class="keyword">var</span> i, name, camel,</div><div class="line">			unlock = <span class="keyword">this</span>.key( owner ),</div><div class="line">			cache = <span class="keyword">this</span>.cache[ unlock ];</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ( key === <span class="literal">undefined</span> ) {</div><div class="line">			<span class="keyword">this</span>.cache[ unlock ] = {};</div><div class="line"></div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			<span class="comment">// Support array or space separated string of keys</span></div><div class="line">			<span class="keyword">if</span> ( jQuery.isArray( key ) ) {</div><div class="line">				<span class="comment">// If "name" is an array of keys...</span></div><div class="line">				<span class="comment">// When data is initially created, via ("key", "val") signature,</span></div><div class="line">				<span class="comment">// keys will be converted to camelCase.</span></div><div class="line">				<span class="comment">// Since there is no way to tell _how_ a key was added, remove</span></div><div class="line">				<span class="comment">// both plain key and camelCase key. #12786</span></div><div class="line">				<span class="comment">// This will only penalize the array argument path.</span></div><div class="line">				name = key.concat( key.map( jQuery.camelCase ) );</div><div class="line">			} <span class="keyword">else</span> {</div><div class="line">				camel = jQuery.camelCase( key );</div><div class="line">				<span class="comment">// Try the string as a key before any manipulation</span></div><div class="line">				<span class="keyword">if</span> ( key <span class="keyword">in</span> cache ) {</div><div class="line">					name = [ key, camel ];</div><div class="line">				} <span class="keyword">else</span> {</div><div class="line">					<span class="comment">// If a key with the spaces exists, use it.</span></div><div class="line">					<span class="comment">// Otherwise, create an array by matching non-whitespace</span></div><div class="line">					name = camel;</div><div class="line">					name = name <span class="keyword">in</span> cache ?</div><div class="line">						[ name ] : ( name.match( rnotwhite ) || [] );</div><div class="line">				}</div><div class="line">			}</div><div class="line"></div><div class="line">			i = name.length;</div><div class="line">			<span class="keyword">while</span> ( i-- ) {</div><div class="line">				<span class="keyword">delete</span> cache[ name[ i ] ];</div><div class="line">			}</div><div class="line">		}</div><div class="line">	},</div><div class="line">	hasData: <span class="function"><span class="keyword">function</span><span class="params">( owner )</span> </span>{</div><div class="line">		<span class="keyword">return</span> !jQuery.isEmptyObject(</div><div class="line">			<span class="keyword">this</span>.cache[ owner[ <span class="keyword">this</span>.expando ] ] || {}</div><div class="line">		);</div><div class="line">	},</div><div class="line">	discard: <span class="function"><span class="keyword">function</span><span class="params">( owner )</span> </span>{</div><div class="line">		<span class="keyword">if</span> ( owner[ <span class="keyword">this</span>.expando ] ) {</div><div class="line">			<span class="keyword">delete</span> <span class="keyword">this</span>.cache[ owner[ <span class="keyword">this</span>.expando ] ];</div><div class="line">		}</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jQuery/">jQuery</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://qingxiangchayun.github.io/2015/01/11/jquery-data/" data-title="jquery data 数据缓存 | lyuan blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/01/05/jquery-data/"  title="jquery data 数据缓存">
+ <strong>NEXT:</strong><br/> 
+ <span>jquery data 数据缓存
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#-data_API"><span class="toc-number">1.</span> <span class="toc-text">.data API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-data_Examples"><span class="toc-number">2.</span> <span class="toc-text">.data Examples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attr_VS_data"><span class="toc-number">3.</span> <span class="toc-text">attr VS data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存泄漏"><span class="toc-number">4.</span> <span class="toc-text">内存泄漏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">5.</span> <span class="toc-text">源码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_Object-defineProperty"><span class="toc-number">6.</span> <span class="toc-text">　Object.defineProperty</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>6</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>4</sup></a></li>
+		
+			<li><a href="/tags/requirejs/" title="requirejs">requirejs<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://qingxiangchayun.github.io" target="_blank" title="lyuan">lyuan</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"lyuan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>

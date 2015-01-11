@@ -1,5 +1,6 @@
 title: jquery data 数据缓存
 tags: jQuery
+date: 2015-01-11 18:34:03
 ---
 
 ### .data API
@@ -18,7 +19,7 @@ $('#div2').data({
 	baz : 'test2'
 });
 
-console.log($('#div1','foo') --> test1
+console.log($('#div1','foo') --> test
 console.log($('#div2','bar') --> test1
 
 ```
@@ -44,6 +45,7 @@ $('#div').data('key2',value2);
 console.log($('#div').data('key2')) --> Object { a=111, b=222}
 
 ```
+![attr vs data](/img/jquery-data-attr.jpg);
 
 ### 内存泄漏
 DOM元素与JS对象项目引用，大部分的浏览器会引起内存泄漏。
@@ -51,53 +53,8 @@ DOM元素与JS对象项目引用，大部分的浏览器会引起内存泄漏。
 
 ### 源码分析
 
-```
-// data 构造函数
-function Data() {}
+![jquery-data](/img/jquery-data.png);
 
-Data.uid = 1;
-
-Data.accepts = function( owner ) {
-	return owner.nodeType ?
-		owner.nodeType === 1 || owner.nodeType === 9 : true;
-};
-
-// 原型方法
-Data.prototype = {
-	key: function( owner ) {},
-	set: function( owner, data, value ) {},
-	get: function( owner, key ) {},
-	access: function( owner, key, value ) {},
-	remove: function( owner, key ) {},
-	hasData: function( owner ) {},
-	discard: function( owner ) {}
-};
-
-// 提供给开发者使用的，比如$.attr(),$.data等等. 
-data_user = new Data();
-// 给jQuery内部只用，比如数据对象，queue，Deferred，事件，动画缓存
-data_priv = new Data();
-
-jQuery.extend({
-	acceptData: Data.accepts,
-
-	hasData: function( elem ) {},
-
-	data: function( elem, name, data ) {},
-
-	removeData: function( elem, name ) {},
-
-	_data: function( elem, name, data ) {},
-
-	_removeData: function( elem, name ) {}
-});
-
-jQuery.fn.extend({
-	data: function( key, value ) {},
-	removeData: function( key ) {}
-}
-function dataAttr( elem, key, data ) {}
-```
 
 ```
 // data 构造函数  定义了两个属性
@@ -170,9 +127,6 @@ jQuery.acceptData = function( owner ) {
 };
 Data.accepts = jQuery.acceptData;
 
-```
-
-```
 // data 原型
 Data.prototype = {
 	key: function( owner ) {

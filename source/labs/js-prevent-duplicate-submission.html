@@ -27,6 +27,7 @@
 </header>
 <section class="main clearfix">   
 	<button class="btn btn-primary" type="button" id="J_btn_switch"> 使用开关控制 </button>			
+	<button class="btn btn-primary" type="button" id="J_btn_switch1"> 使用开关控制--this btn </button>			
 	<button class="btn btn-primary" type="button" id="J_btn_readyState"> 使用XHR readyState 控制 </button>			
 	<button class="btn btn-primary" type="button" id="J_btn_promise"> 使用$.ajax promise 控制 </button>			
 	<button class="btn btn-primary" type="button" id="J_btn_promise_more"> 使用$.ajax promise 控制 -- 贪婪型提交 </button>			
@@ -60,6 +61,24 @@ $(function(){
 		
 	});
 
+	$('#J_btn_switch1').on('click',function(){
+		
+		if(this.btnSwitch){
+			return ;
+		}
+
+		this.btnSwitch = true;
+		
+		$.ajax({
+			url : 'http://www.google.com',
+			complate : function(){
+				this.btnSwitch = false;
+			}
+		});
+
+		console.log(this.btnSwitch);
+		
+	});
 
 	$('#J_btn_readyState').on('click',function(){
 		

@@ -1,0 +1,119 @@
+
+  
+    <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>lyuan blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+<meta name="author" content="lyuan">
+<link rel="icon" href="/img/favicon.ico">
+<link rel="apple-touch-icon" href="/img/pacman.jpg">
+<link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+<style type="text/css">
+.header{width:100%;height:60px;line-height:60px;background:#eee;text-align:center;}
+.h-title{line-height:60px;margin: 0;}
+
+.main{width: 1600px; margin: 20px auto 0;}
+.main textarea{width: 726px; height: 400px; float:left; }
+.main .change-btns{float:left;margin: 180px 20px 0;}
+
+.code{width: 1600px; margin: 20px auto 0;}
+</style>
+</head>
+<body>
+<header class="header">
+	<h1 class="h-title">js prevent duplicate submission </h1>
+</header>
+<section class="main clearfix">   
+	<button class="btn btn-primary" type="button" id="J_btn_switch"> 使用开关控制 </button>			
+	<button class="btn btn-primary" type="button" id="J_btn_readyState"> 使用XHR readyState 控制 </button>			
+	<button class="btn btn-primary" type="button" id="J_btn_promise"> 使用$.ajax promise 控制 </button>			
+	<button class="btn btn-primary" type="button" id="J_btn_promise_more"> 使用$.ajax promise 控制 -- 贪婪型提交 </button>			
+</section>
+
+
+<script src="/js/jquery-2.1.0.min.js"></script>
+
+<script>
+$(function(){
+	'use strict';
+
+	var btnSwitch = true;
+
+	$('#J_btn_switch').on('click',function(){
+		
+		if(!btnSwitch){
+			return ;
+		}
+
+		btnSwitch = false;
+		
+		$.ajax({
+			url : 'http://www.google.com',
+			complate : function(){
+				btnSwitch = true;
+			}
+		});
+
+		console.log(btnSwitch);
+		
+	});
+
+
+	$('#J_btn_readyState').on('click',function(){
+		
+		if(this.XHR && typeof this.XHR.readyState === 'number'){
+			return ;
+		}
+		
+		this.XHR = $.ajax({
+			url : 'http://www.google.com'
+		});
+
+		console.log(this.XHR.readyState,typeof this.XHR.readyState);
+		
+	});
+
+	$('#J_btn_promise').on('click',function(){
+		
+		if(this._promise && this._promise.state() === 'pending'){
+			return ;
+		}
+		
+		this._promise = $.ajax({
+			url : 'http://www.google.com'
+		});
+
+		console.log(this._promise.state());
+		
+	});
+
+	// 贪婪型提交
+	$('#J_btn_promise_more').on('click',function(){
+		
+		if(this._promise && this._promise.state() === 'pending'){
+			this._promise.abort();
+		}
+		
+		this._promise = $.ajax({
+			url : 'http://www.google.com'
+		});
+
+		console.log(this._promise.state());
+		
+	});
+
+
+});
+
+
+
+</script>
+
+</body>
+</html>
+
+  

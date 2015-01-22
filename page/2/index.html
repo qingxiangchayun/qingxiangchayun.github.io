@@ -67,23 +67,36 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2014/12/03/jQuery-source-code/" title="jquery 选择器" itemprop="url">
+    <a href="/2014/12/22/jquery-regexp/" title="jquery中的正则" itemprop="url">
   
-    <h1 itemprop="name">jquery 选择器</h1>
+    <h1 itemprop="name">jquery中的正则</h1>
     
      
-           <p itemprop="description" >jquery.fn.init
-了解jquery()
-用法
-
-jQuery( selector [, context ] )
-jQuery( selector [, context ] )
-jQuery( element )
-jQuery( elementArray )
-jQuer</p>
+           <p itemprop="description" >最近在学习jquery源码，分析jquery的实现原理，但由于jquery代码比较多，方法之间耦合性很强，要学习一个方法得了解很多其他相关的方法，这些方法中还充斥中不少正则，所以本文会把jquery中用到的正则都抽出来，单独写一篇文章来介绍jquery中的正则。
+RegExp
+语</p>
         
     
-    <time datetime="2014-12-03T07:47:38.000Z" itemprop="datePublished">12月 3 2014</time>
+    <time datetime="2014-12-22T06:46:49.000Z" itemprop="datePublished">12月 22 2014</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/12/22/document-write/" title="document.write方法的相关问题" itemprop="url">
+  
+    <h1 itemprop="name">document.write方法的相关问题</h1>
+    
+     
+           <p itemprop="description" >document.write
+document.write 介绍
+1document.write(markup);
+
+markup is a string containing the text to be written to the document.
+与DOM Ready相</p>
+        
+    
+    <time datetime="2014-12-22T06:44:29.000Z" itemprop="datePublished">12月 22 2014</time>
   </a>
 </section>
 
@@ -104,9 +117,9 @@ jQuer</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2014/11/24/hexo-tip/" title="hexo tips" itemprop="url">
+    <a href="/2014/11/24/hexo-tip/" title="hexo" itemprop="url">
   
-    <h1 itemprop="name">hexo tips</h1>
+    <h1 itemprop="name">hexo</h1>
     
      
            <p itemprop="description" >hexo 常用命令
@@ -118,51 +131,6 @@ jQuer</p>
         
     
     <time datetime="2014-11-24T08:37:21.000Z" itemprop="datePublished">11月 24 2014</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2014/11/21/jquery-queue/" title="jquery queue" itemprop="url">
-  
-    <h1 itemprop="name">jquery queue</h1>
-    
-     
-           <p itemprop="description" >jQuery源码 — queue
-
-队列简介 —百度百科队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元</p>
-        
-    
-    <time datetime="2014-11-21T12:19:03.000Z" itemprop="datePublished">11月 21 2014</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2014/11/21/jquery/" title="jquery" itemprop="url">
-  
-    <h1 itemprop="name">jquery</h1>
-    
-     
-           <p itemprop="description" >首先来看一下jquery是什么？即学习一下$。
-123456// Define a local copy of jQuery// 定义一个jQuery副本jQuery = function( selector, context ) {	// The jQuery object i</p>
-        
-    
-    <time datetime="2014-11-21T12:19:03.000Z" itemprop="datePublished">11月 21 2014</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2014/11/21/hello-world/" title="Hello World" itemprop="url">
-  
-    <h1 itemprop="name">Hello World</h1>
-    
-     
-           <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
-        
-    
-    <time datetime="2014-11-21T12:19:03.000Z" itemprop="datePublished">11月 21 2014</time>
   </a>
 </section>
 
@@ -185,13 +153,12 @@ jQuer</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2014/10/20/trip-to-start-my-blog/" title="trip to start my blog" itemprop="url">
+    <a href="/2014/10/20/trip-to-start-my-blog/" title="开始blog之旅" itemprop="url">
   
-    <h1 itemprop="name">trip to start my blog</h1>
+    <h1 itemprop="name">开始blog之旅</h1>
     
      
-           <p itemprop="description" >开始blog之旅
-学习过的知识，经常不用就忘记了，尤其是比较新鲜的知识点，不容易应用到项目中，就更加容易忘记了，所以就写写blog，对学过的知识多总结、多思考、加深巩固，并时常回顾学习。
+           <p itemprop="description" >学习过的知识，经常不用就忘记了，尤其是比较新鲜的知识点，不容易应用到项目中，就更加容易忘记了，所以就写写blog，对学过的知识多总结、多思考、加深巩固，并时常回顾学习。
 温故而知新，可以为师矣！</p>
         
     
@@ -220,7 +187,7 @@ jQuer</p>
 		
 			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>6</sup></a></li>
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 		
 			<li><a href="/tags/js/" title="js">js<sup>5</sup></a></li>
 		
@@ -233,7 +200,7 @@ jQuer</p>
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 

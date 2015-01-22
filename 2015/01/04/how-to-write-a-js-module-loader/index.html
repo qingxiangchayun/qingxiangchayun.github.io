@@ -4,12 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | lyuan blog</title>
+    <title>如何写一个js的模块加载器 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="module
+requirejs 实现基础
+如何写一个js的模块加载器，类似于requirejs，那么我们首先了解一下requirejs。
+requirejs 用法：
+define(id?, dependencies?, factory);
+1、 requirejs预加载。 每个模块所依赖的其他模块">
     
     
     
@@ -70,15 +75,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/21/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2015/01/04/how-to-write-a-js-module-loader/" title="如何写一个js的模块加载器" itemprop="url">如何写一个js的模块加载器</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-21T12:19:03.000Z" itemprop="datePublished">11月 21 2014</time>
-    更新日期:<time datetime="2014-11-21T12:19:03.000Z" itemprop="dateModified">11月 21 2014</time>
+    <time datetime="2015-01-04T09:11:36.000Z" itemprop="datePublished">1月 4 2015</time>
+    更新日期:<time datetime="2015-01-22T09:57:54.000Z" itemprop="dateModified">1月 22 2015</time>
     
   </p>
 </header>
@@ -87,37 +92,31 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#module"><span class="toc-number">1.</span> <span class="toc-text">module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirejs_实现基础"><span class="toc-number">1.1.</span> <span class="toc-text">requirejs 实现基础</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<h2 id="module">module</h2>
+<h3 id="requirejs_实现基础">requirejs 实现基础</h3>
+<p>如何写一个js的模块加载器，类似于requirejs，那么我们首先了解一下requirejs。</p>
+<p>requirejs 用法：</p>
+<p><code>define(id?, dependencies?, factory);</code></p>
+<p>1、 requirejs预加载。 每个模块所依赖的其他模块都会比本模块预先加载。</p>
+<p><img src="/img/requirejs-jsonload.png" alt="requirejs-jsonload">;</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a><a href="/tags/requirejs/">requirejs</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/11/21/hello-world/" data-title="Hello World | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2015/01/04/how-to-write-a-js-module-loader/" data-title="如何写一个js的模块加载器 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -127,18 +126,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/11/21/jquery/" title="jquery">
+ <a href="/2015/01/11/jquery-data/" title="jquery data 数据缓存">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  jquery</span>
+  jquery data 数据缓存</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/10/20/jquery-source-code-analysis/"  title="jquery source code analysis">
+<a href="/2014/12/25/third-party-cookie/"  title="第三方cookie">
  <strong>NEXT:</strong><br/> 
- <span>jquery source code analysis
+ <span>第三方cookie
 </span>
 </a>
 </div>
@@ -155,7 +154,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#module"><span class="toc-number">1.</span> <span class="toc-text">module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirejs_实现基础"><span class="toc-number">1.1.</span> <span class="toc-text">requirejs 实现基础</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -171,7 +170,7 @@
 		
 			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>6</sup></a></li>
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 		
 			<li><a href="/tags/js/" title="js">js<sup>5</sup></a></li>
 		
@@ -184,7 +183,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 

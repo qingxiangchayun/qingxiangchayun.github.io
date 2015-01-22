@@ -4,17 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>如何写一个js的模块加载器 | lyuan blog</title>
+    <title>jquery | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="module
-requirejs 实现基础
-如何写一个js的模块加载器，类似于requirejs，那么我们首先了解一下requirejs。
-requirejs 用法：
-define(id?, dependencies?, factory);
-1、 requirejs预加载。 每个模块所依赖的其他模块">
+    <meta name="description" content="首先来看一下jquery是什么？即学习一下$。
+123456// Define a local copy of jQuery// 定义一个jQuery副本jQuery = function( selector, context ) {	// The jQuery object is actually">
     
     
     
@@ -75,15 +71,15 @@ define(id?, dependencies?, factory);
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/12/25/how-to-write-a-js-module-loader/" title="如何写一个js的模块加载器" itemprop="url">如何写一个js的模块加载器</a>
+      <a href="/2015/01/22/jquery/" title="jquery" itemprop="url">jquery</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-12-25T03:14:40.000Z" itemprop="datePublished">12月 25 2014</time>
-    更新日期:<time datetime="2015-01-05T10:22:29.000Z" itemprop="dateModified">1月 5 2015</time>
+    <time datetime="2015-01-22T09:13:29.000Z" itemprop="datePublished">1月 22 2015</time>
+    更新日期:<time datetime="2015-01-22T09:13:29.000Z" itemprop="dateModified">1月 22 2015</time>
     
   </p>
 </header>
@@ -92,31 +88,30 @@ define(id?, dependencies?, factory);
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#module"><span class="toc-number">1.</span> <span class="toc-text">module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirejs_实现基础"><span class="toc-number">1.1.</span> <span class="toc-text">requirejs 实现基础</span></a></li></ol></li></ol>
+		
 		</div>
 		
-		<h2 id="module">module</h2>
-<h3 id="requirejs_实现基础">requirejs 实现基础</h3>
-<p>如何写一个js的模块加载器，类似于requirejs，那么我们首先了解一下requirejs。</p>
-<p>requirejs 用法：</p>
-<p><code>define(id?, dependencies?, factory);</code></p>
-<p>1、 requirejs预加载。 每个模块所依赖的其他模块都会比本模块预先加载。</p>
-<p><img src="/img/requirejs-jsonload.png" alt="requirejs-jsonload">;</p>
+		<p>首先来看一下<code>jquery</code>是什么？即学习一下<code>$</code>。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Define a local copy of jQuery</span></div><div class="line"><span class="comment">// 定义一个jQuery副本</span></div><div class="line">jQuery = <span class="function"><span class="keyword">function</span><span class="params">( selector, context )</span> </span>{</div><div class="line">	<span class="comment">// The jQuery object is actually just the init constructor 'enhanced'</span></div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><code>jQuery</code>是一个<code>function</code>,返回值<code>new jQuery.fn.init( selector, context, rootjQuery )</code><br>那么<code>jQuery.fn.init</code>又是什么呢？</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = {</div><div class="line">	<span class="keyword">...</span></div><div class="line">	constructor: jQuery,</div><div class="line">	init: <span class="keyword">function</span>( selector, context, rootjQuery ) {},</div><div class="line">	<span class="keyword">...</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><code>jQuery.fn.init</code>是一个function，调用时使用<code>new</code>，是一个构造函数；<code>jQuery</code>将<code>jQuery.fn.init</code>的<code>prototype</code>指向<code>jQuery.fn</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Give the init function the jQuery prototype for later instantiation</span></div><div class="line">jQuery.<span class="keyword">fn</span>.init.prototype = jQuery.<span class="keyword">fn</span>;</div></pre></td></tr></table></figure>
+
+<p><code>jQuery.fn = jQuery.prototype</code>,</p>
+<p>‘jQuery —&gt; new jQuery.fn.init —&gt; jQuery.fn.init.prototype.fn’</p>
   
 	</div>
 		<footer class="article-footer clearfix">
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/js/">js</a><a href="/tags/requirejs/">requirejs</a>
-  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/12/25/how-to-write-a-js-module-loader/" data-title="如何写一个js的模块加载器 | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2015/01/22/jquery/" data-title="jquery | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -126,18 +121,18 @@ define(id?, dependencies?, factory);
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/12/26/jquery-deferred/" title="jquery deferred">
+ <a href="/2015/01/22/jQuery-source-code/" title="jquery 选择器">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  jquery deferred</span>
+  jquery 选择器</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/12/25/third-party-cookie/"  title="第三方cookie">
+<a href="/2015/01/22/jquery-static-methods/"  title="jquery中常用的静态方法">
  <strong>NEXT:</strong><br/> 
- <span>第三方cookie
+ <span>jquery中常用的静态方法
 </span>
 </a>
 </div>
@@ -154,7 +149,7 @@ define(id?, dependencies?, factory);
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#module"><span class="toc-number">1.</span> <span class="toc-text">module</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirejs_实现基础"><span class="toc-number">1.1.</span> <span class="toc-text">requirejs 实现基础</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">
@@ -170,7 +165,7 @@ define(id?, dependencies?, factory);
 		
 			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>6</sup></a></li>
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 		
 			<li><a href="/tags/js/" title="js">js<sup>5</sup></a></li>
 		
@@ -183,7 +178,7 @@ define(id?, dependencies?, factory);
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 

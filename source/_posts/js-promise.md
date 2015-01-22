@@ -33,3 +33,5 @@ https://github.com/tildeio/rsvp.js/blob/master/lib/rsvp/promise.js
 http://www.html-js.com/article/Promise-translation-JavaScript-Promise-devil-details
 http://www.shaynegui.com/promise-aplus-implementation/
 http://www.w3ctech.com/topic/721
+
+Promise/A+规范

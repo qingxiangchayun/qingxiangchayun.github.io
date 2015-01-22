@@ -1,5 +1,6 @@
 title: jquery中常用的静态方法
 tags: jQuery
+date: 2015-01-22 17:12:47
 ---
 
 ## 工具方法列表

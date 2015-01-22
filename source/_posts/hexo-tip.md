@@ -1,4 +1,4 @@
-title: hexo tips
+title: hexo
 tags: hexo
 date: 2014-11-24 16:37:21
 ---

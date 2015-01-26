@@ -497,7 +497,7 @@ header nav {
   header nav {
     float: right;
     width: auto;
-    margin-top: 1em;
+    margin-top: 0em;
     max-height: none;
   }
 }

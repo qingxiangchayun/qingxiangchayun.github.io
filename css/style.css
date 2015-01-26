@@ -1719,13 +1719,13 @@ section.comment {
 footer {
   margin-top: 1em;
   background: #1f1f1f;
-  padding: 0 2% 0.5em;
 }
 #footer {
   width: 95%;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  padding: 2em;
 }
 #footer .line {
   width: 100%;
@@ -1812,8 +1812,8 @@ footer {
   .social-font {
     width: 18em;
     position: absolute;
-    right: -3em;
-    top: 3em;
+    right: 0em;
+    top: 0.7em;
   }
 }
 .social-font a {
@@ -1854,7 +1854,7 @@ footer {
 }
 .copyright {
   font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
-  font-size: 0.6em;
+  font-size: 0.8em;
   width: 100%;
   color: #fff;
   text-align: center;

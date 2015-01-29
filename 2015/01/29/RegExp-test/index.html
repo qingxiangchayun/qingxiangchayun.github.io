@@ -4,14 +4,20 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jquery queue | lyuan blog</title>
+    <title>正则 test 中的一个小坑 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="jQuery源码 — queue
+    <meta name="description" content="今天做项目中，发现个问题，记录一下。
+看个例子：
+为什么第一次console时，不都是true。WHY！！！
+正则表达式
+先来了解一下正则表达式直接量语法
+1/pattern/attributes
 
-队列简介 —百度百科队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。在">
+创建 RegExp 对象的语法：
+1new RegExp(pattern, attributes);">
     
     
     
@@ -72,15 +78,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/22/jquery-queue/" title="jquery queue" itemprop="url">jquery queue</a>
+      <a href="/2015/01/29/RegExp-test/" title="正则 test 中的一个小坑" itemprop="url">正则 test 中的一个小坑</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-22T09:12:22.000Z" itemprop="datePublished">1月 22 2015</time>
-    更新日期:<time datetime="2015-01-22T09:12:22.000Z" itemprop="dateModified">1月 22 2015</time>
+    <time datetime="2015-01-29T10:08:38.000Z" itemprop="datePublished">1月 29 2015</time>
+    更新日期:<time datetime="2015-01-29T11:04:40.000Z" itemprop="dateModified">1月 29 2015</time>
     
   </p>
 </header>
@@ -89,23 +95,44 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery源码_—_queue"><span class="toc-number">1.</span> <span class="toc-text">jQuery源码 — queue</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-number">1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndex_属性"><span class="toc-number">2.</span> <span class="toc-text">lastIndex 属性</span></a></li></ol>
 		</div>
 		
-		<h1 id="jQuery源码_—_queue">jQuery源码 — queue</h1>
-<blockquote>
-<p>队列简介 —百度百科<br>队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。<br>在队列这种数据结构中，最先插入的元素将是最先被删除的元素；反之最后插入的元素将是最后被删除的元素，因此队列又称为“先进先出”（FIFO—first in first out）的线性表。</p>
-</blockquote>
+		<p>今天做项目中，发现个问题，记录一下。</p>
+<p>看个例子：<br><img src="/img/regexp-test.png" alt="regexp-test"></p>
+<p>为什么第一次<code>console</code>时，不都是<code>true</code>。WHY！！！</p>
+<h3 id="正则表达式">正则表达式</h3>
+<p>先来了解一下正则表达式<br>直接量语法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/pattern/</span>attributes</div></pre></td></tr></table></figure>
+
+<p>创建 RegExp 对象的语法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>(pattern, attributes);</div></pre></td></tr></table></figure>
+
+<p>修饰符<br><code>g</code> : 执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。</p>
+<p>test() 方法检索字符串中的指定值。返回值是 true 或 false。</p>
+<h3 id="lastIndex_属性">lastIndex 属性</h3>
+<p><code>lastIndex</code> 属性用于规定下次匹配的起始位置。<br>语法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RegExpObject.lastIndex</div></pre></td></tr></table></figure>
+
+<p>说明<br>该属性存放一个整数，它声明的是上一次匹配文本之后的第一个字符的位置。</p>
+<p>上次匹配的结果是由方法 RegExp.exec() 和 RegExp.test() 找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。这样，就可以通过反复调用这两个方法来遍历一个字符串中的所有匹配文本。</p>
+<p>该属性是可读可写的。只要目标字符串的下一次搜索开始，就可以对它进行设置。当方法 exec() 或 test() 再也找不到可以匹配的文本时，它们会自动把 lastIndex 属性重置为 0。</p>
+<p><strong style="color:red;">重要事项：</strong>不具有标志 g 和不表示全局模式的 RegExp 对象不能使用 lastIndex 属性。<br><strong style="color:red;">提示：</strong>如果在成功地匹配了某个字符串之后就开始检索另一个新的字符串，需要手动地把这个属性设置为 0。<br><img src="/img/regexp-test1.png" alt="regexp-test"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2015/01/22/jquery-queue/" data-title="jquery queue | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2015/01/29/RegExp-test/" data-title="正则 test 中的一个小坑 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -114,19 +141,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/22/jquery-static-methods/" title="jquery中常用的静态方法">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jquery中常用的静态方法</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/01/22/jquery-deferred/"  title="jquery deferred">
+<a href="/2015/01/22/jQuery-source-code/"  title="jquery 选择器">
  <strong>NEXT:</strong><br/> 
- <span>jquery deferred
+ <span>jquery 选择器
 </span>
 </a>
 </div>
@@ -143,7 +162,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery源码_—_queue"><span class="toc-number">1.</span> <span class="toc-text">jQuery源码 — queue</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-number">1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndex_属性"><span class="toc-number">2.</span> <span class="toc-text">lastIndex 属性</span></a></li></ol>
   </div>
 
 <div id="asidepart">

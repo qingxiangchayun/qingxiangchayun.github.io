@@ -44,4 +44,7 @@ RegExpObject.lastIndex
 <strong style="color:red;">提示：</strong>如果在成功地匹配了某个字符串之后就开始检索另一个新的字符串，需要手动地把这个属性设置为 0。
 ![regexp-test](/img/regexp-test1.png)
 
+### global
+项目中根据情况使用 `g`, 不要所有的正则不管需不需要都添加。
+如果需要添加`g`,`for`循环时，根据项目需求修正`lastIndex`的值。
 

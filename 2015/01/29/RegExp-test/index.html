@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>正则 test 中的一个小坑 | lyuan blog</title>
+    <title>正则中的一些坑 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="今天做项目中，发现个问题，记录一下。
+    <meta name="description" content="正则 test 中的一个问题
+今天做项目中，发现个问题，记录一下。
 看个例子：
 为什么第一次console时，不都是true。WHY！！！
 正则表达式
@@ -17,7 +18,7 @@
 1/pattern/attributes
 
 创建 RegExp 对象的语法：
-1new RegExp(pattern, attributes);">
+1new RegExp(patter">
     
     
     
@@ -78,7 +79,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/29/RegExp-test/" title="正则 test 中的一个小坑" itemprop="url">正则 test 中的一个小坑</a>
+      <a href="/2015/01/29/RegExp-test/" title="正则中的一些坑" itemprop="url">正则中的一些坑</a>
   </h1>
   <p class="article-author">By
     
@@ -86,7 +87,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-01-29T10:08:38.000Z" itemprop="datePublished">1月 29 2015</time>
-    更新日期:<time datetime="2015-01-29T11:04:40.000Z" itemprop="dateModified">1月 29 2015</time>
+    更新日期:<time datetime="2015-01-31T08:21:45.000Z" itemprop="dateModified">1月 31 2015</time>
     
   </p>
 </header>
@@ -95,10 +96,11 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-number">1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndex_属性"><span class="toc-number">2.</span> <span class="toc-text">lastIndex 属性</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则_test_中的一个问题"><span class="toc-number">1.</span> <span class="toc-text">正则 test 中的一个问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-number">1.1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndex_属性"><span class="toc-number">1.2.</span> <span class="toc-text">lastIndex 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#global"><span class="toc-number">1.3.</span> <span class="toc-text">global</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串用正则split_IE下的一个问题"><span class="toc-number">2.</span> <span class="toc-text">字符串用正则split IE下的一个问题</span></a></li></ol>
 		</div>
 		
-		<p>今天做项目中，发现个问题，记录一下。</p>
+		<h2 id="正则_test_中的一个问题">正则 test 中的一个问题</h2>
+<p>今天做项目中，发现个问题，记录一下。</p>
 <p>看个例子：<br><img src="/img/regexp-test.png" alt="regexp-test"></p>
 <p>为什么第一次<code>console</code>时，不都是<code>true</code>。WHY！！！</p>
 <h3 id="正则表达式">正则表达式</h3>
@@ -118,6 +120,10 @@
 <p>上次匹配的结果是由方法 RegExp.exec() 和 RegExp.test() 找到的，它们都以 lastIndex 属性所指的位置作为下次检索的起始点。这样，就可以通过反复调用这两个方法来遍历一个字符串中的所有匹配文本。</p>
 <p>该属性是可读可写的。只要目标字符串的下一次搜索开始，就可以对它进行设置。当方法 exec() 或 test() 再也找不到可以匹配的文本时，它们会自动把 lastIndex 属性重置为 0。</p>
 <p><strong style="color:red;">重要事项：</strong>不具有标志 g 和不表示全局模式的 RegExp 对象不能使用 lastIndex 属性。<br><strong style="color:red;">提示：</strong>如果在成功地匹配了某个字符串之后就开始检索另一个新的字符串，需要手动地把这个属性设置为 0。<br><img src="/img/regexp-test1.png" alt="regexp-test"></p>
+<h3 id="global">global</h3>
+<p>项目中根据情况使用 <code>g</code>, 不要所有的正则不管需不需要都添加。<br>如果需要添加<code>g</code>,<code>for</code>循环时，根据项目需求修正<code>lastIndex</code>的值。</p>
+<h2 id="字符串用正则split_IE下的一个问题">字符串用正则split IE下的一个问题</h2>
+<p><img src="/img/str-split-ie.png" alt="str-split-ie"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -132,7 +138,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2015/01/29/RegExp-test/" data-title="正则 test 中的一个小坑 | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2015/01/29/RegExp-test/" data-title="正则中的一些坑 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -162,7 +168,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-number">1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndex_属性"><span class="toc-number">2.</span> <span class="toc-text">lastIndex 属性</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则_test_中的一个问题"><span class="toc-number">1.</span> <span class="toc-text">正则 test 中的一个问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-number">1.1.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndex_属性"><span class="toc-number">1.2.</span> <span class="toc-text">lastIndex 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#global"><span class="toc-number">1.3.</span> <span class="toc-text">global</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串用正则split_IE下的一个问题"><span class="toc-number">2.</span> <span class="toc-text">字符串用正则split IE下的一个问题</span></a></li></ol>
   </div>
 
 <div id="asidepart">

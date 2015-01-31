@@ -1,7 +1,9 @@
-title: 正则 test 中的一个小坑
+title: 正则中的一些坑
 date: 2015-01-29 18:08:38
 tags: js
 ---
+
+## 正则 test 中的一个问题
 
 今天做项目中，发现个问题，记录一下。
 
@@ -47,4 +49,8 @@ RegExpObject.lastIndex
 ### global
 项目中根据情况使用 `g`, 不要所有的正则不管需不需要都添加。
 如果需要添加`g`,`for`循环时，根据项目需求修正`lastIndex`的值。
+
+## 字符串用正则split IE下的一个问题
+
+![str-split-ie](/img/str-split-ie.png)
 

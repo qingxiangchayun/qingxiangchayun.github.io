@@ -13,16 +13,66 @@
 <link rel="stylesheet" href="/css/bootstrap.css">
 <style type="text/css">
 body{margin:0;}
-.wrap{width:100%}
-.wrap .a{width:100px;height:100px;background:#eee;float:left;}
-.wrap .b{overflow:hidden;background:#ddd;}
+.wrap{width:100%;margin-top:50px;overflow:hidden;*zoom:1;}
+.wrap .a,.wrap .c{width:100px;height:100px;background:#ccc;}
+.wrap .b{height:100px;background:#ddd;}
+
+.wrap1 .a{float:left;margin-right:20px;}
+.wrap1 .b{overflow:hidden;*zoom:1;}
+
+.wrap2{position:relative;}
+.wrap2 .a{position:absolute;left:0px;top:0px;}
+.wrap2 .b{margin-left:120px;}
+
+.wrap3{position: relative;}
+.wrap3 .a{position:absolute;left:0px;top:0px;}
+.wrap3 .b{margin:0 120px;}
+.wrap3 .c{position:absolute;right:0px;top:0px;}
+
+.wrap4 .a{float:left;}
+.wrap4 .c{float:right;}
+.wrap4 .b{margin:0 120px;}
+
+.wrap5 .b-wrap{width:100%;float:left;}
+.wrap5 .b{margin:0 120px;}
+.wrap5 .a{float:left;margin-left:-100%;}
+.wrap5 .c{float:left;margin-left:-100px;}
+
 </style>
 </head>
 <body>
 
-<div class="wrap">
+<div class="wrap wrap1">
 	<div class="a">A</div>
 	<div class="b">B</div>
+</div>
+
+<div class="wrap wrap2">
+	<div class="a">A</div>
+	<div class="b">B</div>
+</div>
+
+<!-- position -->
+<div class="wrap wrap3">
+	<div class="a">A</div>
+	<div class="b">B</div>
+	<div class="c">C</div>
+</div>
+
+<!-- float -->
+<div class="wrap wrap4">
+	<div class="a">A</div>
+	<div class="c">C</div>
+	<div class="b">B</div>
+</div>
+
+
+<div class="wrap wrap5">
+	<div class="b-wrap">
+		<div class="b">B</div>
+	</div>
+	<div class="a">A</div>
+	<div class="c">C</div>
 </div>
 
 

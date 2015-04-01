@@ -12,18 +12,54 @@
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
 <link rel="stylesheet" href="/css/bootstrap.css">
 <style type="text/css">
+body{background:#fff;}
+h3{text-align: center;}
 .wrap{width:1000px;margin:20px auto;background:#ddd;}
 .wrap .A{width:100px;height:100px;background:#eee;float:left;}
 .wrap .B{width:200px;height:200px;background: blue;clear:left;float:left;}
 .wrap .C{width:300px;height:300px;background: red;overflow:hidden;margin-left:300px;*zoom:1;}
+
+.wrap1{width:500px;margin:0 auto;border:1px solid red;overflow:hidden;*zoom:1;}
+.wrap1 a{width:100px;float:left;padding:2px 18px;margin: 0 10px 15px 0;border:1px solid #ddd;text-align:center;}
+.wrap2{width:500px;height:100px;margin:0 auto;background:#ccc;}
+
+.wrap3{width:500px;height:60px;padding:50px;margin:50px auto 0;background:#ccc;}
+.wrap3 input{width:300px;height:30px;border:1px solid #eee;vertical-align: middle;}
+
 </style>
 </head>
 <body>
+
+<!-- 
+ie7 float margin-bottom
+ie7 文本 input框对齐  input vertical-align:middle 
+ie7 block level  inlink-block
+
+display inline-block 间距
+-->
 
 <div class="wrap">
 	<div class="A">A</div>
 	<div class="B">B</div>
 	<div class="C">C</div>
+</div>
+
+<h3>ie7 margin-bottom 不起效</h3>
+<div class="wrap1">
+	<a href="#">A</a>
+	<a href="#">A</a>
+	<a href="#">A</a>
+	<a href="#">A</a>
+	<a href="#">A</a>
+	<a href="#">A</a>
+	<a href="#">A</a>
+	<a href="#">A</a>
+</div>
+
+<div class="wrap2"></div>
+
+<div class="wrap3">
+	文本 <input type="text" value="">
 </div>
 
 

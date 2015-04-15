@@ -22,4 +22,4 @@ Collapsing margins：外边距折叠，指的是毗邻的两个或多个外边�
 当父元素有padding属性或者border属性，不会和子元素发生 margin 折叠。
 
 ### demo
-[margin外边距叠加demo](/demo/collapsing-margins.html){:target="_blank"}
+[margin外边距叠加demo](/demo/collapsing-margins.html)

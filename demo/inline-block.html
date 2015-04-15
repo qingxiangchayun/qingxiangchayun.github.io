@@ -37,6 +37,13 @@ letter-spacing:-5px;/* Safari 等不支持字体大小为 0 的浏览器, N 根�
 .wrap4 .list-wrap{text-align:center;}
 .wrap4 a{margin-right:10px;}
 
+
+.wrap5 a{margin:10px 20px 0;}
+.wrap6 .list-wrap{overflow: hidden;*zoom:1;}
+.wrap6 a{float: left;margin:10px 20px 0;}
+
+
+
 </style>
 </head>
 <body>
@@ -74,7 +81,7 @@ letter-spacing:-5px;/* Safari 等不支持字体大小为 0 的浏览器, N 根�
 		</div>
 
 		<div class="wrap wrap4">
-			<h3>有空隙</h3>
+			<h3>有空隙 text-align:center 居中</h3>
 			<div class="list-wrap">
 				<a>a标签1</a>
 				<a>a标签2</a>
@@ -82,10 +89,38 @@ letter-spacing:-5px;/* Safari 等不支持字体大小为 0 的浏览器, N 根�
 				<a>a标签4</a>
 			</div>
 		</div>
+
+		<div class="wrap wrap5">
+			<h3>inline-block vs float</h3>
+			<div class="list-wrap">
+				<a>a标签1</a>
+				<a style="height:60px;">a标签2</a>
+				<a style="height:90px;">a标签3</a>
+				<a>a标签4</a>
+				<a style="height:100px;">a标签1</a>
+				<a style="height:60px;">a标签2</a>
+				<a style="height:90px;">a标签3</a>
+				<a>a标签4</a>
+			</div>
+		</div>
+
+		<div class="wrap wrap6">
+			<h3>inline-block vs float</h3>
+			<div class="list-wrap">
+				<a>a标签1</a>
+				<a style="height:60px;">a标签2</a>
+				<a style="height:90px;">a标签3</a>
+				<a>a标签4</a>
+				<a style="height:100px;">a标签1</a>
+				<a style="height:60px;">a标签2</a>
+				<a style="height:90px;">a标签3</a>
+				<a>a标签4</a>
+			</div>
+		</div>
 	</div>
 
 	<div class="content fr">
-
+	
 	</div>
 
 </div>

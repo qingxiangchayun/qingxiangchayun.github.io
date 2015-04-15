@@ -1,0 +1,67 @@
+
+  
+    <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>lyuan blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+<meta name="author" content="lyuan">
+<link rel="icon" href="/img/favicon.ico">
+<link rel="apple-touch-icon" href="/img/pacman.jpg">
+<link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<style type="text/css">
+body{margin:0;}
+.main{width:1000px;margin:0 auto;background:#eee;}
+.box{width:100px;height:100px;margin:10px;}
+h3{margin:0;background:#ddd;font-weight: normal;}
+
+.box1{background: #ffc0cb}
+.box2{background: #add8e6; margin: 20px;}
+
+
+</style>
+</head>
+<body>
+
+<div class="main">
+
+<h3>box1和box2 margin叠加</h3>
+<div class="box box1">box1</div>
+<div class="box box2">box2</div>
+
+<h3>box1和box2 margin叠加</h3>
+<div class="box box1">
+	<div class="box box2"></div>	
+</div>
+
+<h3>box1和box2 margin不叠加--box1创建BFC</h3>
+<div class="box box1" style="overflow:hidden;">
+	<div class="box box2"></div>	
+</div>
+
+<h3>box1和box2 margin不叠加--box1具有padding或border</h3>
+<div class="box box1" style="padding:20px;">
+	<div class="box box2"></div>	
+</div>
+
+<h3>box1和box2 margin不叠加--box1具有padding或border</h3>
+<div class="box box1" style="border:5px solid #ccc;">
+	<div class="box box2"></div>	
+</div>
+
+<h3>box1和box2 margin不叠加--box1或box2 display:inline-block</h3>
+<div class="box box1">
+	<div class="box box2" style="display:inline-block"></div>	
+</div>
+
+<h3>box1和box2 margin不叠加--box1或box2具有float属性</h3>
+<div class="box box1">
+	<div class="box box2" style="float:left"></div>	
+</div>
+
+</div>
+</body>
+</html>
+
+  

@@ -4,17 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>hexo | lyuan blog</title>
+    <title>css学习之BFC | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="hexo 常用命令
-
-新建文章 $ hexo new &amp;lt;title&amp;gt;
-新建草稿 $ hexo new draft &amp;lt;title&amp;gt;
-草稿写好之后发布 $ hexo publish [layout] &amp;lt;filename&amp;gt;
-生成静态内容 $ hexo generate ">
+    <meta name="description" content="Formatting context
+Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomat">
     
     
     
@@ -75,15 +71,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/24/hexo-tip/" title="hexo" itemprop="url">hexo</a>
+      <a href="/2015/04/16/bfc/" title="css学习之BFC" itemprop="url">css学习之BFC</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-24T08:37:21.000Z" itemprop="datePublished">11月 24 2014</time>
-    更新日期:<time datetime="2015-01-22T09:22:19.000Z" itemprop="dateModified">1月 22 2015</time>
+    <time datetime="2015-04-16T03:39:24.000Z" itemprop="datePublished">4月 16 2015</time>
+    更新日期:<time datetime="2015-04-16T06:25:41.000Z" itemprop="dateModified">4月 16 2015</time>
     
   </p>
 </header>
@@ -92,32 +88,50 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo_常用命令"><span class="toc-number">1.</span> <span class="toc-text">hexo 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用过程中遇到的问题"><span class="toc-number">2.</span> <span class="toc-text">使用过程中遇到的问题</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Formatting_context"><span class="toc-number">1.</span> <span class="toc-text">Formatting context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC_定义"><span class="toc-number">2.</span> <span class="toc-text">BFC 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC布局规则"><span class="toc-number">3.</span> <span class="toc-text">BFC布局规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#哪些元素会生成BFC"><span class="toc-number">4.</span> <span class="toc-text">哪些元素会生成BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC_作用"><span class="toc-number">5.</span> <span class="toc-text">BFC 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
-		<h3 id="hexo_常用命令">hexo 常用命令</h3>
+		<h3 id="Formatting_context">Formatting context</h3>
+<p>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
+<h3 id="BFC_定义">BFC 定义</h3>
+<p>BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
+<h3 id="BFC布局规则">BFC布局规则</h3>
 <ul>
-<li>新建文章 <code>$ hexo new &lt;title&gt;</code></li>
-<li>新建草稿 <code>$ hexo new draft &lt;title&gt;</code></li>
-<li>草稿写好之后发布 <code>$ hexo publish [layout] &lt;filename&gt;</code></li>
-<li>生成静态内容 <code>$ hexo generate / hexo g</code></li>
-<li>启动本地服务 <code>$ hexo server / hexo s</code></li>
-<li>以草稿方式启动 <strong>以这种方式启动可以一遍编辑一边预览</strong> <code>$ hexo server --drafts</code></li>
-<li>部署 <code>$ hexo deploy / hexo d</code></li>
+<li>内部的Box会在垂直方向，一个接一个地放置。</li>
+<li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</li>
+<li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
+<li>BFC的区域不会与float box重叠。</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
+<li>计算BFC的高度时，浮动元素也参与计算</li>
 </ul>
-<h3 id="使用过程中遇到的问题">使用过程中遇到的问题</h3>
-<p>hexo deploy时，本地有多个git帐号时，且往github上提交的帐号不是global类型的，所以每次提交都会以本地开发的的用户提交<br>解决方法：hexo deploy时 会在工程目录中生成一个 .deploy 的目录 cd 到 .deploy 目录下 设置用户名邮件<br><code>$ cd /project/.deploy</code><br><code>$ git config user.name &quot;Name&quot;</code><br><code>$ git config user.email &quot;Email&quot;</code></p>
-<p>hexo2.8+ 代码前后多空行<br>解决方案：修改主题样式文件source/css/_base/code.styl</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">       <span class="at_rule">@<span class="keyword">extend</span> $line-numbers</span></div><div class="line">       text-align right</div><div class="line">       padding-right <span class="number">1.5em</span></div><div class="line">+    .line</div><div class="line">+      height: <span class="number">20px</span> // 改为合适的值</div><div class="line">   .gist</div><div class="line">     margin <span class="number">0.5em</span> <span class="number">0</span></div></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/wuchong/jacman/issues/16" target="_blank" rel="external">参考链接</a></p>
+<h3 id="哪些元素会生成BFC">哪些元素会生成BFC</h3>
+<ul>
+<li>根元素</li>
+<li>float属性不为none</li>
+<li>position为absolute或fixed</li>
+<li>display为inline-block, table-cell, table-caption, flex, inline-flex</li>
+<li>overflow不为visible( hidden,scroll,auto, )</li>
+</ul>
+<p>是这些元素创建了块格式化上下文，它们本身不是块格式化上下文。<br>“display:table” 本身并不产生 “block formatting contexts”。但是，它可以产生匿名框， 其中包含 “display:table-cell” 的框会产生块格式化上下文。 总之，对于 “display:table” 的元素，产生块格式化上下文的是匿名框而不是 “display:table”。</p>
+<h3 id="BFC_作用">BFC 作用</h3>
+<ul>
+<li>可以包含浮动元素</li>
+<li>可以阻止外边距折叠</li>
+<li>可以防止元素被浮动元素覆盖</li>
+</ul>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="http://blog.melonhuang.gitpress.org/~docs/css/1formattingContext.md" target="_blank" rel="external">BFC 神奇背后的原理</a></li>
+<li><a href="http://www.w3help.org/zh-cn/kb/010/" target="_blank" rel="external">格式化上下文( Formatting context )</a></li>
+<li><a href="http://www.w3.org/TR/CSS2/visuren.html#block-formatting" target="_blank" rel="external">Visual formatting model</a></li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hexo/">hexo</a>
+  <span></span> <a href="/tags/css/">css</a>
   </div>
 
 
@@ -125,7 +139,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2014/11/24/hexo-tip/" data-title="hexo | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2015/04/16/bfc/" data-title="css学习之BFC | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -134,19 +148,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/12/01/The-maximum-number-of-characters-that-appear-in-the-string/" title="找出字符串中出现次数最多的字符">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  找出字符串中出现次数最多的字符</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/10/20/jquery-source-code-analysis/"  title="jquery source code analysis">
+<a href="/2015/04/15/collapsing-margins/"  title="css学习之margin外边距叠加">
  <strong>NEXT:</strong><br/> 
- <span>jquery source code analysis
+ <span>css学习之margin外边距叠加
 </span>
 </a>
 </div>
@@ -163,7 +169,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo_常用命令"><span class="toc-number">1.</span> <span class="toc-text">hexo 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用过程中遇到的问题"><span class="toc-number">2.</span> <span class="toc-text">使用过程中遇到的问题</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Formatting_context"><span class="toc-number">1.</span> <span class="toc-text">Formatting context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC_定义"><span class="toc-number">2.</span> <span class="toc-text">BFC 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC布局规则"><span class="toc-number">3.</span> <span class="toc-text">BFC布局规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#哪些元素会生成BFC"><span class="toc-number">4.</span> <span class="toc-text">哪些元素会生成BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC_作用"><span class="toc-number">5.</span> <span class="toc-text">BFC 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">

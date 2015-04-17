@@ -1,0 +1,104 @@
+
+  
+    <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>lyuan blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+<meta name="author" content="lyuan">
+<link rel="icon" href="/img/favicon.ico">
+<link rel="apple-touch-icon" href="/img/pacman.jpg">
+<link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<style type="text/css">
+.main{width:1300px;margin:0 auto;}
+.left{width:600px;float: left;}
+.right{width:600px;float: right;}
+
+.main h3{font-size:16px;font-weight: normal;}
+
+.wrap{margin-bottom:30px;padding:20px;background:#eee;overflow: hidden;*zoom:1;}
+.wrap input{height:60px;line-height:60px;border: 1px solid #ddd;}
+.wrap span{color:#aaa;}
+.wrap .box{float: right;background: red;}
+
+
+.wrap2 span{vertical-align: middle;}
+.wrap3 span{vertical-align: top;}
+
+.right .wrap2 input{vertical-align: middle;}
+.right .wrap3 input{vertical-align: top;}
+
+.wrap4 input{vertical-align: middle;}
+.wrap4 .box{vertical-align: middle;}
+
+</style>
+</head>
+<body>
+
+<div class="main">
+	<div class="left">
+		<h3>box float:right; ie6/7下，box不和input,文字在一行</h3>
+		<div class="wrap wrap1">
+			<input type="text" value="input">
+			<span>文字文字</span>
+			<div class="box">box</div>
+		</div>
+
+		<h3>input vertical-algin：默认, 文字 vertical-align:middle</h3>
+		<div class="wrap wrap2">
+			<input type="text" value="input">
+			<span>文字文字</span>
+			<div class="box">box</div>
+		</div>
+
+		<h3>input vertical-algin：默认,文字 vertical-align:top</h3>
+		<div class="wrap wrap3">
+			<input type="text" value="input">
+			<span>文字文字</span>
+			<div class="box">box</div>
+		</div>
+
+		<h3>input vertical-align:middle -- ie6/7下 input vertical-align:middle 后面的inline 元素即可对齐</h3>
+		<div class="wrap wrap4">
+			<input type="text" value="input">
+			<span>文字文字</span>
+			<div class="box">box</div>
+		</div>
+	</div>
+
+	<div class="right">
+		<h3>box float:right; box元素写在前面 ie6/7下box和input,文字在一行</h3>
+		<div class="wrap wrap1">
+			<div class="box">box</div>
+			<input type="text" value="input">
+			<span>文字文字</span>
+		</div>
+
+		<h3>input vertical-algin：middle, 文字 vertical-align:middle</h3>
+		<div class="wrap wrap2">
+			<div class="box">box</div>
+			<input type="text" value="input">
+			<span>文字文字</span>
+		</div>
+
+		<h3>input vertical-algin：top, 文字 vertical-align:top</h3>
+		<div class="wrap wrap3">
+			<div class="box">box</div>
+			<input type="text" value="input">
+			<span>文字文字</span>
+		</div>
+
+		<h3>input vertical-align:middle -- ie6/7下 input vertical-align:middle 后面的inline 元素即可对齐</h3>
+		<div class="wrap wrap4">
+			<div class="box">box</div>
+			<input type="text" value="input">
+			<span>文字文字</span>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
+
+  

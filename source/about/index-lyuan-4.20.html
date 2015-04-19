@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>lyuan blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+<meta name="author" content="lyuan">
+<link rel="icon" href="/img/favicon.ico">
+<link rel="apple-touch-icon" href="/img/pacman.jpg">
+<link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+<style type="text/css">
+.loading{position: absolute;left: 50%;}
+
+.fullpage-wrap{font-family: "helvetica neue",tahoma,"hiragino sans gb",stheiti,"wenquanyi micro hei",微软雅黑,宋体,sans-serif}
+
+.section{text-align:center;}
+.section h1{font-size:36px; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5) }
+.section .content{max-width:600px;display:inline-block;text-align:left}
+
+.section0{text-align: center;}
+.section0 .description{display:inline-block;text-align:left}
+
+
+
+</style>
+</head>
+<body>
+
+<!-- <div class="loading">
+
+</div> -->
+
+<div id="J_fullpage" class="fullpage-wrap">
+    <section class="section section0">
+        <h1>About Me</h1>
+        <div class="content description">
+            原力，男，1989年11月生，前端开发工程师。
+            <p>个人主页：http://qingxiangchayun.github.io</p>
+            <p>联系邮箱：yuanli891212@163.com</p>
+            <p>工作经验：4年</p>
+        </div>
+    </section>
+
+    <section class="section section1">
+        <h1>Working Experience</h1>
+        <div class="content">
+            2012/12 -- 至今，能力天空科技（北京）有限公司（AbleSky），高级前端开发工程师，经过3年多工作的历练（踩过不少坑，做了不少项目），对前端开发有了更深刻的认识，也更加热爱前端开发。
+2012/01 -- 2012/09，北京图胜网络技术有限公司，喜欢前端来到了帝都北京，开始了职业化的前端开发历程，成为了一名前端开发工程师，主要负责公司移动端项目的开发。
+2011/01 -- 2011/12，郑州先知网络科技有限公司，大学毕业作为一枚小白初入职场。
+主要工作：网站前端及后台程序开发、服务器管理维护、制定部门工作计划、带领团队完成系统开发(业余前端开发，技术部主管)。初次了解及认识到前端，并热爱上前端。
+
+        </div>
+    </section>
+    <section class="section section2">
+      <h1>About Me</h1>
+        <div class="content description">
+            原力，男，1989年11月生，前端开发工程师。
+            <p>个人主页：http://qingxiangchayun.github.io</p>
+            <p>联系邮箱：yuanli891212@163.com</p>
+            <p>工作经验：4年</p>
+        </div>
+    </section>
+     <section class="section section3">
+      <h1>About Me</h1>
+        <div class="content description">
+            原力，男，1989年11月生，前端开发工程师。
+            <p>个人主页：http://qingxiangchayun.github.io</p>
+            <p>联系邮箱：yuanli891212@163.com</p>
+            <p>工作经验：4年</p>
+        </div>
+    </section>
+</div>
+
+
+<script src="js/jquery-2.1.0.min.js"></script>
+<!-- <script src="js/jquery.easings.min.js"></script> -->
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.fullPage.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    //'use strict';
+
+    $('#J_fullpage').fullpage({
+        anchors: ['page1', 'page2', 'page3'],
+        'sectionsColor': ['#eee', '#ddd', '#eee'],
+        navigation: true,
+        navigationTooltips : ['1','2','3']
+    });
+});
+
+
+</script>
+<!-- http://yisibl.github.io/share/the-beauty-of-center-in-CSS.html#/19 -->
+</body>
+</html>

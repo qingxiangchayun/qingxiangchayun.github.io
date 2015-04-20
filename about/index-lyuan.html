@@ -12,10 +12,20 @@
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css">
 <style type="text/css">
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+a { text-decoration: none;  }
+
 .loading{position: absolute;left: 50%;}
 
+.fullpage-wrap{font-family: "helvetica neue",tahoma,"hiragino sans gb",stheiti,"wenquanyi micro hei",微软雅黑,宋体,sans-serif}
 
-.fullpage-wrap{overflow: hidden; height: 100%;};
+.section{text-align:center;}
+.section h1{font-size:46px; font-weight: normal; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5) }
+.section .content{max-width:50%;display:inline-block;text-align:left}
+
+
+.section1 h3{margin-top:50px;}
 
 </style>
 </head>
@@ -28,11 +38,44 @@
 <div id="J_fullpage" class="fullpage-wrap">
     <section class="section section0">
         <h1>About Me</h1>
+        <div class="content">
+            原力，男，1989年11月生，前端开发工程师。
+            <p>个人主页：<a href="http://qingxiangchayun.github.io" target="_blank">http://qingxiangchayun.github.io</a></p>
+            <p>联系邮箱：yuanli891212@163.com</p>
+            <p>工作经验：4年</p>
+        </div>
     </section>
 
     <section class="section section1">
+        <h1>Working Experience</h1>
+        <div class="content">
+            <h3>2012/12 -- 至今 <a href="http://www.ablesky.com" target="_blank"> 能力天空科技（北京）有限公司（AbleSky）</a> 高级前端开发工程师</h3>
+            <p>工作描述：主要负责机构平台项目。</p>
+            <p>工作总结：经过3年多工作的历练（踩过不少坑，做了不少项目），对前端开发有了更深刻的认识，也更加热爱前端开发。</p>
+            
+            <h3>2012/12 -- 至今 <a href="http://www.ablesky.com" target="_blank"> 能力天空科技（北京）有限公司（AbleSky）</a> 高级前端开发工程师</h3>
+            <p>工作描述：主要负责机构平台项目。</p>
+            <p>工作总结：经过3年多工作的历练（踩过不少坑，做了不少项目），对前端开发有了更深刻的认识，也更加热爱前端开发。</p>
+            
+            <h3>2012/12 -- 至今 <a href="http://www.ablesky.com" target="_blank"> 能力天空科技（北京）有限公司（AbleSky）</a> 高级前端开发工程师</h3>
+            <p>工作描述：主要负责机构平台项目。</p>
+            <p>工作总结：经过3年多工作的历练（踩过不少坑，做了不少项目），对前端开发有了更深刻的认识，也更加热爱前端开发。</p>
+        </div>
     </section>
     <section class="section section2">
+      <h1>Personal Skill</h1>
+        <ol class="content">
+            <li></li>
+        </ol>
+    </section>
+     <section class="section section3">
+      <h1>About Me</h1>
+        <div class="content">
+            原力，男，1989年11月生，前端开发工程师。
+            <p>个人主页：http://qingxiangchayun.github.io</p>
+            <p>联系邮箱：yuanli891212@163.com</p>
+            <p>工作经验：4年</p>
+        </div>
     </section>
 </div>
 
@@ -46,9 +89,10 @@ $(function(){
     'use strict';
 
     $('#J_fullpage').fullpage({
-        anchors: ['page1', 'page2', 'page3'],
+        anchors: ['page1', 'page2', 'page3','page4'],
+        sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee'],
         navigation: true,
-        navigationTooltips : ['1','2','3']
+        navigationTooltips : ['1','2','3','4']
     });
 });
 

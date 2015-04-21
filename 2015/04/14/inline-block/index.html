@@ -1,0 +1,374 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>css学习之inline-block | lyuan blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="lyuan">
+    
+    <meta name="description" content="inline-block
+平时写代码，经常使用inline-block，但总觉得对inline-block了解还是不够深刻，所以写一篇blog，总结一下inline-block的知识点。
+什么是inline-block
+
+This value causes an element to generat">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="lyuan blog" title="lyuan blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="lyuan blog">lyuan blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/labs">Labs</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:qingxiangchayun.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/14/inline-block/" title="css学习之inline-block" itemprop="url">css学习之inline-block</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-04-14T03:04:54.000Z" itemprop="datePublished">4月 14 2015</time>
+    更新日期:<time datetime="2015-04-16T09:51:14.000Z" itemprop="dateModified">4月 16 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#inline-block"><span class="toc-number">1.</span> <span class="toc-text">inline-block</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是inline-block"><span class="toc-number">1.1.</span> <span class="toc-text">什么是inline-block</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE6/7和标准浏览器对inline-block的区别"><span class="toc-number">1.2.</span> <span class="toc-text">IE6/7和标准浏览器对inline-block的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inline元素_display:inline-block"><span class="toc-number">1.3.</span> <span class="toc-text">inline元素 display:inline-block</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#block元素_display:inline-block;display:inline;zoom:1;"><span class="toc-number">1.4.</span> <span class="toc-text">block元素 display:inline-block;display:inline;zoom:1;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:inline-block后的元素为什么会产生水平空隙"><span class="toc-number">1.5.</span> <span class="toc-text">display:inline-block后的元素为什么会产生水平空隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去除inline-block_产生的空隙"><span class="toc-number">1.6.</span> <span class="toc-text">去除inline-block 产生的空隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo"><span class="toc-number">1.7.</span> <span class="toc-text">demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">1.8.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+		</div>
+		
+		<h2 id="inline-block">inline-block</h2>
+<p>平时写代码，经常使用inline-block，但总觉得对inline-block了解还是不够深刻，所以写一篇blog，总结一下inline-block的知识点。</p>
+<h3 id="什么是inline-block">什么是inline-block</h3>
+<blockquote>
+<p>This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.</p>
+</blockquote>
+<p>inline-block 后的元素创建了一个行级的块容器，该元素内部（内容）被格式化成一个块元素，同时元素本身则被格式化成一个行内元素。</p>
+<h3 id="IE6/7和标准浏览器对inline-block的区别">IE6/7和标准浏览器对inline-block的区别</h3>
+<p>IE5.5 后开始支持 inline-block， 但是它所支持的 inline-block 不能等同于 CSS2.1 中的 inline-block，因为 IE5.5 比 CSS2.1 更早提出 inline-block 的概念并作为所谓的「私有属性值」使用，所以二者表现出来的效果是不完全一致。</p>
+<h3 id="inline元素_display:inline-block">inline元素 display:inline-block</h3>
+<p><code>.list{display:inline-block}</code> 或<br><code>.list{display:inline-block;*zoom:1}</code></p>
+<p><strong>IE 5.5、6、7 中 inline 元素欲达到 inline-block 的效果只需直接设置display:inline-block或使用 zoom:1 等均可。</strong></p>
+<p><img src="/img/inline-block1.jpg" alt="inline-block"></p>
+<h3 id="block元素_display:inline-block;display:inline;zoom:1;">block元素 display:inline-block;<em>display:inline;</em>zoom:1;</h3>
+<p>IE 5.5、6、7 中 block 元素对 inline-block 支持不完整，如果要达到类似的效果，需要先设置为 display:inline，然后使用 zoom:1 等触发 hasLayout</p>
+<p>IE6、7下未使用display:inline,zoom:1<br><img src="/img/inline-block2.jpg" alt="inline-block"></p>
+<p>IE6、7下使用display:inline,zoom:1，而且不会产生水平空隙<br><img src="/img/inline-block3.jpg" alt="inline-block"></p>
+<h3 id="display:inline-block后的元素为什么会产生水平空隙">display:inline-block后的元素为什么会产生水平空隙</h3>
+<p>标准浏览器、IE6、7中inline元素会产生间隙。<br>造成空隙的根本性原因是：空白符（whitespace）</p>
+<h3 id="去除inline-block_产生的空隙">去除inline-block 产生的空隙</h3>
+<p>解决方案来自于<a href="http://ued.taobao.org/blog/2012/08/inline-block/" target="_blank" rel="external">一丝</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class">.dib-wrap</span> <span class="rules">{</span></div><div class="line"><span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">0</span></span></span>;<span class="comment">/* 所有浏览器 */</span></div><div class="line"><span class="rule">*<span class="attribute">word-spacing</span>:<span class="value">-<span class="number">1px</span></span></span>;<span class="comment">/* IE6、7 */</span></div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.dib-wrap</span> <span class="class">.dib</span><span class="rules">{</span></div><div class="line"><span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">12px</span></span></span>;</div><div class="line"><span class="rule"><span class="attribute">letter-spacing</span>:<span class="value"> normal</span></span>;</div><div class="line"><span class="rule"><span class="attribute">word-spacing</span>:<span class="value"> normal</span></span>;</div><div class="line"><span class="rule"><span class="attribute">vertical-align</span>:<span class="value">top</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{</div><div class="line"><span class="comment">/* firefox 中 letter-spacing 会导致脱离普通流的元素水平位移 */</span></div><div class="line"><span class="class">.dib-wrap</span><span class="rules">{</span></div><div class="line"><span class="rule"><span class="attribute">letter-spacing</span>:<span class="value">-<span class="number">5px</span></span></span>;<span class="comment">/* Safari 等不支持字体大小为 0 的浏览器, N 根据父级字体调节*/</span></div><div class="line"><span class="rule">}</span></div><div class="line">}</div><div class="line"><span class="class">.dib</span> <span class="rules">{</span></div><div class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</div><div class="line"><span class="rule">*<span class="attribute">display</span>:<span class="value">inline</span></span>;</div><div class="line"><span class="rule">*<span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<p>letter-spacing : normal | length （检索或设置对象中的文字之间的间隔）<br>word-spacing : normal | length（检索或设置对象中的单词之间插入的空隔）</p>
+<h3 id="demo">demo</h3>
+<p><a href="/demo/inline-block.html">demo</a></p>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="http://ued.taobao.org/blog/2012/08/inline-block/" target="_blank" rel="external">http://ued.taobao.org/blog/2012/08/inline-block/</a></li>
+<li><a href="http://www.iyunlu.com/view/css-xhtml/79.html" target="_blank" rel="external">http://www.iyunlu.com/view/css-xhtml/79.html</a></li>
+<li><a href="http://www.iyunlu.com/view/css-xhtml/58.html" target="_blank" rel="external">http://www.iyunlu.com/view/css-xhtml/58.html</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://qingxiangchayun.github.io/2015/04/14/inline-block/" data-title="css学习之inline-block | lyuan blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/15/collapsing-margins/" title="css学习之margin外边距叠加">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  css学习之margin外边距叠加</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/29/RegExp-test/"  title="正则中的一些坑">
+ <strong>NEXT:</strong><br/> 
+ <span>正则中的一些坑
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#inline-block"><span class="toc-number">1.</span> <span class="toc-text">inline-block</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是inline-block"><span class="toc-number">1.1.</span> <span class="toc-text">什么是inline-block</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE6/7和标准浏览器对inline-block的区别"><span class="toc-number">1.2.</span> <span class="toc-text">IE6/7和标准浏览器对inline-block的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inline元素_display:inline-block"><span class="toc-number">1.3.</span> <span class="toc-text">inline元素 display:inline-block</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#block元素_display:inline-block;display:inline;zoom:1;"><span class="toc-number">1.4.</span> <span class="toc-text">block元素 display:inline-block;display:inline;zoom:1;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:inline-block后的元素为什么会产生水平空隙"><span class="toc-number">1.5.</span> <span class="toc-text">display:inline-block后的元素为什么会产生水平空隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去除inline-block_产生的空隙"><span class="toc-number">1.6.</span> <span class="toc-text">去除inline-block 产生的空隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo"><span class="toc-number">1.7.</span> <span class="toc-text">demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">1.8.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
+		
+			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>6</sup></a></li>
+		
+			<li><a href="/tags/requirejs/" title="requirejs">requirejs<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lyuanfe" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/qingxiangchayun" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://qingxiangchayun.github.io" target="_blank" title="lyuan">lyuan</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"lyuan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>

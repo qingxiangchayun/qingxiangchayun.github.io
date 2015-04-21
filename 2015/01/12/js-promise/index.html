@@ -1,0 +1,354 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>js promise | lyuan blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="lyuan">
+    
+    <meta name="description" content="Promise/A+ 规范
+
+A promise represents the eventual result of an asynchronous operation. The primary way of interacting with a promise is through its the">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="lyuan blog" title="lyuan blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="lyuan blog">lyuan blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/labs">Labs</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:qingxiangchayun.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/12/js-promise/" title="js promise" itemprop="url">js promise</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-12T07:18:53.000Z" itemprop="datePublished">1月 12 2015</time>
+    更新日期:<time datetime="2015-01-21T11:00:06.000Z" itemprop="dateModified">1月 21 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise/A+_规范"><span class="toc-number">1.</span> <span class="toc-text">Promise/A+ 规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐阅读"><span class="toc-number">2.</span> <span class="toc-text">推荐阅读</span></a></li></ol>
+		</div>
+		
+		<h3 id="Promise/A+_规范">Promise/A+ 规范</h3>
+<blockquote>
+<p>A promise represents the eventual result of an asynchronous operation. The primary way of interacting with a promise is through its then method, which registers callbacks to receive either a promise’s eventual value or the reason why the promise cannot be fulfilled.<br>Promise表示一个异步操作的最终结果。与Promise最主要的交互方法是通过将函数传入它的then方法从而获取得Promise最终的值或Promise最终最拒绝（reject）的原因。</p>
+</blockquote>
+<h3 id="推荐阅读">推荐阅读</h3>
+<ul>
+<li><a href="https://promisesaplus.com/" target="_blank" rel="external">https://promisesaplus.com/</a></li>
+<li><a href="http://www.ituring.com.cn/article/66566" target="_blank" rel="external">http://www.ituring.com.cn/article/66566</a></li>
+</ul>
+<p><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">http://es6.ruanyifeng.com/#docs/promise</a><br><a href="https://github.com/kriskowal/q" target="_blank" rel="external">https://github.com/kriskowal/q</a><br><a href="http://www.html-js.com/article/JavaScript-tips-on-how-to-implement-a-ECMAScript-6-promise-patch" target="_blank" rel="external">http://www.html-js.com/article/JavaScript-tips-on-how-to-implement-a-ECMAScript-6-promise-patch</a><br><a href="http://www.shaynegui.com/promise-aplus-implementation/" target="_blank" rel="external">http://www.shaynegui.com/promise-aplus-implementation/</a><br><a href="http://segmentfault.com/blog/code/1190000002452115" target="_blank" rel="external">http://segmentfault.com/blog/code/1190000002452115</a><br><a href="http://www.zhangxinxu.com/wordpress/2014/02/es6-javascript-promise-%E6%84%9F%E6%80%A7%E8%AE%A4%E7%9F%A5/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2014/02/es6-javascript-promise-%E6%84%9F%E6%80%A7%E8%AE%A4%E7%9F%A5/</a></p>
+<p><a href="http://www.tuicool.com/articles/RzQRV3" target="_blank" rel="external">http://www.tuicool.com/articles/RzQRV3</a><br><a href="http://shangchun.net/promise-insight.html" target="_blank" rel="external">http://shangchun.net/promise-insight.html</a><br><a href="https://github.com/then/promise" target="_blank" rel="external">https://github.com/then/promise</a><br><a href="https://github.com/promises-aplus/promises-spec/blob/master/implementations.md" target="_blank" rel="external">https://github.com/promises-aplus/promises-spec/blob/master/implementations.md</a><br><a href="https://github.com/jakearchibald/es6-promise/blob/master/README.md" target="_blank" rel="external">https://github.com/jakearchibald/es6-promise/blob/master/README.md</a></p>
+<p><a href="https://github.com/tildeio/rsvp.js/blob/master/lib/rsvp/promise.js" target="_blank" rel="external">https://github.com/tildeio/rsvp.js/blob/master/lib/rsvp/promise.js</a></p>
+<p><a href="http://www.html-js.com/article/Promise-translation-JavaScript-Promise-devil-details" target="_blank" rel="external">http://www.html-js.com/article/Promise-translation-JavaScript-Promise-devil-details</a><br><a href="http://www.shaynegui.com/promise-aplus-implementation/" target="_blank" rel="external">http://www.shaynegui.com/promise-aplus-implementation/</a><br><a href="http://www.w3ctech.com/topic/721" target="_blank" rel="external">http://www.w3ctech.com/topic/721</a></p>
+<p>Promise/A+规范</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://qingxiangchayun.github.io/2015/01/12/js-promise/" data-title="js promise | lyuan blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/22/jquery-deferred/" title="jquery deferred">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  jquery deferred</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/11/jquery-data/"  title="jquery data 数据缓存">
+ <strong>NEXT:</strong><br/> 
+ <span>jquery data 数据缓存
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise/A+_规范"><span class="toc-number">1.</span> <span class="toc-text">Promise/A+ 规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐阅读"><span class="toc-number">2.</span> <span class="toc-text">推荐阅读</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
+		
+			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>6</sup></a></li>
+		
+			<li><a href="/tags/requirejs/" title="requirejs">requirejs<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lyuanfe" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/qingxiangchayun" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://qingxiangchayun.github.io" target="_blank" title="lyuan">lyuan</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"lyuan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>

@@ -8,23 +8,101 @@
 <link rel="icon" href="/img/favicon.ico">
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css" />
 <style type="text/css">
-.h-title{text-align: center;}
-.main{width: 1000px; margin: 0 auto;}
-.main p{text-indent: 2em;}
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+a { text-decoration: none;  }
+
+.loading{position: absolute;left: 50%;}
+
+.fullpage-wrap{微软雅黑,宋体,sans-serif}
+
+.section{text-align:center;}
+.section h1{font-size:46px; font-weight: normal; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5) }
+.section .content{max-width:60%;display:inline-block;text-align:left}
+.section .list-wrap li{line-height:3}
+
+
+.section1 h3{margin-top:50px;}
+
 </style>
 </head>
 <body>
-<header>
-	<h1 class="h-title">About me -- lyuan</h1>
-</header>
-<section class="main">
-	<p>lyuan 前端开发工程师</p>
-	<p>邮箱：yuanli891212@163.com</p>
-	<p>github：<a href="#">https://github.com/qingxiangchayun</a></p>
-</section>
+
+<!-- <div class="loading"></div> -->
+
+<div id="J_fullpage" class="fullpage-wrap">
+    <section class="section section0">
+        <h1>About Me</h1>
+        <div class="content">
+            <p>原力、男、1989年11月摩羯座、前端开发工程师。</p>
+            <p>个人主页：<a href="http://qingxiangchayun.github.io" target="_blank">http://qingxiangchayun.github.io</a></p>
+            <p>联系邮箱：yuanli891212@163.com</p>
+            <p>工作经验：4年</p>
+        </div>
+    </section>
+
+    <section class="section section1">
+        <h1>Working Experience</h1>
+        <div class="content">
+            <h3>2012/12 -- 至今 <a href="http://www.ablesky.com" target="_blank"> 能力天空科技（北京）有限公司（AbleSky）</a> 高级前端开发工程师</h3>
+            <p>工作描述：主要负责机构平台项目。机构首页装扮实现模版化，多样化及个性化。</p>
+            <p>工作总结：经过4年多工作的历练（踩过不少坑，做了不少项目），对前端开发有了更为深刻的认识，也更加热爱前端开发!</p>
+            
+            <h3>2012/01 -- 2012/09 北京图胜网络技术有限公司 前端开发工程师</h3>
+            <p>工作描述：主要负责公司移动端项目的开发（html5+css3）。</p>
+            <p>工作总结：喜欢前端来到了帝都北京，开始职业化的前端开发历程，成为了一名前端开发工程师！</p>
+            
+            <h3>2011/01 -- 2011/12 郑州先知网络科技有限公司 程序员</h3>
+            <p>工作描述：网站前端及后台程序开发（.net）、技术部主管带领团队完成系统开发(业余前端开发)。</p>
+            <p>工作总结：初次了解认识到前端，并开始热爱上前端！</p>
+
+        </div>
+    </section>
+    <section class="section section2">
+        <h1>Personal Skill</h1>
+        <div class="content">
+           <ol class="list-wrap">
+                <li>熟悉HTML、CSS以及JavaScript等基本的WEB前端技术。</li>
+                <li>熟悉W3C标准及浏览器差异，对表现与数据分离、前端性能等相关知识有一定的理解。</li>
+                <li>了解NodeJs、Grunt、CommonJs等，对前端模块化及工程化有一定的认识。</li>
+                <li>学习使用过HTML5和CSS3，有一些手机端项目开发经验。</li>
+            </ol>
+        </div>
+    </section>
+    <section class="section section3">
+        <h1>Self Evaluation</h1>
+        <div class="content">
+            <ol class="list-wrap">
+                <li>喜欢前端，对前端技术的发展有浓厚的兴趣，有较强的学习能力，对待工作踏实认真。</li>
+                <li>有较强的沟通和逻辑表达能力，会经常与产品经理做一些深入的交（si）流（bi）。</li>
+                <li>喜欢code review，会随手拯救问（shi）题（zu）代码，善于发现、解决问题。</li>
+                <li>愿与团队及公司共同成长、共同发展。</li>
+            </ol>
+        </div>
+    </section>
+</div>
+
 
 <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.easings.min.js"></script>
+<script src="/js/jquery.fullPage.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    'use strict';
+
+    $('#J_fullpage').fullpage({
+        anchors: ['page1', 'page2', 'page3','page4'],
+        sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee'],
+        navigation: true,
+        navigationTooltips : ['1','2','3','4']
+    });
+});
+
+
+</script>
 
 </body>
 </html>

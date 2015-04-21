@@ -11,21 +11,96 @@
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css">
+<link href="//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700" rel="stylesheet" type="text/css">
 <style type="text/css">
 
 h1, h2, h3, h4, h5, h6 { font-size: 100%; }
 a { text-decoration: none;  }
+
+/* css3 animate */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.active .fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 
 .loading{position: absolute;left: 50%;}
 
 .fullpage-wrap{font-family:Microsoft YaHei,\5b8b\4f53,sans-serif}
 
 .section{text-align:center;}
-.section h1{font-size:46px; font-weight: normal; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5) }
+.section h1{font-size:46px; font-weight: normal; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5);}
 .section .content{max-width:60%;display:inline-block;text-align:left}
 .section .list-wrap li{line-height:3}
 
 .section1 h3{margin-top:50px;}
+
+.section h1{
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    transition : all 0.5s linear 0.5s;
+
+}
+
+.active h1{
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+}
+
+/*.section .content p{
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+
+}
+
+.section .content p:hover{
+ 
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+    transition : all 0.5s linear 0.5s;
+ 
+}*/
 
 </style>
 </head>
@@ -61,8 +136,9 @@ a { text-decoration: none;  }
 
         </div>
     </section>
+
     <section class="section section2">
-        <h1>Personal Skill</h1>
+        <h1 class="fadeInDown animated">Personal Skill</h1>
         <div class="content">
            <ol class="list-wrap">
                 <li>熟悉HTML、CSS以及JavaScript等基本的WEB前端技术。</li>
@@ -72,8 +148,9 @@ a { text-decoration: none;  }
             </ol>
         </div>
     </section>
+    
     <section class="section section3">
-        <h1>Self Evaluation</h1>
+        <h1 class="fadeInDown animated">Self Evaluation</h1>
         <div class="content">
             <ol class="list-wrap">
                 <li>喜欢前端，对前端技术的发展有浓厚的兴趣，有较强的学习能力，对待工作踏实认真。</li>
@@ -98,7 +175,7 @@ $(function(){
         anchors: ['page1', 'page2', 'page3','page4'],
         sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee'],
         navigation: true,
-        navigationTooltips : ['1','2','3','4']
+        navigationTooltips : ['About Me','Working Experience','Personal Skill','Self Evaluation']
     });
 });
 

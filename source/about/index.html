@@ -8,6 +8,7 @@
 <link rel="icon" href="/img/favicon.ico">
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css" />
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700' rel='stylesheet' type='text/css'>
 <style type="text/css">
@@ -23,67 +24,47 @@ a { text-decoration: none;  }
   animation-fill-mode: both;
 }
 
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-.active .fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
 
 .loading{position: absolute;left: 50%;}
 
 .fullpage-wrap{font-family:Microsoft YaHei,\5b8b\4f53,sans-serif}
 
 .section{text-align:center;}
-.section h1{font-size:46px; font-weight: normal; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5);}
-.section .content{max-width:60%;display:inline-block;text-align:left}
+.section h1{font:100 60px/1.5 "Roboto"; text-align:center; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.5); }
+.section .content{max-width:60%;display:inline-block;text-align:left;position: relative;top:100px;opacity: 0;}
 .section .list-wrap li{line-height:3}
 
 .section1 h3{margin-top:50px;}
 
 .section h1{
+    color:#f35626;
     opacity: 0;
+
     -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
+
+    -webkit-transition : all 0.5s linear 0.5s;
+    -moz-transition : all 0.5s linear 0.5s;
     transition : all 0.5s linear 0.5s;
 
 }
 
+/* animate */
 .active h1{
     opacity: 1;
     -webkit-transform: none;
     transform: none;
+}
+
+.active .content{
+    opacity: 1;
+    top:0px;
+
+    -webkit-transition : all 0.3s linear 0.7s;
+    -moz-transition : all 0.3s linear 0.7s;
+    transition : all 0.3s linear 0.7s;
+
 }
 
 /*.section .content p{
@@ -99,6 +80,15 @@ a { text-decoration: none;  }
     transition : all 0.5s linear 0.5s;
  
 }*/
+
+.section .content{
+    -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+   -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 
 </style>
 </head>
@@ -152,8 +142,8 @@ a { text-decoration: none;  }
         <div class="content">
             <ol class="list-wrap">
                 <li>喜欢前端，对前端技术的发展有浓厚的兴趣，有较强的学习能力，对待工作踏实认真。</li>
-                <li>有较强的沟通和逻辑表达能力，会经常与产品经理做一些深入的交（si）流（bi）。</li>
                 <li>喜欢code review，会随手拯救问（shi）题（zu）代码，善于发现、解决问题。</li>
+                <li>有较强的沟通和逻辑表达能力，会经常与PM做一些沟通交流，能提出一些建设性建议。也偶尔会与PM产生一些争（si）执（bi）。</li>
                 <li>愿与团队及公司共同成长、共同发展。</li>
             </ol>
         </div>

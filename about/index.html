@@ -11,98 +11,7 @@
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css">
-<link href="//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700" rel="stylesheet" type="text/css">
-<style type="text/css">
-
-h1, h2, h3, h4, h5, h6 { font-size: 100%; }
-a { text-decoration: none;  }
-
-/* css3 animate */
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-.active .fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.loading{position: absolute;left: 50%;}
-
-.fullpage-wrap{font-family:Microsoft YaHei,\5b8b\4f53,sans-serif}
-
-.section{text-align:center;}
-.section h1{font-size:46px; font-weight: normal; text-align:center; text-shadow:1px 3px 1px rgba(0, 0, 0, 0.5);}
-.section .content{max-width:60%;display:inline-block;text-align:left}
-.section .list-wrap li{line-height:3}
-
-.section1 h3{margin-top:50px;}
-
-.section h1{
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-    transition : all 0.5s linear 0.5s;
-
-}
-
-.active h1{
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-}
-
-/*.section .content p{
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-
-}
-
-.section .content p:hover{
- 
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-    transition : all 0.5s linear 0.5s;
- 
-}*/
-
-</style>
+<link rel="stylesheet" type="text/css" href="/css/about.css">
 </head>
 <body>
 
@@ -154,12 +63,24 @@ a { text-decoration: none;  }
         <div class="content">
             <ol class="list-wrap">
                 <li>喜欢前端，对前端技术的发展有浓厚的兴趣，有较强的学习能力，对待工作踏实认真。</li>
-                <li>有较强的沟通和逻辑表达能力，会经常与产品经理做一些深入的交（si）流（bi）。</li>
                 <li>喜欢code review，会随手拯救问（shi）题（zu）代码，善于发现、解决问题。</li>
+                <li>有较强的沟通和逻辑表达能力，会经常与PM做一些沟通交流，能提出一些建设性建议。也偶尔会与PM产生一些争（si）执（bi）。</li>
                 <li>愿与团队及公司共同成长、共同发展。</li>
             </ol>
         </div>
     </section>
+
+    <section class="section section4">
+        <h1 class="fadeInDown animated">Contact me</h1>
+        <div class="content">
+            <div class="contact">
+                <a title="github" target="_blank" href="https://github.com/qingxiangchayun"></a>
+                <a title="weibo" target="_blank" href="http://weibo.com/lyuanfe"></a>
+            </div>
+        </div>
+    </section>
+
+   
 </div>
 
 
@@ -172,14 +93,12 @@ $(function(){
     'use strict';
 
     $('#J_fullpage').fullpage({
-        anchors: ['page1', 'page2', 'page3','page4'],
-        sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee'],
+        anchors: ['page1', 'page2', 'page3','page4','page5'],
+        sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee','#eee'],
         navigation: true,
-        navigationTooltips : ['About Me','Working Experience','Personal Skill','Self Evaluation']
+        navigationTooltips : ['About Me','Working Experience','Personal Skill','Self Evaluation','Contact me']
     });
 });
-
-
 </script>
 
 </body>

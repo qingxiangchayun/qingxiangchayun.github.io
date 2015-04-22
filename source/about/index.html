@@ -8,89 +8,8 @@
 <link rel="icon" href="/img/favicon.ico">
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-<link rel="dns-prefetch" href="//fonts.googleapis.com" />
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css" />
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700' rel='stylesheet' type='text/css'>
-<style type="text/css">
-
-h1, h2, h3, h4, h5, h6 { font-size: 100%; }
-a { text-decoration: none;  }
-
-/* css3 animate */
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-
-.loading{position: absolute;left: 50%;}
-
-.fullpage-wrap{font-family:Microsoft YaHei,\5b8b\4f53,sans-serif}
-
-.section{text-align:center;}
-.section h1{font:100 60px/1.5 "Roboto"; text-align:center; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.5); }
-.section .content{max-width:60%;display:inline-block;text-align:left;position: relative;top:100px;opacity: 0;}
-.section .list-wrap li{line-height:3}
-
-.section1 h3{margin-top:50px;}
-
-.section h1{
-    color:#f35626;
-    opacity: 0;
-
-    -webkit-transform: translate3d(0, -100%, 0);
-    -moz-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-
-    -webkit-transition : all 0.5s linear 0.5s;
-    -moz-transition : all 0.5s linear 0.5s;
-    transition : all 0.5s linear 0.5s;
-
-}
-
-/* animate */
-.active h1{
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-}
-
-.active .content{
-    opacity: 1;
-    top:0px;
-
-    -webkit-transition : all 0.3s linear 0.7s;
-    -moz-transition : all 0.3s linear 0.7s;
-    transition : all 0.3s linear 0.7s;
-
-}
-
-/*.section .content p{
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-
-}
-
-.section .content p:hover{
- 
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-    transition : all 0.5s linear 0.5s;
- 
-}*/
-
-.section .content{
-    -webkit-animation-name: bounceInUp;
-  animation-name: bounceInUp;
-   -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="/css/about.css" />
 </head>
 <body>
 
@@ -148,6 +67,18 @@ a { text-decoration: none;  }
             </ol>
         </div>
     </section>
+
+    <section class="section section4">
+        <h1 class="fadeInDown animated">Contact me</h1>
+        <div class="content">
+            <div class="contact">
+                <a title="github" target="_blank" href="https://github.com/qingxiangchayun"></a>
+                <a title="weibo" target="_blank" href="http://weibo.com/lyuanfe"></a>
+            </div>
+        </div>
+    </section>
+
+   
 </div>
 
 
@@ -160,14 +91,12 @@ $(function(){
     'use strict';
 
     $('#J_fullpage').fullpage({
-        anchors: ['page1', 'page2', 'page3','page4'],
-        sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee'],
+        anchors: ['page1', 'page2', 'page3','page4','page5'],
+        sectionsColor: ['#eee', '#acafdf', '#f7f7f7','#eee','#eee'],
         navigation: true,
-        navigationTooltips : ['About Me','Working Experience','Personal Skill','Self Evaluation']
+        navigationTooltips : ['About Me','Working Experience','Personal Skill','Self Evaluation','Contact me']
     });
 });
-
-
 </script>
 
 </body>

@@ -1,4 +1,5 @@
 /* ---------------- reset -------------------*/
+
 h1,
 h2,
 h3,
@@ -11,8 +12,6 @@ h6 {
 a {
     text-decoration: none;
 }
-
-
 /* ---------------- google fonts -------------------*/
 /*
 //fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700 字体保存到本地,防止访问被屏蔽
@@ -38,10 +37,8 @@ a {
     font-weight: normal;
     src: url("../font/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("../font/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("../font/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("../font/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
 }
-
-
-
 /* ---------------- page main -------------------*/
+
 .fullpage-wrap {
     font-family: Microsoft YaHei, \5b8b\4f53, sans-serif
 }
@@ -101,13 +98,11 @@ a {
     transition: all 0.5s linear 0.5s;
 }
 
-
 .active h1 {
     opacity: 1;
     -webkit-transform: none;
     transform: none;
 }
-
 
 .contact a[title="weibo"]::before,
 .contact a[title="github"]::before {
@@ -124,7 +119,6 @@ a {
     content: "\f09b";
 }
 
-
 .contact a {
     display: inline-block;
     color: #333;
@@ -135,3 +129,20 @@ a {
 .contact a:hover:before {
     color: #4183c4;
 }
+
+.section1 .level-wrap {
+    width: 100px;
+    border: 1px solid red;
+    position: absolute;
+    left: -100px;
+    top: 0px;
+}
+
+.section1 .level {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #09f;
+}
+
+.section1 .level1 {}

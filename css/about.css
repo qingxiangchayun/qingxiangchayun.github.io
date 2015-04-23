@@ -21,7 +21,7 @@ a {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 100;
-    src: local('Roboto Thin'), local('Roboto-Thin'), url(../font/about-Roboto.woff2) format('woff2');
+    src: local('Roboto Thin'), local('Roboto-Thin'), url(../font/Roboto-Thin.woff2) format('woff2'), url(../font/Roboto-Thin.woff) format('woff');
 }
 
 @font-face {

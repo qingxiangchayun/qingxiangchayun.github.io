@@ -125,10 +125,17 @@ a {
     color: #333;
     font-size: 60px;
     margin-right: 30px;
+    -webkit-transition:all 1s linear;
+    -moz-transition:all 1s linear;
+    transition:all 1s linear;
 }
 
 .contact a:hover:before {
     color: #4183c4;
+}
+
+.contact a:hover{
+    transform : rotate(360deg); 
 }
 
 .section1 .level-wrap {

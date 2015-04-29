@@ -35,8 +35,23 @@
             <div class="list">
                 <div class="hover-animate">
                     <h3>2012/12 -- 至今 <a href="http://www.ablesky.com" target="_blank"> 能力天空科技（北京）有限公司（AbleSky）</a> 高级前端开发工程师</h3>
-                    <p>工作描述：主要负责机构平台项目，实现机构首页装扮模版化，多样化及个性化。前端静态文件构建系统（Node、Grunt）</p>
-                    <p>工作总结：经过4年多工作的历练（踩过不少坑，做了不少项目），对前端开发有了更为深刻的认识，也更加热爱前端开发!</p>
+                    <div class="list-work">  
+                        <div class="title">工作描述：</div>
+                        <ol class="detail">
+                            <li>2013年，完成网站v5-v6版本升级。v6目标：完成机构平台升级。负责机构首页等相关功能开发（项目leader）。</li>
+                            <li>2014年，完成网站v6-v7版本升级。v7目标：完成个人学习平台的升级。负责个人中心课程等相关功能开发。（项目leader）。</li>
+                            <li>参与负责网站首页多次改版。</li>
+                            <li>机构平台项目，实现机构装扮模版化，多样化及个性化。</li>
+                            <li>前端静态文件构建系统（Node、Grunt）-- <a href="https://github.com/ablesky/ablejs" target="_blank" rel="external">ablejs</a>目标：解决静态文件版本号问题，完成静态文件压缩、合并、优化自动化。</li>
+                        </ol>
+                    </div>
+                    <div class="list-work">  
+                        <div class="title">工作总结：</div>
+                        <ol class="detail">
+                            <li>经过4年多工作的历练（踩过不少坑，做了不少项目，负责方面较多）,所以在处理、解决各种问题（前端和一些非前端问题）上有较强的能力</li>
+                            <li>通过自己的努力，荣获公司2014年度最佳员工。</li>
+                        </ol>
+                    </div>
                  </div>
             </div>
             
@@ -68,7 +83,23 @@
         </div>
     </section>
 
-    <section class="section section2">
+    <section class="section section2 section-project">
+        <div class="slide slide0">
+            <h2>Project Experience</h2>
+
+            <div class="content">
+                <h3>v5-v6</h3>
+                <div class="img-wrap">
+                    <img src="" alt="v5">
+                    <img src="" alt="v6">
+                </div>
+            </div>
+        </div>
+        <div class="slide"><h1>Project Experience2</h1></div>
+        <div class="slide"><h1>Project Experience3</h1></div>
+    </section>
+
+    <section class="section section3">
         <h1>Personal Skill</h1>
         <div class="content">
            <ol class="list-wrap">
@@ -80,7 +111,7 @@
         </div>
     </section>
     
-    <section class="section section3">
+    <section class="section section4">
         <h1>Self Evaluation</h1>
         <div class="content">
             <ol class="list-wrap">
@@ -92,7 +123,7 @@
         </div>
     </section>
 
-    <section class="section section4">
+    <section class="section section5">
         <h1>Contact Me</h1>
         <div class="content">
             <div class="contact">
@@ -107,7 +138,6 @@
 
 
 <script src="/js/jquery-2.1.0.min.js"></script>
-<!-- <script src="/js/jquery.easings.min.js"></script> -->
 <script src="/js/jquery.fullPage.js"></script>
 
 <script type="text/javascript">
@@ -115,10 +145,11 @@ $(function(){
     'use strict';
 
     $('#J_fullpage').fullpage({
-        anchors: ['page1', 'page2', 'page3','page4','page5'],
-        sectionsColor: ['#eee', '#dbdcf1', '#f7f7f7','#ddd','#eee'],
+        anchors: ['page1', 'page2', 'page3','page4','page5','page6'],
+        sectionsColor: ['#eee','#dbdcf1', '#99ffff','#f7f7f7','#ddd','#eee'],
         navigation: true,
-        navigationTooltips : ['About Me','Working Experience','Personal Skill','Self Evaluation','Contact Me']
+        slidesNavigation : true,
+        navigationTooltips : ['About Me','Working Experience','Project Experience','Personal Skill','Self Evaluation','Contact Me']
     });
 });
 

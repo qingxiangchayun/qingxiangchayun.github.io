@@ -11,10 +11,16 @@ h6 {
 
 a {
     text-decoration: none;
+    color:#09f;
+    transition: color 0.15s ease 0s;
+}
+
+a:hover{
+    color:#74a7cb;
 }
 /* ---------------- google fonts -------------------*/
-/*
-//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700 字体保存到本地,防止访问被屏蔽
+/* 
+ *    //fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700 save 
  */
 
 @font-face {
@@ -96,7 +102,6 @@ a {
         transform: perspective(400px);
     }
 }
-
 /* ---------------- page main -------------------*/
 
 .fullpage-wrap {
@@ -107,12 +112,14 @@ a {
     text-align: center;
 }
 
-.section h1 {
+.section h1 ,.section h2{
     font: 100 60px/1.5 "Roboto";
     text-align: center;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     margin: 0 0 50px 0;
 }
+
+.section h2{font-size:50px;}
 
 .section .content {
     max-width: 60%;
@@ -171,23 +178,38 @@ a {
     backface-visibility: visible !important;
     -webkit-animation-name: flipInX;
     animation-name: flipInX;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+    -webkit-animation-duration: 1.2s;
+    animation-duration: 1.2s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
 
-.section1 .list:hover ~ .list{
+.section1 .list:hover ~ .list {
     opacity: 0.1;
     -webkit-transition: opacity 1s ease;
     -o-transition: opacity 1s ease;
     transition: opacity 1s ease;
 }
 
-.section1 .list:nth-child(1):hover {}
+
 
 .section1 h3 {
     margin-top: 30px;
+}
+
+.section1 .list-work .title {
+    float: left;
+    margin-right: 10px;
+}
+
+.section1 .list-work .detail {
+    overflow: hidden;
+    padding-left:20px;
+    list-style-type: disc;
+}
+
+.section1 .list-work li{
+    padding-bottom:10px;
 }
 
 .section h1 {
@@ -262,3 +284,6 @@ a {
     -o-transition: all 1s;
     transition: all 1s;
 }
+
+.fp-controlArrow.fp-prev{left:50px;}
+.fp-controlArrow.fp-next{right:50px;}

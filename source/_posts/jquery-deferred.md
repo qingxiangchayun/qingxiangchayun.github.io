@@ -1,6 +1,6 @@
-title: jquery deferred
+title: jquery源码学习之deferred
 date: 2015-01-22 17:12:03
-tags:
+tags: jQuery
 ---
 
 ## deferred API

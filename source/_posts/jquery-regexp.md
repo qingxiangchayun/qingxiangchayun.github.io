@@ -1,4 +1,4 @@
-title: jquery中的正则
+title: jquery源码学习之jquery中的正则
 tags: jQuery
 date: 2014-12-22 14:46:49
 ---

@@ -9,29 +9,6 @@ tags: js
 
 
 
-### 推荐阅读
-* [https://promisesaplus.com/](https://promisesaplus.com/)
-* [http://www.ituring.com.cn/article/66566](http://www.ituring.com.cn/article/66566)
+### share ppt
 
-
-http://es6.ruanyifeng.com/#docs/promise
-https://github.com/kriskowal/q
-http://www.html-js.com/article/JavaScript-tips-on-how-to-implement-a-ECMAScript-6-promise-patch
-http://www.shaynegui.com/promise-aplus-implementation/
-http://segmentfault.com/blog/code/1190000002452115
-http://www.zhangxinxu.com/wordpress/2014/02/es6-javascript-promise-%E6%84%9F%E6%80%A7%E8%AE%A4%E7%9F%A5/
-
-
-http://www.tuicool.com/articles/RzQRV3
-http://shangchun.net/promise-insight.html
-https://github.com/then/promise
-https://github.com/promises-aplus/promises-spec/blob/master/implementations.md
-https://github.com/jakearchibald/es6-promise/blob/master/README.md
-
-https://github.com/tildeio/rsvp.js/blob/master/lib/rsvp/promise.js
-
-http://www.html-js.com/article/Promise-translation-JavaScript-Promise-devil-details
-http://www.shaynegui.com/promise-aplus-implementation/
-http://www.w3ctech.com/topic/721
-
-Promise/A+规范
+[js-promise.ppt 下载](/share/20150116-js Promise.ppt)

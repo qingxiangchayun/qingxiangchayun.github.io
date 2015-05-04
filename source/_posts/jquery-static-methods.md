@@ -1,4 +1,4 @@
-title: jquery中常用的静态方法
+title: jquery源码学习之静态方法
 tags: jQuery
 date: 2015-01-22 17:12:47
 ---

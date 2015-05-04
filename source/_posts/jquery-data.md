@@ -1,4 +1,4 @@
-title: jquery data 数据缓存
+title: jquery源码学习之数据缓存data
 tags: jQuery
 date: 2015-01-11 18:34:03
 ---
@@ -48,7 +48,7 @@ console.log($('#div').data('key2')) --> Object { a=111, b=222}
 ![attr vs data](/img/jquery-data-attr.jpg);
 
 ### 内存泄漏
-DOM元素与JS对象项目引用，大部分的浏览器会引起内存泄漏。
+DOM元素与JS对象互相引用试，大部分的浏览器会引起内存泄漏。
 
 
 ### 源码分析

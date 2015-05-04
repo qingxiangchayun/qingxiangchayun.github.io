@@ -1,4 +1,4 @@
-title: jquery extend方法学习
+title: jquery源码学习之extend
 tags: jQuery
 date: 2014-12-24 17:33:48
 ---

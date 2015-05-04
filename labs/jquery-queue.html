@@ -1,5 +1,6 @@
 
- <!DOCTYPE HTML>
+  
+    <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -27,9 +28,9 @@
 
 </head>
 
-  <body>
-    <header>
-      <div>
+      <body>
+        <header>
+          <div>
 		
 			<div id="imglogo">
 				<a href="/"><img src="/img/logo.svg" alt="lyuan blog" title="lyuan blog"/></a>
@@ -65,14 +66,14 @@
 			</nav>			
 </div>
 
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+        </header>
+        <div id="container">
+          <div id="main" class="page" itemscope itemprop="blogPost">
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/22/jquery-queue/" title="jquery queue" itemprop="url">jquery queue</a>
+      <a href="/labs/jquery-queue.html" title="jquery queue" itemprop="url">jquery queue</a>
   </h1>
   <p class="article-author">By
     
@@ -87,11 +88,6 @@
 	<div class="article-content">
 		
 		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery源码_—_queue"><span class="toc-number">1.</span> <span class="toc-text">jQuery源码 — queue</span></a></li></ol>
-		</div>
-		
 		<h1 id="jQuery源码_—_queue">jQuery源码 — queue</h1>
 <blockquote>
 <p>队列简介 —百度百科<br>队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。<br>在队列这种数据结构中，最先插入的元素将是最先被删除的元素；反之最后插入的元素将是最后被删除的元素，因此队列又称为“先进先出”（FIFO—first in first out）的线性表。</p>
@@ -105,91 +101,21 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2015/01/22/jquery-queue/" data-title="jquery queue | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/labs/jquery-queue.html" data-title="jquery queue | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
 </footer>   	       
 	</article>
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2015/01/22/jquery-static-methods/" title="jquery源码学习之静态方法">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jquery源码学习之静态方法</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2015/01/22/jquery-deferred/"  title="jquery源码学习之deferred">
- <strong>NEXT:</strong><br/> 
- <span>jquery源码学习之deferred
-</span>
-</a>
-</div>
-
-</nav>
-
 	
 <section class="comment">
 	<div class="ds-thread"></div>
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery源码_—_queue"><span class="toc-number">1.</span> <span class="toc-text">jQuery源码 — queue</span></a></li></ol>
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
-		
-			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
-		
-			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>7</sup></a></li>
-		
-			<li><a href="/tags/js/" title="js">js<sup>6</sup></a></li>
-		
-			<li><a href="/tags/requirejs/" title="requirejs">requirejs<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
-
-  
-  <div class="archiveslist">
-    <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li></ul>
-  </div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
-    </ul>
-</div>
-
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
+        </div>
+        <footer><div id="footer" >
 	
 	
 	<div class="social-font clearfix">
@@ -209,7 +135,7 @@
 		</p>
 </div>
 </footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
+        <script src="/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ 
   $('.navbar').click(function(){
@@ -236,8 +162,6 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -254,38 +178,6 @@ $(document).ready(function(){
   $(window).scroll(function(){
     o.css("top",Math.max(80,260-$(this).scrollTop()));
   });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
 });
 </script>
 
@@ -335,5 +227,6 @@ $(document).ready(function(){
 
 
 
-  </body>
-</html>
+      </body>
+     </html>
+     

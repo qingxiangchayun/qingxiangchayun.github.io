@@ -3,9 +3,14 @@ date: 2015-04-16 16:09:09
 tags: css
 ---
 
-以前在工作中写css时，经常写到或看到这样的代码 `.box{display:block;float:left;position:reliative/absoulte;}`,这样写元素会如何表现，自己也不清楚，反正只要是各个浏览器上表现正常，是自己想要的效果，便不再深究了。只以结果为导向，当然这样是不好的，
-那么当css样式中，同时具有display、position、float属性时，具体会如何表现。我们今天来学习一下。其实在[w3c规范](http://www.w3.org/TR/CSS2/visuren.html#dis-pos-flo)中是有具体的规定。
-了解display、position、float之间的关系，有助于我们更好的书写css，及明白为什么css排版会如此表现。
+以前在工作中写css时，经常写到或看到这样的代码
+ `.box{display:block;float:left;position:reliative/absoulte;}`
+ 
+这样写元素会如何表现？自己也不清楚，反正只要是各个浏览器上表现正常，是自己想要的效果，便不再深究了。
+这种只以结果为导向的做法，当然是不好的，了解display、position、float之间的关系，有助于我们更好的书写css，及明白为什么css排版会如此表现。那么我们今天就来学习一下吧。
+
+其实在[w3c规范](http://www.w3.org/TR/CSS2/visuren.html#dis-pos-flo)中是有具体的规定。
+
 
 >If 'display' has the value 'none', then 'position' and 'float' do not apply. In this case, the element generates no box.
 Otherwise, if 'position' has the value 'absolute' or 'fixed', the box is absolutely positioned, the computed value of 'float' is 'none', and display is set according to the table below. The position of the box will be determined by the 'top', 'right', 'bottom' and 'left' properties and the box's containing block.

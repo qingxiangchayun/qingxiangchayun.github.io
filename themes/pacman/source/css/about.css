@@ -2,12 +2,12 @@
 
 a {
     text-decoration: none;
-    color:#09f;
+    color: #09f;
     transition: color 0.15s ease 0s;
 }
 
-a:hover{
-    color:#74a7cb;
+a:hover {
+    color: #74a7cb;
 }
 /* ---------------- google fonts -------------------*/
 /* 
@@ -103,14 +103,12 @@ a:hover{
     text-align: center;
 }
 
-.section h1{
+.section h1 {
     font: 100 60px/1.5 "Roboto";
     text-align: center;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     margin: 30px 0;
 }
-
-
 
 .section .content {
     max-width: 80%;
@@ -120,7 +118,6 @@ a:hover{
     top: 100px;
     opacity: 0;
 }
-
 
 .section .content {
     -webkit-animation-name: bounceInUp;
@@ -139,14 +136,13 @@ a:hover{
     transition: all 0.3s linear 0.7s;
 }
 
-@media screen and (max-height:768px){
-    .section-work h1{
-        margin:10px 0;
+@media screen and (max-height: 768px) {
+    .section-work h1 {
+        margin: 10px 0;
     }
-
-    .section-work .content{
+    .section-work .content {
         font-size: 80%;
-        line-height:1.1;
+        line-height: 1.1;
     }
 }
 
@@ -194,8 +190,6 @@ a:hover{
     transition: opacity 1s ease;
 }
 
-
-
 .section-work h3 {
     margin-top: 30px;
 }
@@ -207,12 +201,12 @@ a:hover{
 
 .section-work .list-work .detail {
     overflow: hidden;
-    padding-left:20px;
+    padding-left: 20px;
     list-style-type: disc;
 }
 
-.section-work .list-work li{
-    padding-bottom:10px;
+.section-work .list-work li {
+    padding-bottom: 10px;
 }
 
 .section h1 {
@@ -288,8 +282,56 @@ a:hover{
     transition: all 1s;
 }
 
-.fp-controlArrow.fp-prev{left:50px;}
-.fp-controlArrow.fp-next{right:50px;}
-#fp-nav ul li .fp-tooltip{color:#555;}
+.section-project .content {
+    overflow: hidden;
+}
 
+.section-project .img-wrap {
+    width: 50%;
+    float: left;
+    margin-right: 30px;
+}
 
+.section-project .img-wrap img {
+    display: block;
+    width: 100%;
+}
+
+.section-project .img-wrap .img-list {
+    display: inline-block;
+    width: 20%;
+    max-height:200px;
+    margin: 5px;
+    border: 3px solid #09f;
+}
+
+.section-project .introduce {
+    overflow: hidden;
+}
+
+.section-project .introduce em {
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+ww
+/* .section-project .img-wrap:hover img {
+   
+    display: block;
+    width: 100%;
+    -webkit-transition: all 1s ease 0;
+    -o-transition: all 1s ease 0;
+    transition: all 1s ease 0;
+} */
+
+.fp-controlArrow.fp-prev {
+    left: 50px;
+}
+
+.fp-controlArrow.fp-next {
+    right: 50px;
+}
+
+#fp-nav ul li .fp-tooltip {
+    color: #555;
+}

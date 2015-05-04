@@ -108,27 +108,73 @@
         </div>
     </section>
 
-<!--     <section class="section section-about section-project">
-    <div class="slide slide0">
-        <h1>Project Experience</h1>
+    <section class="section section-about section-project">
+        <div class="slide slide0">
+            <h1>Project Experience</h1>
 
-        <div class="content">
-            <h3>v5-v6</h3>
-            <div class="img-wrap">
-                <img src="" alt="v5" />
-                <img src="" alt="v6" />
+            <div class="content">
+                <h3>v5版本</h3>
+                <div class="img-wrap">
+                    <img src="/img/project-v5.png" alt="v5">
+                </div>
+                <ul class="introduce">
+                    <li><em>那时候</em>机构平台是这样的。</li>
+                    <li><em>那时候</em>机构平台的用户体验是让人抓狂的。</li>
+                    <li><em>那时候</em>机构平台打开要5s+ Firefox浏览器还经常一打开就卡死。</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="slide slide1">
-        <h1>Project Experience2</h1>
-        <div class="content">
-            
-            
+      
+        <div class="slide slide1">
+            <h1>Project Experience</h1>
+             <div class="content">
+                <h3>v6版本</h3>
+                <div class="img-wrap">
+                    <img class="img-list" src="/img/project-v6.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-6.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-4.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-5.png" alt="v6">
+
+                    <img class="img-list" src="/img/project-v6-1.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-2.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-3.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-7.png" alt="v6">
+                </div>
+                <ul class="introduce">
+                    <li><em>改版后</em>机构平台是这样的。</li>
+                    <li><em>改版后</em>机构平台的用户体验有大幅度的提高。得到用户的一致好评</li>
+                    <li><em>改版后</em>机构平台性能得到大幅度改善。</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="slide"><h1>Project Experience3</h1></div>
-</section> -->
+
+        <div class="slide slide2">
+            <h1>Project Experience</h1>
+             <div class="content">
+                <h3>v6+版本</h3>
+                <div class="img-wrap">
+                    <img class="img-list" src="/img/project-v6-plus-1.png" alt="v6 plus">
+
+                    <img class="img-list" src="/img/project-v6-plus-2.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-3.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-4.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-5.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-6.png" alt="v6 plus">
+
+                    <img class="img-list" src="/img/project-v6-plus-7.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-8.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-9.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-10.png" alt="v6 plus">
+                </div>
+                <ul class="introduce">
+                    <li><em>改版后</em>机构平台是这样的。</li>
+                    <li><em>改版后</em>机构平台的用户体验是让人抓狂的。</li>
+                    <li><em>改版后</em>机构平台打开要5s+ Firefox浏览器还经常一打开就卡死。</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
 
     <section class="section section-skill">
         <h1>Personal Skill</h1>
@@ -174,6 +220,8 @@
             </div>
         </div>
     </section>
+
+   
    
 </div>
 
@@ -192,6 +240,14 @@ $(function(){
         slidesNavigation : true,
         navigationTooltips : ['About Me','Working Experience','Project Experience','Personal Skill','Self Evaluation','Additional Information','Contact Me']
     });
+
+    var $pagewrap = $('#J_fullpage');
+
+    $('.img-wrap',$pagewrap).on('click','.img-list',function(){
+        console.log($(this).attr('src'));
+
+        $('#J_show_img').show();
+    })
 });
 
 console.log('hi 这位同学\n你也喜欢看前端代码啊\n那请你call me\n咱们一起玩耍吧！\n');

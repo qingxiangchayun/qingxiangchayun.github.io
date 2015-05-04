@@ -9,9 +9,7 @@
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="当css样式中，同时具有display、position、float属性时，具体会如何表现。w3c规范中有具体的规定。了解display、position、float之间的关系，有助于我们更好的书写css，及明白为什么css排版会如此表现。
-
-If ‘display’ has the value ‘">
+    <meta name="description" content="以前在工作中写css时，经常写到或看到这样的代码 .box{display:block;float:left;position:reliative/absoulte;},这样写元素会如何表现，自己也不清楚，反正只要是各个浏览器上表现正常，是自己想要的效果，便不再深究了。只以结果为导向，当然这样是不好">
     
     
     
@@ -80,7 +78,7 @@ If ‘display’ has the value ‘">
     </p>
   <p class="article-time">
     <time datetime="2015-04-16T08:09:09.000Z" itemprop="datePublished">4月 16 2015</time>
-    更新日期:<time datetime="2015-04-16T08:31:11.000Z" itemprop="dateModified">4月 16 2015</time>
+    更新日期:<time datetime="2015-05-04T03:45:29.000Z" itemprop="dateModified">5月 4 2015</time>
     
   </p>
 </header>
@@ -92,7 +90,7 @@ If ‘display’ has the value ‘">
 		
 		</div>
 		
-		<p>当css样式中，同时具有display、position、float属性时，具体会如何表现。<a href="http://www.w3.org/TR/CSS2/visuren.html#dis-pos-flo" target="_blank" rel="external">w3c规范</a>中有具体的规定。<br>了解display、position、float之间的关系，有助于我们更好的书写css，及明白为什么css排版会如此表现。</p>
+		<p>以前在工作中写css时，经常写到或看到这样的代码 <code>.box{display:block;float:left;position:reliative/absoulte;}</code>,这样写元素会如何表现，自己也不清楚，反正只要是各个浏览器上表现正常，是自己想要的效果，便不再深究了。只以结果为导向，当然这样是不好的，<br>那么当css样式中，同时具有display、position、float属性时，具体会如何表现。我们今天来学习一下。其实在<a href="http://www.w3.org/TR/CSS2/visuren.html#dis-pos-flo" target="_blank" rel="external">w3c规范</a>中是有具体的规定。<br>了解display、position、float之间的关系，有助于我们更好的书写css，及明白为什么css排版会如此表现。</p>
 <blockquote>
 <p>If ‘display’ has the value ‘none’, then ‘position’ and ‘float’ do not apply. In this case, the element generates no box.<br>Otherwise, if ‘position’ has the value ‘absolute’ or ‘fixed’, the box is absolutely positioned, the computed value of ‘float’ is ‘none’, and display is set according to the table below. The position of the box will be determined by the ‘top’, ‘right’, ‘bottom’ and ‘left’ properties and the box’s containing block.<br>Otherwise, if ‘float’ has a value other than ‘none’, the box is floated and ‘display’ is set according to the table below.<br>Otherwise, if the element is the root element, ‘display’ is set according to the table below, except that it is undefined in CSS 2.1 whether a specified value of ‘list-item’ becomes a computed value of ‘block’ or ‘list-item’.<br>Otherwise, the remaining ‘display’ property values apply as specified.</p>
 </blockquote>
@@ -160,7 +158,7 @@ If ‘display’ has the value ‘">
 		
 			<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		
-			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>7</sup></a></li>
 		
 			<li><a href="/tags/js/" title="js">js<sup>6</sup></a></li>
 		

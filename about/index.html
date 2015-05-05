@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css">
+<link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.css">
 <link rel="stylesheet" type="text/css" href="/css/about.css">
 </head>
 <body>
@@ -118,9 +119,10 @@
                     <img src="/img/project-v5.png" alt="v5">
                 </div>
                 <ul class="introduce">
-                    <li><em>那时候</em>机构平台是这样的。</li>
-                    <li><em>那时候</em>机构平台的用户体验是让人抓狂的。</li>
-                    <li><em>那时候</em>机构平台打开要5s+ Firefox浏览器还经常一打开就卡死。</li>
+                    <li><em>那时候</em>机构平台是这样的</li>
+                    <li><em>那时候</em>机构平台的用户体验是很让人抓狂的</li>
+                    <li><em>那时候</em>机构平台打开要5s+</li>
+                    <li><em>那时候</em>打开页面Firefox浏览器还经常卡死</li>
                 </ul>
             </div>
         </div>
@@ -141,8 +143,9 @@
                     <img class="img-list" src="/img/project-v6-7.png" alt="v6">
                 </div>
                 <ul class="introduce">
-                    <li><em>改版后</em>机构平台是这样的。</li>
-                    <li><em>改版后</em>机构平台的用户体验有大幅度的提高。得到用户的一致好评</li>
+                    <li><em>改版后</em>机构平台是这样的</li>
+                    <li><em>改版后</em>用户体验有大幅度的提高</li>
+                    <li><em>改版后</em>公司内部及用户给予一致好评</li>
                     <li><em>改版后</em>机构平台性能得到大幅度改善。</li>
                 </ul>
             </div>
@@ -229,6 +232,8 @@
 <script src="/js/jquery-2.1.0.min.js"></script>
 <script src="/js/jquery.fullPage.js"></script>
 
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
 <script type="text/javascript">
 $(function(){
     'use strict';
@@ -242,12 +247,8 @@ $(function(){
     });
 
     var $pagewrap = $('#J_fullpage');
-
-    $('.img-wrap',$pagewrap).on('click','.img-list',function(){
-        console.log($(this).attr('src'));
-
-        $('#J_show_img').show();
-    })
+    $('.img-wrap .img-list',$pagewrap).fancybox();
+  
 });
 
 console.log('hi 这位同学\n你也喜欢看前端代码啊\n那请你call me\n咱们一起玩耍吧！\n');

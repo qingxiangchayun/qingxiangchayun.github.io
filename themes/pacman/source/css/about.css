@@ -294,8 +294,9 @@ a:hover {
 
 .section-project .img-wrap {
     width: 50%;
+    max-height: 400px;
     float: left;
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
 .section-project .img-wrap img {
@@ -316,9 +317,12 @@ a:hover {
 }
 
 .section-project .introduce em {
-    padding-right: 10px;
-    font-size: 30px;
+    padding-right: 20px;
+    font-size: 24px;
 }
+
+.section-project .slide-plus .img-wrap{width:80%;float: none;}
+.section-project .slide-plus .introduce li{padding-bottom:10px;}
 
 
 /* .section-project .img-wrap:hover img {

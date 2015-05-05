@@ -136,12 +136,20 @@ a:hover {
     transition: all 0.3s linear 0.7s;
 }
 
+.section-work h3 {
+    margin-top: 30px;
+}
+
 @media screen and (max-height: 768px) {
+
     .section-work h1 {
         margin: 10px 0;
     }
+    .section-work h3{
+    	margin-top:10px;
+    }
     .section-work .content {
-        font-size: 80%;
+        font-size: 76%;
         line-height: 1.1;
     }
 }
@@ -190,9 +198,7 @@ a:hover {
     transition: opacity 1s ease;
 }
 
-.section-work h3 {
-    margin-top: 30px;
-}
+
 
 .section-work .list-work .title {
     float: left;
@@ -288,6 +294,7 @@ a:hover {
 
 .section-project .img-wrap {
     width: 50%;
+    max-height: 400px;
     float: left;
     margin-right: 30px;
 }
@@ -310,11 +317,14 @@ a:hover {
 }
 
 .section-project .introduce em {
-    padding-right: 10px;
-    font-size: 30px;
+    padding-right: 20px;
+    font-size: 24px;
 }
 
-ww
+.section-project .slide-plus .img-wrap{width:80%;float: none;}
+.section-project .slide-plus .introduce li{padding-bottom:10px;}
+
+
 /* .section-project .img-wrap:hover img {
    
     display: block;

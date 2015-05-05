@@ -11,10 +11,12 @@
 <link rel="apple-touch-icon" href="/img/pacman.jpg">
 <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
 <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css">
+<link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox.css">
 <link rel="stylesheet" type="text/css" href="/css/about.css">
 </head>
 <body>
 
+<!-- <div class="loading"></div> -->
 
 <div id="J_fullpage" class="fullpage-wrap">
     <section class="section section-about">
@@ -130,35 +132,48 @@
              <div class="content">
                 <h3>v6版本</h3>
                 <div class="img-wrap">
-                    <img src="/img/project-v6.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-6.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-4.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-5.png" alt="v6">
+
+                    <img class="img-list" src="/img/project-v6-1.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-2.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-3.png" alt="v6">
+                    <img class="img-list" src="/img/project-v6-7.png" alt="v6">
                 </div>
                 <ul class="introduce">
                     <li><em>改版后</em>机构平台是这样的</li>
                     <li><em>改版后</em>用户体验有大幅度的提高</li>
                     <li><em>改版后</em>公司内部及用户给予一致好评</li>
-                    <li><em>改版后</em>机构平台性能得到大幅度的改善</li>
+                    <li><em>改版后</em>机构平台性能得到大幅度改善。</li>
                 </ul>
             </div>
         </div>
 
-        <div class="slide slide-plus">
+        <div class="slide slide2">
             <h1>Project Experience</h1>
              <div class="content">
                 <h3>v6+版本</h3>
                 <div class="img-wrap">
-                    <img src="/img/project-v6-plus-show.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-1.png" alt="v6 plus">
+
+                    <img class="img-list" src="/img/project-v6-plus-2.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-3.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-4.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-5.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-6.png" alt="v6 plus">
+
+                    <img class="img-list" src="/img/project-v6-plus-7.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-8.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-9.png" alt="v6 plus">
+                    <img class="img-list" src="/img/project-v6-plus-10.png" alt="v6 plus">
                 </div>
-                <div class="introduce">
-                    <h4>项目开发中的部分技术点</h4>
-                    <ul>
-                        <li>使用 requirejs+jquery 作为底层 lib ， requirejs 用于模块的管理，实现模块的按需加载，及最大限度的实现模块颗粒化，提高重用性。 jquery 用于 DOM 操作等。</li>
-                        <li>jquery.tmpl 数据模版的使用，用于数据与结构分离，并且可以在 js 和 jsp 中共用一套模版，实现所见即所得的ui展现效果。（ps：语法相同）。</li>
-                        <li>模块拖拽系统的开发(模块拖拽，最短距离、物体的绝对位置)。</li>
-                        <li>数据缓存data的使用，所有数据均保存在页面上，最后保存的时候才会传给后端，减少与后端的交互。</li>
-                        <li>ablejs(nodejs、grunt)用于项目的自动化构建。</li>
-                        <li>使用git做代码版本控制，并负责前端团队代码review、merge工作。</li>
-                    </ul>
-                </div>
+                <ul class="introduce">
+                    <li><em>改版后</em>机构平台是这样的。</li>
+                    <li><em>改版后</em>机构平台的用户体验是让人抓狂的。</li>
+                    <li><em>改版后</em>机构平台打开要5s+ Firefox浏览器还经常一打开就卡死。</li>
+                </ul>
             </div>
         </div>
 
@@ -217,6 +232,8 @@
 <script src="/js/jquery-2.1.0.min.js"></script>
 <script src="/js/jquery.fullPage.js"></script>
 
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
 <script type="text/javascript">
 $(function(){
     'use strict';
@@ -228,6 +245,10 @@ $(function(){
         slidesNavigation : true,
         navigationTooltips : ['About Me','Working Experience','Project Experience','Personal Skill','Self Evaluation','Additional Information','Contact Me']
     });
+
+    var $pagewrap = $('#J_fullpage');
+    $('.img-wrap .img-list',$pagewrap).fancybox();
+  
 });
 
 console.log('hi 这位同学\n你也喜欢看前端代码啊\n那请你call me\n咱们一起玩耍吧！\n');

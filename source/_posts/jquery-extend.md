@@ -110,29 +110,19 @@ jQuery.extend = jQuery.fn.extend = function() {
  * @deep  {[Boolean]} 是否深copy
  * @return {[Object]} target 
  */
-function extend(target,clone,deep){
-    var deep = deep ? deep : false;
-    if(deep){
-
-        for(var key in clone){
-            if(typeof clone[key] === 'object'){
-                extend(deep,target[key],clone[key]);
-            }else{
-                target[key] = clone[key];
-            }
-        }
-
-    }else{
-        for(var key in clone){
-            target[key] = clone[key];
+function extend(target,source,deep){
+    for(var key in source){
+        if(deep && typeof source[key] === 'object'){
+            target[key] = extend({},source[key],deep);
+        }else{
+            target[key] = source[key];
         }
     }
-
+   
     return target;
 }
 ```
 
-### tips
 
 
 

@@ -189,27 +189,6 @@ UMD (Universal Module Definition) patterns for JavaScript modules that work ever
 
 ## node
 
-## HTTP
-* Cache-Control 指定请求和响应遵循的缓存机制
-	* no-cache 指示请求或响应消息不能缓存
-	* max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应
-* If-Modified-Since	Fri, 03 Apr 2015 03:28:35 GMT	
-* 304 由 Last-Modified / Etag 控制
-* Last-Modified 在浏览器第一次请求某一个URL时，服务器端的返回状态会是200，内容是你请求的资源，同时有一个Last-Modified的属性标记(HttpReponse Header)此文件在服务期端最后被修改的时间 Last-Modified:Tue, 24 Feb 2009 08:01:04 GMT
-客户端第二次请求此URL时，根据HTTP协议的规定，浏览器会向服务器传送If-Modified-Since报头(HttpRequest Header)，询问该时间之后文件是否有被修改过：If-Modified-Since:Tue, 24 Feb 2009 08:01:04 GMT
-
-* Etag "1767532333"
-
- 7、关于 Cache-Control: max-age=秒 和 Expires
-
-Expires = 时间，HTTP 1.0 版本，缓存的载止时间，允许客户端在这个时间之前不去检查（发请求）
-max-age = 秒，HTTP 1.1版本，资源在本地缓存多少秒。
-如果max-age和Expires同时存在，则被Cache-Control的max-age覆盖。
-
-Expires 的一个缺点就是，返回的到期时间是服务器端的时间，这样存在一个问题，如果客户端的时间与服务器的时间相差很大，那么误差就很大，所以在HTTP 1.1版开始，使用Cache-Control: max-age=秒替代。
-
-Expires =max-age +   “每次下载时的当前的request时间”
-
 
 
 ## xss

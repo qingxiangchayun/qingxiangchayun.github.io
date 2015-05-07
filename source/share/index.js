@@ -6,8 +6,6 @@ Person.prototype.showName = function(){
 	console.log(this.name);
 }
 
-var xm = new Person('xiaoming');
-
 function Student (name,grade){
 	Person.call(this,name);
 	this.grade = grade;
@@ -26,6 +24,9 @@ function extend(target,source,deep){
     return target;
 }
 
+extend(Student.prototype,Person.prototype);
+
+var xm = new Person('xiaoming');
 var xh = new Student('xiaohong','college');
 
 

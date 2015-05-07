@@ -100,6 +100,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 ### 思考
 为什么 jquery.extend(copy方法) 和 jquery.fn.extend(为实例对象扩展方法) 可以使用同一套代码实现？
+扩展的this指向。
 
 ### 实现一个简单的extend方法
 ```

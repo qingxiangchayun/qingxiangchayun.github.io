@@ -81,7 +81,7 @@ js编写一个继承的实例
     </p>
   <p class="article-time">
     <time datetime="2015-05-05T09:45:55.000Z" itemprop="datePublished">5月 5 2015</time>
-    更新日期:<time datetime="2015-05-07T02:34:36.000Z" itemprop="dateModified">5月 7 2015</time>
+    更新日期:<time datetime="2015-05-08T10:20:28.000Z" itemprop="dateModified">5月 8 2015</time>
     
   </p>
 </header>
@@ -108,8 +108,15 @@ js编写一个继承的实例
 </ul>
 <h2 id="谈一下你所知道的页面性能优化方法">谈一下你所知道的页面性能优化方法</h2>
 <ul>
-<li>减少计算</li>
-<li>降低I/O</li>
+<li>减少计算<ul>
+<li>reflow、repaint、css表达式、避免空的src</li>
+</ul>
+</li>
+<li>降低I/O<ul>
+<li>请求数量：合并脚本和样式表，css Sprites、</li>
+<li>缓存利用：CDN、添加 Expires 头，减少DNS查找，配置Etag</li>
+</ul>
+</li>
 <li>关注数据监控</li>
 </ul>
 <h2 id="js_排序算法">js 排序算法</h2>
@@ -123,17 +130,187 @@ js编写一个继承的实例
 <ul>
 <li>DOM 对象与 js 对象互相引用 — 解决方案：jquery 的 data 缓存。</li>
 <li>定时器第一个参数是字符串</li>
-<li>`function bindEvent()<br>{<br>  var obj = document.createElement(“XXX”);<br>  obj.onclick = function(){ <pre><code>  // <span class="keyword">...</span> 
-</code></pre>  }<br>}</li>
+<li>内存泄漏的一个示例</li>
 </ul>
-<p>bindEvent();`</p>
+<figure class="highlight function"><figcaption><span>bindEvent() </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">{ </div><div class="line">    var obj = document.createElement(<span class="string">"XXX"</span>); </div><div class="line">    obj.onclick = <span class="keyword">function</span>(){ </div><div class="line">        // <span class="keyword">...</span> </div><div class="line">    } </div><div class="line">}</div><div class="line"></div><div class="line">bindEvent();</div></pre></td></tr></table></figure>
+
+<h2 id="跨域">跨域</h2>
+<ul>
+<li>jsonp</li>
+<li>iframe<ul>
+<li>document.domain 跨子域 两个页面的document.domain都指向主域,父页面通过ifr.contentWindow就可以访问子页面的window，子页面通过parent.window或parent访问父页面的window</li>
+<li>window.name</li>
+<li>location.hash</li>
+</ul>
+</li>
+<li><p>img ping</p>
+</li>
+<li><p>HTML5 CORS(Cross-Origin Resource Sharing) </p>
+<ul>
+<li>(Cross-Origin Resource Sharing) 这个特性的出现使得跨域通信只需通过配置http协议头来即可解决。Access-Control-Allow-Origin:<a href="http://a.com表示允许a.com下的域名跨域访问" target="_blank" rel="external">http://a.com表示允许a.com下的域名跨域访问</a></li>
+</ul>
+</li>
+<li><p>HTML5 postMessage <code>window.postMessage(message, targetOrigin, [transfer])</code> 标准浏览器<code>XMLHttpRequest</code> IE <code>XDomainRequest</code></p>
+</li>
+<li><p>解决方案 <a href="http://www.alloyteam.com/2013/11/the-second-version-universal-solution-iframe-cross-domain-communication/" target="_blank" rel="external">alloyteam messengerJS</a></p>
+<ul>
+<li>postMessage</li>
+<li>IE6/7 navigator对象在父窗口和iframe之间是共享的,可以在父窗口中，在navigator对象上注册一个消息回调函数；在iframe中，调用navigator上的这个函数并传入参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="ajax">ajax</h2>
+<ul>
+<li>创建xhr对象<ul>
+<li><code>new XMLHttpRequest() / ActiveXObject(&#39;Microsoft.XMLHTTP&#39;)</code></li>
+</ul>
+</li>
+<li>建立连接<ul>
+<li><code>xhr.open(method,url,true)</code></li>
+<li><code>method == get ? url += &#39;?&#39; + data : url</code></li>
+</ul>
+</li>
+<li>发送数据 <ul>
+<li><code>method == get ? xhr.send() : xhr.send(data); xhr.setRequestHeader(&#39;Content-Type&#39;,&#39;application/x-www-form-urlencoded&#39;)</code></li>
+</ul>
+</li>
+<li>接受数据<ul>
+<li><code>xhr.onreadystatechange</code></li>
+<li><code>xhr.readyState</code> <ul>
+<li>0: 请求未初始化 </li>
+<li>1: 服务器连接已建立</li>
+<li>2: 请求已接收</li>
+<li>3: 请求处理中</li>
+<li>4: 请求已完成，且响应已就绪</li>
+</ul>
+</li>
+<li><code>xhr.status == 200 || xhr.status == 303</code></li>
+</ul>
+</li>
+<li>处理数据<ul>
+<li><code>xhr.responseText</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Fetch">Fetch</h2>
+<ul>
+<li>使用fetch的原因<ul>
+<li><code>XMLHttpRequest</code> 设计上不符合职责分离原则，将输入、输出和用事件来跟踪的状态混杂在一个对象里</li>
+<li><code>XMLHttpRequest</code> 基于事件的模型与最近JavaScript流行的Promise以及基于生成器的异步编程模型不太搭</li>
+</ul>
+</li>
+<li>Fetch Interfaces <ul>
+<li>GlobalFetch <ul>
+<li>Contains the fetch() method used to fetch a resource.</li>
+</ul>
+</li>
+<li>Headers<ul>
+<li>Represents response/request headers, allowing you to query them and take different actions depending on the results.</li>
+</ul>
+</li>
+<li>Request<ul>
+<li>Represents a resource request.</li>
+</ul>
+</li>
+<li>Response<ul>
+<li>Represents the response to a request.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTTP">HTTP</h2>
+<ul>
+<li>请求头包含请求的方法、URL、协议版本、以及包含请求修饰符、客户信息和内容的类似于MIME的消息结构</li>
+<li><p>服务器以一个状态行作为响应，响应的内容包括消息协议的版本，成功或者错误编码加上包含服务器信息、实体元信息以及可能的实体内容</p>
+</li>
+<li><p>HTTP的头域包括通用头，请求头，响应头和实体头四个部分</p>
+</li>
+<li><p>通用头域</p>
+<ul>
+<li><p>Cache-Control 指定请求和响应遵循的缓存机制。</p>
+<ul>
+<li>请求时的缓存指令包括no-cache、no-store、max-age、max-stale、min-fresh、only-if-cached</li>
+<li>响应消息中的指令包括public、private、no-cache、no-store、no-transform、must-revalidate、proxy-revalidate、max-age<ul>
+<li>max-age 指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Date头域</p>
+<ul>
+<li>Date头域表示消息发送的时间，时间的描述格式由rfc822定义。例如，Date:Mon,31Dec200104:25:57GMT。</li>
+</ul>
+</li>
+<li><p>Pragma头域</p>
+<ul>
+<li>Pragma头域用来包含实现特定的指令，最常用的是Pragma:no-cache。在HTTP/1.1协议中，它的含义和Cache-Control:no-cache相同。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Request Headers</p>
+<ul>
+<li>Host 头域 <ul>
+<li>Host头域指定请求资源的Intenet主机和端口号，必须表示请求url的原始服务器或网关的位置。HTTP/1.1请求必须包含主机头域，否则系统会以400状态码返回</li>
+</ul>
+</li>
+<li>Referer头域<ul>
+<li>Referer头域允许客户端指定请求uri的源资源地址，这可以允许服务器生成回退链表，可用来登陆、优化cache等</li>
+</ul>
+</li>
+<li>User-Agent头域<ul>
+<li>User-Agent头域的内容包含发出请求的用户信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept:text<span class="regexp">/css,*/</span>*;q=<span class="number">0.1</span></div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=<span class="number">0.8</span></div><div class="line">Cache-Control:max-age=<span class="number">0</span></div><div class="line">Connection:keep-alive</div><div class="line">Host:mozorg.cdn.mozilla.net</div><div class="line"><span class="keyword">If</span>-Modified-Since:Thu, <span class="number">07</span> May <span class="number">2015</span> <span class="number">21</span>:<span class="number">48</span>:<span class="number">22</span> GMT</div><div class="line">Referer:https:<span class="comment">//developer.mozilla.org/en-US/docs/Web/API/Fetch_API</span></div><div class="line">User-Agent:Mozilla<span class="regexp">/5.0 (Windows NT 6.1; WOW64) AppleWebKit/</span><span class="number">537.36</span> (KHTML, like Gecko) Chrome<span class="regexp">/41.0.2272.101 Safari/</span><span class="number">537.36</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>Request Headers</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="constant">Cache</span>-<span class="constant">Control</span><span class="symbol">:max-age=</span><span class="number">315360000</span></div><div class="line"><span class="constant">Connection</span><span class="symbol">:keep-alive</span></div><div class="line"><span class="constant">Content</span>-<span class="constant">Encoding</span><span class="symbol">:gzip</span></div><div class="line"><span class="constant">Content</span>-<span class="constant">Type</span><span class="symbol">:text/css</span></div><div class="line"><span class="constant">Date</span><span class="symbol">:Fri</span>, 08 <span class="constant">May</span> <span class="number">2015</span> 09<span class="symbol">:</span><span class="number">51</span><span class="symbol">:</span><span class="number">30</span> <span class="constant">GMT</span></div><div class="line"><span class="constant">Expires</span><span class="symbol">:Mon</span>, <span class="number">05</span> <span class="constant">May</span> <span class="number">2025</span> 09<span class="symbol">:</span><span class="number">51</span><span class="symbol">:</span><span class="number">30</span> <span class="constant">GMT</span></div><div class="line"><span class="constant">Last</span>-<span class="constant">Modified</span><span class="symbol">:Thu</span>, <span class="number">26</span> <span class="constant">Mar</span> <span class="number">2015</span> <span class="number">04</span><span class="symbol">:</span><span class="number">57</span><span class="symbol">:</span><span class="number">50</span> <span class="constant">GMT</span></div><div class="line"><span class="constant">Server</span><span class="symbol">:nginx/</span><span class="number">1.6</span>.<span class="number">0</span></div><div class="line"><span class="constant">Transfer</span>-<span class="constant">Encoding</span><span class="symbol">:chunked</span></div><div class="line"><span class="constant">Vary</span><span class="symbol">:Accept-Encoding</span></div></pre></td></tr></table></figure>
+
+<h2 id="HTTP_status_304">HTTP status 304</h2>
+<ul>
+<li><p>Etag (entity tag) 是万维网协议HTTP的一部分。ETag是HTTP协议提供的若干机制中的一种Web缓存验证机制，并且允许客户端进行缓存协商。</p>
+<ul>
+<li>ETag在HTTP头字段中的使用是可选的。</li>
+<li>HTTP规范从未指定生成ETag的方法。</li>
+<li>用法<ul>
+<li>当一个URL被请求，Web服务器会返回资源和其相应的ETag值，它会被放置在HTTP的“ETag”字段中：<code>ETag: &quot;686897696a7c876b7e&quot;</code></li>
+<li>然后，客户端可以决定是否缓存这个资源和它的ETag。以后，如果客户端想再次请求相同的URL，将会发送一个包含已保存的ETag和“If-None-Match”字段的请求。<code>If-None-Match: &quot;686897696a7c876b7e&quot;</code></li>
+<li>客户端请求之后，服务器比较客户端的ETag和当前版本资源的ETag。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Response Headers</p>
+<ul>
+<li>Last-Modified : Wed, 14 Jan 2015 22:37:09 GMT</li>
+</ul>
+</li>
+<li><p>Request Headers</p>
+<ul>
+<li>If-Modified-Since : Wed, 14 Jan 2015 22:37:09 GMT</li>
+</ul>
+</li>
+<li><p>Cache-Control</p>
+<ul>
+<li>Cache-Control:max-age=xxx max-age:秒，距第一次访问多少秒后再次访问则认为缓存有效</li>
+</ul>
+</li>
+<li><p>Last-Modified 只能精确到秒级别,如果要到毫秒级别，就要用ETag.</p>
+</li>
+</ul>
 <h2 id="CommonJS">CommonJS</h2>
 <ul>
 <li>javascript not just for browsers any more;</li>
 <li>modules</li>
 <li>i/o</li>
-<li>fs</li>
-<li>system</li>
+<li>fs system</li>
 <li>worker</li>
 <li>packages</li>
 <li>promises</li>

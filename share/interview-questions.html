@@ -81,7 +81,7 @@ js编写一个继承的实例
     </p>
   <p class="article-time">
     <time datetime="2015-05-05T09:45:55.000Z" itemprop="datePublished">5月 5 2015</time>
-    更新日期:<time datetime="2015-05-08T10:20:28.000Z" itemprop="dateModified">5月 8 2015</time>
+    更新日期:<time datetime="2015-05-11T09:56:03.000Z" itemprop="dateModified">5月 11 2015</time>
     
   </p>
 </header>
@@ -143,19 +143,52 @@ js编写一个继承的实例
 <li>location.hash</li>
 </ul>
 </li>
-<li><p>img ping</p>
+<li>img ping</li>
+<li><p>WebSocket </p>
 </li>
-<li><p>HTML5 CORS(Cross-Origin Resource Sharing) </p>
+<li><p>CORS(Cross-Origin Resource Sharing) 跨域资源共享</p>
 <ul>
+<li>标准浏览器<code>XMLHttpRequest</code> IE <code>XDomainRequest</code> </li>
 <li>(Cross-Origin Resource Sharing) 这个特性的出现使得跨域通信只需通过配置http协议头来即可解决。Access-Control-Allow-Origin:<a href="http://a.com表示允许a.com下的域名跨域访问" target="_blank" rel="external">http://a.com表示允许a.com下的域名跨域访问</a></li>
 </ul>
 </li>
-<li><p>HTML5 postMessage <code>window.postMessage(message, targetOrigin, [transfer])</code> 标准浏览器<code>XMLHttpRequest</code> IE <code>XDomainRequest</code></p>
+<li><p>HTML5 postMessage 跨文档消息通信 <code>window.postMessage(message, targetOrigin, [transfer])</code> </p>
+<ul>
+<li>交互方式 <ul>
+<li>iframe 父页面 :  contentWindow、子页面 :  window.top</li>
+<li>窗口页 :  父页面 :  window.open、子页面 : window.opener</li>
+</ul>
+</li>
+<li>接受事件<ul>
+<li>message</li>
+<li>ev.origin 发送数据来源的域</li>
+<li>ev.data 发送的数据</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>解决方案 <a href="http://www.alloyteam.com/2013/11/the-second-version-universal-solution-iframe-cross-domain-communication/" target="_blank" rel="external">alloyteam messengerJS</a></p>
 <ul>
 <li>postMessage</li>
 <li>IE6/7 navigator对象在父窗口和iframe之间是共享的,可以在父窗口中，在navigator对象上注册一个消息回调函数；在iframe中，调用navigator上的这个函数并传入参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="iframe">iframe</h2>
+<ul>
+<li>操作iframe<ul>
+<li>iframe.contentWindow iframe的window对象</li>
+<li>iframe.contentDocument iframe的document对象 ie6、7 不支持</li>
+</ul>
+</li>
+<li>操作iframe的父级<ul>
+<li>window.parent.document iframe的父级页面</li>
+<li>window.top 最顶层</li>
+</ul>
+</li>
+<li>相关注意点<ul>
+<li>ie 下iframe的onload需通过事件绑定的形式</li>
+<li>chrome 需以服务器的形式操作iframe</li>
 </ul>
 </li>
 </ul>
@@ -266,7 +299,7 @@ js编写一个继承的实例
 </ul>
 </li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept:text<span class="regexp">/css,*/</span>*;q=<span class="number">0.1</span></div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=<span class="number">0.8</span></div><div class="line">Cache-Control:max-age=<span class="number">0</span></div><div class="line">Connection:keep-alive</div><div class="line">Host:mozorg.cdn.mozilla.net</div><div class="line"><span class="keyword">If</span>-Modified-Since:Thu, <span class="number">07</span> May <span class="number">2015</span> <span class="number">21</span>:<span class="number">48</span>:<span class="number">22</span> GMT</div><div class="line">Referer:https:<span class="comment">//developer.mozilla.org/en-US/docs/Web/API/Fetch_API</span></div><div class="line">User-Agent:Mozilla<span class="regexp">/5.0 (Windows NT 6.1; WOW64) AppleWebKit/</span><span class="number">537.36</span> (KHTML, like Gecko) Chrome<span class="regexp">/41.0.2272.101 Safari/</span><span class="number">537.36</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Accept:text<span class="regexp">/css,*/</span>*;q=<span class="number">0.1</span></div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=<span class="number">0.8</span></div><div class="line">Cache-Control:max-age=<span class="number">0</span></div><div class="line">Expires:Thu, <span class="number">08</span> May <span class="number">2025</span> <span class="number">02</span>:<span class="number">23</span>:<span class="number">22</span> GMT</div><div class="line">Connection:keep-alive</div><div class="line">Host:mozorg.cdn.mozilla.net</div><div class="line"><span class="keyword">If</span>-Modified-Since:Thu, <span class="number">07</span> May <span class="number">2015</span> <span class="number">21</span>:<span class="number">48</span>:<span class="number">22</span> GMT</div><div class="line">Referer:https:<span class="comment">//developer.mozilla.org/en-US/docs/Web/API/Fetch_API</span></div><div class="line">User-Agent:Mozilla<span class="regexp">/5.0 (Windows NT 6.1; WOW64) AppleWebKit/</span><span class="number">537.36</span> (KHTML, like Gecko) Chrome<span class="regexp">/41.0.2272.101 Safari/</span><span class="number">537.36</span></div></pre></td></tr></table></figure>
 
 <ul>
 <li>Request Headers</li>
@@ -305,6 +338,17 @@ js编写一个继承的实例
 <li><p>Last-Modified 只能精确到秒级别,如果要到毫秒级别，就要用ETag.</p>
 </li>
 </ul>
+<h2 id="Expires_与_max-age_区别">Expires 与 max-age 区别</h2>
+<ul>
+<li>Expires在HTTP/1.0中已经定义，Cache-Control:max-age在HTTP/1.1中才有定义，为了向下兼容，仅使用max-age不够；</li>
+<li>Expires指定一个绝对的过期时间(GMT格式),这么做会导致至少2个问题：<ul>
+<li>客户端和服务器时间不同步导致Expires的配置出现问题。 </li>
+<li>很容易在配置后忘记具体的过期时间，导致过期来临出现浪涌现象；</li>
+</ul>
+</li>
+<li>max-age 指定的是从文档被访问后的存活时间，这个时间是个相对值(比如:3600s),相对的是文档第一次被请求时服务器记录的Request_time(请求时间)</li>
+<li>Expires指定的时间可以是相对文件的最后访问时间(Atime)或者修改时间(MTime),而max-age相对对的是文档的请求时间(Atime)</li>
+</ul>
 <h2 id="CommonJS">CommonJS</h2>
 <ul>
 <li>javascript not just for browsers any more;</li>
@@ -339,6 +383,12 @@ js编写一个继承的实例
 <ul>
 <li>使用 module 关键字定义模块</li>
 <li>使用 import 关键字加载外部模块</li>
+</ul>
+<h2 id="DOM">DOM</h2>
+<ul>
+<li>可视区尺寸 document.documentElement.clientWidth/clientHeight</li>
+<li>滚动距离 document.body.scrollTop || document.documentElement.scrollTop</li>
+<li>文档高度 document.body.offsetHeight</li>
 </ul>
 <h2 id="RequireJS">RequireJS</h2>
 <h2 id="node">node</h2>

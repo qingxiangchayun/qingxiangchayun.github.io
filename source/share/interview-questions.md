@@ -130,14 +130,34 @@ bindEvent();
   * window.name
   * location.hash
 * img ping
+* WebSocket 
 
-* HTML5 CORS(Cross-Origin Resource Sharing) 
+* CORS(Cross-Origin Resource Sharing) 跨域资源共享
+  * 标准浏览器`XMLHttpRequest` IE `XDomainRequest` 
   * (Cross-Origin Resource Sharing) 这个特性的出现使得跨域通信只需通过配置http协议头来即可解决。Access-Control-Allow-Origin:http://a.com表示允许a.com下的域名跨域访问
-* HTML5 postMessage `window.postMessage(message, targetOrigin, [transfer])` 标准浏览器`XMLHttpRequest` IE `XDomainRequest`
+* HTML5 postMessage 跨文档消息通信 `window.postMessage(message, targetOrigin, [transfer])` 
+  * 交互方式 
+    * iframe 父页面 :  contentWindow、子页面 :  window.top
+    * 窗口页 :  父页面 :  window.open、子页面 : window.opener
+  * 接受事件
+    * message
+    * ev.origin 发送数据来源的域
+    * ev.data 发送的数据
 
 * 解决方案 [alloyteam messengerJS](http://www.alloyteam.com/2013/11/the-second-version-universal-solution-iframe-cross-domain-communication/)
   * postMessage
   * IE6/7 navigator对象在父窗口和iframe之间是共享的,可以在父窗口中，在navigator对象上注册一个消息回调函数；在iframe中，调用navigator上的这个函数并传入参数
+
+## iframe
+* 操作iframe
+  * iframe.contentWindow iframe的window对象
+  * iframe.contentDocument iframe的document对象 ie6、7 不支持
+* 操作iframe的父级
+  * window.parent.document iframe的父级页面
+  * window.top 最顶层
+* 相关注意点
+  * ie 下iframe的onload需通过事件绑定的形式
+  * chrome 需以服务器的形式操作iframe
 
 ## ajax
 * 创建xhr对象
@@ -203,6 +223,7 @@ Accept:text/css,*/*;q=0.1
 Accept-Encoding:gzip, deflate, sdch
 Accept-Language:zh-CN,zh;q=0.8
 Cache-Control:max-age=0
+Expires:Thu, 08 May 2025 02:23:22 GMT
 Connection:keep-alive
 Host:mozorg.cdn.mozilla.net
 If-Modified-Since:Thu, 07 May 2015 21:48:22 GMT
@@ -242,6 +263,14 @@ Vary:Accept-Encoding
   * Cache-Control:max-age=xxx max-age:秒，距第一次访问多少秒后再次访问则认为缓存有效
 
 * Last-Modified 只能精确到秒级别,如果要到毫秒级别，就要用ETag.
+
+## Expires 与 max-age 区别
+* Expires在HTTP/1.0中已经定义，Cache-Control:max-age在HTTP/1.1中才有定义，为了向下兼容，仅使用max-age不够；
+* Expires指定一个绝对的过期时间(GMT格式),这么做会导致至少2个问题：
+  * 客户端和服务器时间不同步导致Expires的配置出现问题。 
+  * 很容易在配置后忘记具体的过期时间，导致过期来临出现浪涌现象；
+* max-age 指定的是从文档被访问后的存活时间，这个时间是个相对值(比如:3600s),相对的是文档第一次被请求时服务器记录的Request_time(请求时间)
+* Expires指定的时间可以是相对文件的最后访问时间(Atime)或者修改时间(MTime),而max-age相对对的是文档的请求时间(Atime)
 
 
 
@@ -313,6 +342,11 @@ UMD (Universal Module Definition) patterns for JavaScript modules that work ever
 ## ECMAScript Harmony
 * 使用 module 关键字定义模块
 * 使用 import 关键字加载外部模块
+
+## DOM 
+* 可视区尺寸 document.documentElement.clientWidth/clientHeight
+* 滚动距离 document.body.scrollTop || document.documentElement.scrollTop
+* 文档高度 document.body.offsetHeight
 
 
 ## RequireJS

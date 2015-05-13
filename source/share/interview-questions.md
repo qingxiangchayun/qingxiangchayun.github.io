@@ -202,7 +202,7 @@ bindEvent();
   * Cache-Control 指定请求和响应遵循的缓存机制。
     * 请求时的缓存指令包括no-cache、no-store、max-age、max-stale、min-fresh、only-if-cached
     * 响应消息中的指令包括public、private、no-cache、no-store、no-transform、must-revalidate、proxy-revalidate、max-age
-      * max-age 指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应
+      * max-age 指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应 HTTP1.1
 
   * Date头域
     * Date头域表示消息发送的时间，时间的描述格式由rfc822定义。例如，Date:Mon,31Dec200104:25:57GMT。
@@ -272,8 +272,13 @@ Vary:Accept-Encoding
 * max-age 指定的是从文档被访问后的存活时间，这个时间是个相对值(比如:3600s),相对的是文档第一次被请求时服务器记录的Request_time(请求时间)
 * Expires指定的时间可以是相对文件的最后访问时间(Atime)或者修改时间(MTime),而max-age相对对的是文档的请求时间(Atime)
 
+## 200 from cache
+* 不需要发送请求，直接使用浏览器缓存
+* 直接点击链接或输入url enter方法
 
-
+## ie 各版本和chrome可以并行下载多少个资源
+* IE6 两个并发，iE7升级之后的6个并发，之后版本也是6个
+* Firefox，chrome也是6个
 
 
 
@@ -354,10 +359,27 @@ UMD (Universal Module Definition) patterns for JavaScript modules that work ever
 
 ## node
 
+## AMD 模版加载器
+* id即路径
+* createElement('script') && appendChild
+* document.currentScript / script.onload
+* 依赖分析
+* 递归加载
+
+
+
 
 
 ## xss
-跨站脚本攻击(Cross Site Scripting)
+* 跨站脚本攻击(Cross Site Scripting)
+* 对于服务器端来说，html是数据（字符串）；对于浏览器端来说，html是指令。XSS的原理，就是破坏html/css/js的构造
+* 反射型是：输入--输出；
+  * dom-xss
+* 存储型是：输入--进入数据库*--取出数据库--输出。
+* 解决方法
+  * 正确escape
+  * innerHTML --> Template
+
 ```
 function escape(s) {
   return '<script>console.log("'+s+'");</script>';
@@ -395,6 +417,9 @@ CSRF(Cross-site request forgery)跨站请求伪造
 	})
 })(jQuery);
 ```
+
+## 屏蔽广告
+* 找到对应的广告id、class，remove或display:none
 
 ## 项目中遇到的问题
 * 运营商修改服务端返回的数据

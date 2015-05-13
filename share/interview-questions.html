@@ -81,7 +81,7 @@ js编写一个继承的实例
     </p>
   <p class="article-time">
     <time datetime="2015-05-05T09:45:55.000Z" itemprop="datePublished">5月 5 2015</time>
-    更新日期:<time datetime="2015-05-11T09:56:03.000Z" itemprop="dateModified">5月 11 2015</time>
+    更新日期:<time datetime="2015-05-13T10:27:30.000Z" itemprop="dateModified">5月 13 2015</time>
     
   </p>
 </header>
@@ -265,7 +265,7 @@ js编写一个继承的实例
 <ul>
 <li>请求时的缓存指令包括no-cache、no-store、max-age、max-stale、min-fresh、only-if-cached</li>
 <li>响应消息中的指令包括public、private、no-cache、no-store、no-transform、must-revalidate、proxy-revalidate、max-age<ul>
-<li>max-age 指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应</li>
+<li>max-age 指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应 HTTP1.1</li>
 </ul>
 </li>
 </ul>
@@ -349,6 +349,16 @@ js编写一个继承的实例
 <li>max-age 指定的是从文档被访问后的存活时间，这个时间是个相对值(比如:3600s),相对的是文档第一次被请求时服务器记录的Request_time(请求时间)</li>
 <li>Expires指定的时间可以是相对文件的最后访问时间(Atime)或者修改时间(MTime),而max-age相对对的是文档的请求时间(Atime)</li>
 </ul>
+<h2 id="200_from_cache">200 from cache</h2>
+<ul>
+<li>不需要发送请求，直接使用浏览器缓存</li>
+<li>直接点击链接或输入url enter方法</li>
+</ul>
+<h2 id="ie_各版本和chrome可以并行下载多少个资源">ie 各版本和chrome可以并行下载多少个资源</h2>
+<ul>
+<li>IE6 两个并发，iE7升级之后的6个并发，之后版本也是6个</li>
+<li>Firefox，chrome也是6个</li>
+</ul>
 <h2 id="CommonJS">CommonJS</h2>
 <ul>
 <li>javascript not just for browsers any more;</li>
@@ -392,8 +402,29 @@ js编写一个继承的实例
 </ul>
 <h2 id="RequireJS">RequireJS</h2>
 <h2 id="node">node</h2>
+<h2 id="AMD_模版加载器">AMD 模版加载器</h2>
+<ul>
+<li>id即路径</li>
+<li>createElement(‘script’) &amp;&amp; appendChild</li>
+<li>document.currentScript / script.onload</li>
+<li>依赖分析</li>
+<li>递归加载</li>
+</ul>
 <h2 id="xss">xss</h2>
-<p>跨站脚本攻击(Cross Site Scripting)</p>
+<ul>
+<li>跨站脚本攻击(Cross Site Scripting)</li>
+<li>对于服务器端来说，html是数据（字符串）；对于浏览器端来说，html是指令。XSS的原理，就是破坏html/css/js的构造</li>
+<li>反射型是：输入—输出；<ul>
+<li>dom-xss</li>
+</ul>
+</li>
+<li>存储型是：输入—进入数据库*—取出数据库—输出。</li>
+<li>解决方法<ul>
+<li>正确escape</li>
+<li>innerHTML —&gt; Template</li>
+</ul>
+</li>
+</ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(s)</span> {</span></div><div class="line">  <span class="keyword">return</span> <span class="string">'&lt;script&gt;console.log("</span><span class="string">'+s+'</span><span class="string">");&lt;/script&gt;'</span>;</div><div class="line">}</div><div class="line"></div><div class="line">s = <span class="string">");alert('</span><span class="transposed_variable">xss'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(input)</span> {</span></div><div class="line">    <span class="comment">// warm up</span></div><div class="line">    <span class="comment">// script should be executed without user interaction</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'&lt;input type="</span>text<span class="string">" value="</span><span class="string">' + input + '</span><span class="string">"&gt;'</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="string">"&gt;&lt;svg/onload=prompt(1)&gt;</span></div></pre></td></tr></table></figure>
 
 <h2 id="CSRF">CSRF</h2>
@@ -406,6 +437,10 @@ js编写一个继承的实例
 <h2 id="jquery_插件扩展模式">jquery 插件扩展模式</h2>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="list">(<span class="title">function</span><span class="list">(<span class="title">$</span>)</span><span class="collection">{</span></span></div><div class="line">	$.fn.myPluginName = function<span class="list">()</span><span class="collection">{}</span></div><div class="line">})<span class="list">(<span class="title">jQuery</span>)</span><span class="comment">;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="list">(<span class="title">function</span><span class="list">(<span class="title">$</span>)</span><span class="collection">{</span></span></div><div class="line">	$.exentd<span class="list">(<span class="title">$.fn</span>,<span class="collection">{</span></span></div><div class="line">		myplugin : function<span class="list">()</span><span class="collection">{}</span></div><div class="line">	})</div><div class="line">})<span class="list">(<span class="title">jQuery</span>)</span><span class="comment">;</span></div></pre></td></tr></table></figure>
 
+<h2 id="屏蔽广告">屏蔽广告</h2>
+<ul>
+<li>找到对应的广告id、class，remove或display:none</li>
+</ul>
 <h2 id="项目中遇到的问题">项目中遇到的问题</h2>
 <ul>
 <li>运营商修改服务端返回的数据</li>

@@ -109,7 +109,9 @@ function compare(a,b){
 ```
 
 ## js 内存泄漏
-* DOM 对象与 js 对象互相引用 -- 解决方案：jquery 的 data 缓存。
+* DOM 对象与 js 对象互相引用(循环引用)
+  * 问题：IE9之前的版本因为对JScript对象和COM对象使用不同的垃圾收集机制 
+  * 解决方案：取消循环引用，如jquery 的 data 缓存。
 * 定时器第一个参数是字符串
 * 内存泄漏的一个示例
 ```function bindEvent() 
@@ -389,7 +391,7 @@ function escape(s) {
   return '<script>console.log("'+s+'");</script>';
 }
 
-s = ");alert('xss')
+s == ");alert('xss')
 
 function escape(input) {
     // warm up

@@ -81,7 +81,7 @@ js编写一个继承的实例
     </p>
   <p class="article-time">
     <time datetime="2015-05-05T09:45:55.000Z" itemprop="datePublished">5月 5 2015</time>
-    更新日期:<time datetime="2015-05-15T10:18:54.000Z" itemprop="dateModified">5月 15 2015</time>
+    更新日期:<time datetime="2015-05-15T10:36:04.000Z" itemprop="dateModified">5月 15 2015</time>
     
   </p>
 </header>
@@ -128,7 +128,11 @@ js编写一个继承的实例
 
 <h2 id="js_内存泄漏">js 内存泄漏</h2>
 <ul>
-<li>DOM 对象与 js 对象互相引用 — 解决方案：jquery 的 data 缓存。</li>
+<li>DOM 对象与 js 对象互相引用(循环引用)<ul>
+<li>问题：IE9之前的版本因为对JScript对象和COM对象使用不同的垃圾收集机制 </li>
+<li>解决方案：取消循环引用，如jquery 的 data 缓存。</li>
+</ul>
+</li>
 <li>定时器第一个参数是字符串</li>
 <li>内存泄漏的一个示例</li>
 </ul>
@@ -435,7 +439,7 @@ js编写一个继承的实例
 </ul>
 </li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(s)</span> {</span></div><div class="line">  <span class="keyword">return</span> <span class="string">'&lt;script&gt;console.log("</span><span class="string">'+s+'</span><span class="string">");&lt;/script&gt;'</span>;</div><div class="line">}</div><div class="line"></div><div class="line">s = <span class="string">");alert('</span><span class="transposed_variable">xss'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(input)</span> {</span></div><div class="line">    <span class="comment">// warm up</span></div><div class="line">    <span class="comment">// script should be executed without user interaction</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'&lt;input type="</span>text<span class="string">" value="</span><span class="string">' + input + '</span><span class="string">"&gt;'</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="string">"&gt;&lt;svg/onload=prompt(1)&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(s)</span> {</span></div><div class="line">  <span class="keyword">return</span> <span class="string">'&lt;script&gt;console.log("</span><span class="string">'+s+'</span><span class="string">");&lt;/script&gt;'</span>;</div><div class="line">}</div><div class="line"></div><div class="line">s == <span class="string">");alert('</span><span class="transposed_variable">xss'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(input)</span> {</span></div><div class="line">    <span class="comment">// warm up</span></div><div class="line">    <span class="comment">// script should be executed without user interaction</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'&lt;input type="</span>text<span class="string">" value="</span><span class="string">' + input + '</span><span class="string">"&gt;'</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="string">"&gt;&lt;svg/onload=prompt(1)&gt;</span></div></pre></td></tr></table></figure>
 
 <h2 id="CSRF">CSRF</h2>
 <p>CSRF(Cross-site request forgery)跨站请求伪造</p>

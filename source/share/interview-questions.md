@@ -371,11 +371,15 @@ UMD (Universal Module Definition) patterns for JavaScript modules that work ever
 
 
 ## xss
-* 跨站脚本攻击(Cross Site Scripting)
-* 对于服务器端来说，html是数据（字符串）；对于浏览器端来说，html是指令。XSS的原理，就是破坏html/css/js的构造
-* 反射型是：输入--输出；
-  * dom-xss
-* 存储型是：输入--进入数据库*--取出数据库--输出。
+* 概念
+  * 跨站脚本攻击(Cross Site Scripting)
+* 原理
+  * 用户输入的内容，本应该作为data数据展示的，却被当作指令来执行。
+  * 对于服务器端来说，html是数据（字符串）；对于浏览器端来说，html是指令。XSS的原理，就是破坏html/css/js的构造
+* 分类
+  * 反射型：输入--输出；
+    * dom-xss
+  * 存储型：输入--进入数据库--取出数据库--输出。
 * 解决方法
   * 正确escape
   * innerHTML --> Template
@@ -417,6 +421,67 @@ CSRF(Cross-site request forgery)跨站请求伪造
 	})
 })(jQuery);
 ```
+
+## 生成一个1-100的数组，然后将数组顺序打乱
+```
+var arr = [];
+for(var i=1; i<101; i++){
+  arr.push(i);
+}
+
+arr.sort(function(){
+  return Math.rondom() - 0.5;
+});
+```
+
+## this
+```
+<a id="J_link" href="javascript:alert(this)" onclick="javascript:alert(this)"> A Link </a>
+```
+* onclick 
+  * this 指向 a 标签
+  * alert 的内容是 href 的属性值 `javascript:alert(this)` 
+    * alert 方法执行结果必须是字符串
+    * `document.getElementById('J_link').toString()` --> href的属性值
+  * console.log(this) 的内容是 ` <a onclick="javascript:console.log(this);" href="javascript:alert(this);">` 控制台中点击，可以找到对应的DOM节点
+
+* onclick 中的 javascript
+  * onclick 的属性值，本来就会被当作脚本对待，不存在指明协议的需求。添加 javascript 是为了区别 vbscript
+  * 在 onclick 等属性解析的时候，其属性值被引擎打包在一个匿名函数中
+  ```
+  <a id="J_link"> A Link </a>
+  <script>
+    document.getElementById('J_link').onclick = function(){
+      // code 
+    }
+  </script>
+  ```
+
+* href
+  * this 指向 window
+  * alert 的内容是 `[object Window]`
+
+* href 中的 javascript
+  * href 属性中， javascript: 是协议名，与 http: 类似，它告诉浏览器，后面的内容是一段 javascript 脚本
+  * 当此链接被点击的时候，浏览器实际上执行的是一个 navigate 的动作，只是 navigate 的目标，不是常见的 http:，而是 javascript:
+  * href 后的代码，其 执行环境 是 全局
+
+* 先执行 onclick 事件，在执行 href 跳转。
+
+* `<div onclick="javascript:alert(this)"> Div Tag </div>` alert 内容 `[object HTMLDivElement]`
+* `<h1 onclick="javascript:alert(this)"> H1 Tag </h1>` alert 内容 `[object HTMLHeadingElement]`
+
+
+## HTML && DOM 
+* HTML -- Hyper Text Markup Language 超文本标记语言
+
+* DOM -- Document Object Model 文档对象模型
+  * DOM 定义了访问 HTML 和 XML 文档的标准 
+  > W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。
+
+* HTML DOM
+  * HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准
+
 
 ## 屏蔽广告
 * 找到对应的广告id、class，remove或display:none

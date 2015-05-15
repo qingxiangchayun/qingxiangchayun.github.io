@@ -81,7 +81,7 @@ js编写一个继承的实例
     </p>
   <p class="article-time">
     <time datetime="2015-05-05T09:45:55.000Z" itemprop="datePublished">5月 5 2015</time>
-    更新日期:<time datetime="2015-05-13T10:27:30.000Z" itemprop="dateModified">5月 13 2015</time>
+    更新日期:<time datetime="2015-05-15T10:18:54.000Z" itemprop="dateModified">5月 15 2015</time>
     
   </p>
 </header>
@@ -412,13 +412,23 @@ js编写一个继承的实例
 </ul>
 <h2 id="xss">xss</h2>
 <ul>
+<li>概念<ul>
 <li>跨站脚本攻击(Cross Site Scripting)</li>
+</ul>
+</li>
+<li>原理<ul>
+<li>用户输入的内容，本应该作为data数据展示的，却被当作指令来执行。</li>
 <li>对于服务器端来说，html是数据（字符串）；对于浏览器端来说，html是指令。XSS的原理，就是破坏html/css/js的构造</li>
-<li>反射型是：输入—输出；<ul>
+</ul>
+</li>
+<li>分类<ul>
+<li>反射型：输入—输出；<ul>
 <li>dom-xss</li>
 </ul>
 </li>
-<li>存储型是：输入—进入数据库*—取出数据库—输出。</li>
+<li>存储型：输入—进入数据库—取出数据库—输出。</li>
+</ul>
+</li>
 <li>解决方法<ul>
 <li>正确escape</li>
 <li>innerHTML —&gt; Template</li>
@@ -437,6 +447,71 @@ js编写一个继承的实例
 <h2 id="jquery_插件扩展模式">jquery 插件扩展模式</h2>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="list">(<span class="title">function</span><span class="list">(<span class="title">$</span>)</span><span class="collection">{</span></span></div><div class="line">	$.fn.myPluginName = function<span class="list">()</span><span class="collection">{}</span></div><div class="line">})<span class="list">(<span class="title">jQuery</span>)</span><span class="comment">;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="list">(<span class="title">function</span><span class="list">(<span class="title">$</span>)</span><span class="collection">{</span></span></div><div class="line">	$.exentd<span class="list">(<span class="title">$.fn</span>,<span class="collection">{</span></span></div><div class="line">		myplugin : function<span class="list">()</span><span class="collection">{}</span></div><div class="line">	})</div><div class="line">})<span class="list">(<span class="title">jQuery</span>)</span><span class="comment">;</span></div></pre></td></tr></table></figure>
 
+<h2 id="生成一个1-100的数组，然后将数组顺序打乱">生成一个1-100的数组，然后将数组顺序打乱</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;<span class="number">101</span>; i++){</div><div class="line">  arr.push(i);</div><div class="line">}</div><div class="line"></div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.rondom() - <span class="number">0.5</span>;</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<h2 id="this">this</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a <span class="variable">id=</span><span class="string">"J_link"</span> <span class="variable">href=</span><span class="string">"javascript:alert(this)"</span> <span class="variable">onclick=</span><span class="string">"javascript:alert(this)"</span>&gt; A Link &lt;/a&gt;</div></pre></td></tr></table></figure>
+
+<ul>
+<li><p>onclick </p>
+<ul>
+<li>this 指向 a 标签</li>
+<li>alert 的内容是 href 的属性值 <code>javascript:alert(this)</code> <ul>
+<li>alert 方法执行结果必须是字符串</li>
+<li><code>document.getElementById(&#39;J_link&#39;).toString()</code> —&gt; href的属性值</li>
+</ul>
+</li>
+<li>console.log(this) 的内容是 <code>&lt;a onclick=&quot;javascript:console.log(this);&quot; href=&quot;javascript:alert(this);&quot;&gt;</code> 控制台中点击，可以找到对应的DOM节点</li>
+</ul>
+</li>
+<li><p>onclick 中的 javascript</p>
+<ul>
+<li>onclick 的属性值，本来就会被当作脚本对待，不存在指明协议的需求。添加 javascript 是为了区别 vbscript</li>
+<li>在 onclick 等属性解析的时候，其属性值被引擎打包在一个匿名函数中</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">id</span>=<span class="value">"J_link"</span>&gt;</span> A Link <span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'J_link'</span>).onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="comment">// code </span></div><div class="line">  }</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li><p>href</p>
+<ul>
+<li>this 指向 window</li>
+<li>alert 的内容是 <code>[object Window]</code></li>
+</ul>
+</li>
+<li><p>href 中的 javascript</p>
+<ul>
+<li>href 属性中， javascript: 是协议名，与 http: 类似，它告诉浏览器，后面的内容是一段 javascript 脚本</li>
+<li>当此链接被点击的时候，浏览器实际上执行的是一个 navigate 的动作，只是 navigate 的目标，不是常见的 http:，而是 javascript:</li>
+<li>href 后的代码，其 执行环境 是 全局</li>
+</ul>
+</li>
+<li><p>先执行 onclick 事件，在执行 href 跳转。</p>
+</li>
+<li><p><code>&lt;div onclick=&quot;javascript:alert(this)&quot;&gt; Div Tag &lt;/div&gt;</code> alert 内容 <code>[object HTMLDivElement]</code></p>
+</li>
+<li><code>&lt;h1 onclick=&quot;javascript:alert(this)&quot;&gt; H1 Tag &lt;/h1&gt;</code> alert 内容 <code>[object HTMLHeadingElement]</code></li>
+</ul>
+<h2 id="HTML_&amp;&amp;_DOM">HTML &amp;&amp; DOM</h2>
+<ul>
+<li><p>HTML — Hyper Text Markup Language 超文本标记语言</p>
+</li>
+<li><p>DOM — Document Object Model 文档对象模型</p>
+<ul>
+<li>DOM 定义了访问 HTML 和 XML 文档的标准 <blockquote>
+<p>W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>HTML DOM</p>
+<ul>
+<li>HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准</li>
+</ul>
+</li>
+</ul>
 <h2 id="屏蔽广告">屏蔽广告</h2>
 <ul>
 <li>找到对应的广告id、class，remove或display:none</li>

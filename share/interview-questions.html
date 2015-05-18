@@ -81,7 +81,7 @@ js编写一个继承的实例
     </p>
   <p class="article-time">
     <time datetime="2015-05-05T09:45:55.000Z" itemprop="datePublished">5月 5 2015</time>
-    更新日期:<time datetime="2015-05-15T10:36:04.000Z" itemprop="dateModified">5月 15 2015</time>
+    更新日期:<time datetime="2015-05-18T08:40:39.000Z" itemprop="dateModified">5月 18 2015</time>
     
   </p>
 </header>
@@ -117,7 +117,12 @@ js编写一个继承的实例
 <li>缓存利用：CDN、添加 Expires 头，减少DNS查找，配置Etag</li>
 </ul>
 </li>
-<li>关注数据监控</li>
+<li>关注数据监控<ul>
+<li>YSlow</li>
+<li>PageSpeed</li>
+<li>Performance</li>
+</ul>
+</li>
 </ul>
 <h2 id="js_排序算法">js 排序算法</h2>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span><span class="params">(arr)</span></span>{</div><div class="line">   <span class="keyword">var</span> len = arr.length;</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;len-<span class="number">1</span>;i++ ){</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j &lt; len-<span class="number">1</span>;j++){</div><div class="line">           <span class="keyword">var</span> temp;</div><div class="line">           <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>]) {</div><div class="line">               temp = arr[j];</div><div class="line">               arr[j] = arr[j+<span class="number">1</span>];</div><div class="line">               arr[j+<span class="number">1</span>] = temp;</div><div class="line">             }</div><div class="line">        }</div><div class="line">    }</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">}</div></pre></td></tr></table></figure>
@@ -136,7 +141,7 @@ js编写一个继承的实例
 <li>定时器第一个参数是字符串</li>
 <li>内存泄漏的一个示例</li>
 </ul>
-<figure class="highlight function"><figcaption><span>bindEvent() </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">{ </div><div class="line">    var obj = document.createElement(<span class="string">"XXX"</span>); </div><div class="line">    obj.onclick = <span class="keyword">function</span>(){ </div><div class="line">        // <span class="keyword">...</span> </div><div class="line">    } </div><div class="line">}</div><div class="line"></div><div class="line">bindEvent();</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> bindEvent() </div><div class="line">{ </div><div class="line">    var obj = document.createElement(<span class="string">"XXX"</span>); </div><div class="line">    obj.onclick = <span class="keyword">function</span>(){ </div><div class="line">        // <span class="keyword">...</span> </div><div class="line">    } </div><div class="line">}</div><div class="line"></div><div class="line">bindEvent();</div></pre></td></tr></table></figure>
 
 <h2 id="跨域">跨域</h2>
 <ul>
@@ -360,8 +365,8 @@ js编写一个继承的实例
 </ul>
 <h2 id="ie_各版本和chrome可以并行下载多少个资源">ie 各版本和chrome可以并行下载多少个资源</h2>
 <ul>
-<li>IE6 两个并发，iE7升级之后的6个并发，之后版本也是6个</li>
-<li>Firefox，chrome也是6个</li>
+<li>IE6 两个并发，IE7+ 6个</li>
+<li>Firefox，Chrome 6个</li>
 </ul>
 <h2 id="CommonJS">CommonJS</h2>
 <ul>

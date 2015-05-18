@@ -57,6 +57,9 @@ var xh = new Student('xiaohong','college');
   * 请求数量：合并脚本和样式表，css Sprites、
   * 缓存利用：CDN、添加 Expires 头，减少DNS查找，配置Etag
 * 关注数据监控
+  * YSlow
+  * PageSpeed
+  * Performance
 
 ## js 排序算法
 ```
@@ -114,7 +117,8 @@ function compare(a,b){
   * 解决方案：取消循环引用，如jquery 的 data 缓存。
 * 定时器第一个参数是字符串
 * 内存泄漏的一个示例
-```function bindEvent() 
+```
+function bindEvent() 
 { 
     var obj = document.createElement("XXX"); 
     obj.onclick = function(){ 
@@ -279,8 +283,8 @@ Vary:Accept-Encoding
 * 直接点击链接或输入url enter方法
 
 ## ie 各版本和chrome可以并行下载多少个资源
-* IE6 两个并发，iE7升级之后的6个并发，之后版本也是6个
-* Firefox，chrome也是6个
+* IE6 两个并发，IE7+ 6个
+* Firefox，Chrome 6个
 
 
 

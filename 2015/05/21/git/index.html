@@ -4,13 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jquery源码学习之$ | lyuan blog</title>
+    <title>Git 基本配置及常用命令 | lyuan blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="lyuan">
     
-    <meta name="description" content="首先来看一下jquery是什么？即学习一下$。
-123456// Define a local copy of jQuery// 定义一个jQuery副本jQuery = function( selector, context ) {	// The jQuery object is actually">
+    <meta name="description" content="基础配置
+
+git config user.name xxx
+git config --global user.name xxx 
+git config --system user.name xxx
+
+忽略不同系统下的空格(^M)
+
+window 换行符 \r\n 
+Linux 换行符 \n
+git">
     
     
     
@@ -71,15 +80,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/22/jquery/" title="jquery源码学习之$" itemprop="url">jquery源码学习之$</a>
+      <a href="/2015/05/21/git/" title="Git 基本配置及常用命令" itemprop="url">Git 基本配置及常用命令</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://qingxiangchayun.github.io" title="lyuan">lyuan</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-22T09:13:29.000Z" itemprop="datePublished">1月 22 2015</time>
-    更新日期:<time datetime="2015-05-04T03:27:15.000Z" itemprop="dateModified">5月 4 2015</time>
+    <time datetime="2015-05-21T08:37:34.000Z" itemprop="datePublished">5月 21 2015</time>
+    更新日期:<time datetime="2015-05-21T09:27:12.000Z" itemprop="dateModified">5月 21 2015</time>
     
   </p>
 </header>
@@ -88,30 +97,96 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础配置"><span class="toc-number">1.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#忽略不同系统下的空格(^M)"><span class="toc-number">2.</span> <span class="toc-text">忽略不同系统下的空格(^M)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置命令别名"><span class="toc-number">3.</span> <span class="toc-text">设置命令别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令输入中开启颜色显示"><span class="toc-number">4.</span> <span class="toc-text">命令输入中开启颜色显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看状态_status"><span class="toc-number">5.</span> <span class="toc-text">查看状态 status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add_提交到缓存区"><span class="toc-number">6.</span> <span class="toc-text">add 提交到缓存区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交缓存区中的文件到本地版本库"><span class="toc-number">7.</span> <span class="toc-text">提交缓存区中的文件到本地版本库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看版本库的提交日志"><span class="toc-number">8.</span> <span class="toc-text">查看版本库的提交日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看分支"><span class="toc-number">9.</span> <span class="toc-text">查看分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比文件区别"><span class="toc-number">10.</span> <span class="toc-text">对比文件区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重置"><span class="toc-number">11.</span> <span class="toc-text">重置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检出"><span class="toc-number">12.</span> <span class="toc-text">检出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交"><span class="toc-number">13.</span> <span class="toc-text">提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cherry-pick"><span class="toc-number">14.</span> <span class="toc-text">cherry-pick</span></a></li></ol>
 		</div>
 		
-		<p>首先来看一下<code>jquery</code>是什么？即学习一下<code>$</code>。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Define a local copy of jQuery</span></div><div class="line"><span class="comment">// 定义一个jQuery副本</span></div><div class="line">jQuery = <span class="function"><span class="keyword">function</span><span class="params">( selector, context )</span> </span>{</div><div class="line">	<span class="comment">// The jQuery object is actually just the init constructor 'enhanced'</span></div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><code>jQuery</code>是一个<code>function</code>,返回值<code>new jQuery.fn.init( selector, context, rootjQuery )</code><br>那么<code>jQuery.fn.init</code>又是什么呢？</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = {</div><div class="line">	<span class="keyword">...</span></div><div class="line">	constructor: jQuery,</div><div class="line">	init: <span class="keyword">function</span>( selector, context, rootjQuery ) {},</div><div class="line">	<span class="keyword">...</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p><code>jQuery.fn.init</code>是一个function，调用时使用<code>new</code>，是一个构造函数；<code>jQuery</code>将<code>jQuery.fn.init</code>的<code>prototype</code>指向<code>jQuery.fn</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Give the init function the jQuery prototype for later instantiation</span></div><div class="line">jQuery.<span class="keyword">fn</span>.init.prototype = jQuery.<span class="keyword">fn</span>;</div></pre></td></tr></table></figure>
-
-<p><code>jQuery.fn = jQuery.prototype</code>,</p>
-<p>‘jQuery —&gt; new jQuery.fn.init —&gt; jQuery.fn.init.prototype.fn’</p>
+		<h3 id="基础配置">基础配置</h3>
+<ul>
+<li><code>git config user.name xxx</code></li>
+<li><code>git config --global user.name xxx</code> </li>
+<li><code>git config --system user.name xxx</code></li>
+</ul>
+<h3 id="忽略不同系统下的空格(^M)">忽略不同系统下的空格(^M)</h3>
+<ul>
+<li>window 换行符 \r\n </li>
+<li>Linux 换行符 \n</li>
+<li><code>git config --global core.autocrlf true</code></li>
+</ul>
+<h3 id="设置命令别名">设置命令别名</h3>
+<p><code>git config --global alias.lg &quot;log --graph--oneline--decorate&quot;</code></p>
+<h3 id="命令输入中开启颜色显示">命令输入中开启颜色显示</h3>
+<p><code>git config --global color.ui true</code></p>
+<h3 id="查看状态_status">查看状态 status</h3>
+<ul>
+<li><code>git status</code></li>
+<li><code>git show &lt;commit&gt;</code> 显示此次修改的内容等信息</li>
+<li><code>git whatchanged HEAD^..HEAD</code> 比较两次提交之间有什么修改的文件</li>
+</ul>
+<h3 id="add_提交到缓存区">add 提交到缓存区</h3>
+<ul>
+<li><code>git add .</code></li>
+<li><code>git add &lt;file&gt;</code></li>
+<li><code>git add -u</code> -u 把工作区中删除的文件添加到缓存区</li>
+</ul>
+<h3 id="提交缓存区中的文件到本地版本库">提交缓存区中的文件到本地版本库</h3>
+<ul>
+<li><code>git commit -m &quot;comments&quot;</code></li>
+<li><code>git commit -amend</code> 修改上次提交的注释</li>
+<li><code>git commit -a</code> 对本地所有变更的文件执行提交操作，减少 git add 的操作</li>
+</ul>
+<h3 id="查看版本库的提交日志">查看版本库的提交日志</h3>
+<ul>
+<li><code>git log --pretty=fuller</code> 显示提交的一些详细信息</li>
+<li><code>git log --stat</code> 每次提交的文件变更统计</li>
+<li><code>git log --oneline</code> 在一行显示提交日志</li>
+<li><code>git log --pretty=row</code> 显示提交的父节点和 tree</li>
+<li><code>git log --graph</code> 显示提交 tree 跟踪链条</li>
+<li><code>git log --p</code> 显示修改详情</li>
+<li><code>git log --decorate master dev</code> 显示分支标记</li>
+</ul>
+<h3 id="查看分支">查看分支</h3>
+<p><code>git branch</code> </p>
+<h3 id="对比文件区别">对比文件区别</h3>
+<ul>
+<li><code>git diff</code> 比较工作区和缓存区的区别</li>
+<li><code>git diff HEAD</code> 比较工作区和版本库的区别</li>
+<li><code>git diff --cached</code> 比较缓存区和版本库的区别</li>
+</ul>
+<h3 id="重置">重置</h3>
+<ul>
+<li><code>git reset --hard &lt;commit&gt;</code> 替换引用的指向到指定提交，同时改变缓存区和工作区内容</li>
+<li><code>git reset --hard &lt;file&gt;</code> 将 file 的改动撤出缓存区，相当于对 add 命令的反操作</li>
+</ul>
+<h3 id="检出">检出</h3>
+<ul>
+<li><code>git checkout -- &lt;file&gt;</code> 用缓存区指定的文件替换工作区文件</li>
+<li><code>git checkout -- .</code> 用缓存区所有文件替换工作区文件</li>
+<li><code>git checkout HEAD</code> 用 HEAD 指向的分支的所有文件替换暂缓区和工作区文件</li>
+<li><code>git checkout &lt;branch-name&gt;</code> 切换分支</li>
+<li><code>git clean -fd</code> 清除当前工作区中没有加入版本库中的文件和目录</li>
+</ul>
+<h3 id="提交">提交</h3>
+<ul>
+<li><code>git push origin origin/branch-name:branch-name</code> 从远程的一个分支提交到另外一个远程分支</li>
+<li><code>git push origin &lt;空&gt;:branch-name</code>  删除一个远程分支</li>
+</ul>
+<h3 id="cherry-pick">cherry-pick</h3>
+<p><code>git cherry-pick &lt;commit&gt;</code> 把一个分支 commit 修改的内容应用到当前分支<br>使用 git cherry-pick 和 git reflog 可以找回 git reset 删除的点</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://qingxiangchayun.github.io/2015/01/22/jquery/" data-title="jquery源码学习之$ | lyuan blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://qingxiangchayun.github.io/2015/05/21/git/" data-title="Git 基本配置及常用命令 | lyuan blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -120,19 +195,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/22/jQuery-source-code/" title="jquery源码学习之选择器">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jquery源码学习之选择器</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/01/22/jquery-static-methods/"  title="jquery源码学习之静态方法">
+<a href="/2015/04/16/Relationships-between-display-position-and-float/"  title="css学习之display、position、float之间的关系">
  <strong>NEXT:</strong><br/> 
- <span>jquery源码学习之静态方法
+ <span>css学习之display、position、float之间的关系
 </span>
 </a>
 </div>
@@ -149,7 +216,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础配置"><span class="toc-number">1.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#忽略不同系统下的空格(^M)"><span class="toc-number">2.</span> <span class="toc-text">忽略不同系统下的空格(^M)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置命令别名"><span class="toc-number">3.</span> <span class="toc-text">设置命令别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令输入中开启颜色显示"><span class="toc-number">4.</span> <span class="toc-text">命令输入中开启颜色显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看状态_status"><span class="toc-number">5.</span> <span class="toc-text">查看状态 status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add_提交到缓存区"><span class="toc-number">6.</span> <span class="toc-text">add 提交到缓存区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交缓存区中的文件到本地版本库"><span class="toc-number">7.</span> <span class="toc-text">提交缓存区中的文件到本地版本库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看版本库的提交日志"><span class="toc-number">8.</span> <span class="toc-text">查看版本库的提交日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看分支"><span class="toc-number">9.</span> <span class="toc-text">查看分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比文件区别"><span class="toc-number">10.</span> <span class="toc-text">对比文件区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重置"><span class="toc-number">11.</span> <span class="toc-text">重置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检出"><span class="toc-number">12.</span> <span class="toc-text">检出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交"><span class="toc-number">13.</span> <span class="toc-text">提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cherry-pick"><span class="toc-number">14.</span> <span class="toc-text">cherry-pick</span></a></li></ol>
   </div>
 
 <div id="asidepart">

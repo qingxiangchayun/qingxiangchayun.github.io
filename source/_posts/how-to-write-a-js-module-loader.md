@@ -18,7 +18,8 @@ requirejs 用法：
 1、 requirejs预加载。 每个模块所依赖的其他模块都会比本模块预先加载。
 
 
-![requirejs-jsonload](/img/requirejs-jsonload.png);
+![requirejs-jsonload](/img/requirejs-jsonload.png)
+![requirejs-fn](/img/requirejs-fn.png)
 
 
 
